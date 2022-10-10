@@ -1,7 +1,7 @@
-import "./App.css";
+import "./App.scss";
 import { useGetConfigQuery } from "./features/apis/baseApi";
 
-import { NavamaApp } from "./components";
+import { NamavaApp } from "./components";
 
 function App() {
     const { isError, error, isFetching, isLoading, isSuccess } =
@@ -16,7 +16,7 @@ function App() {
     } else if (isSuccess) {
         content = (
             <div>
-                <NavamaApp />
+                <NamavaApp />
             </div>
         );
     }
