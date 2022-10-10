@@ -13,4 +13,4 @@ export const baseApiSlice = createApi({
     }),
 });
 
-export const { useGetConfigQuery } = baseApiSlice;
+export const { useGetConfigQuery, useGetMenuQuery } = baseApiSlice;
