@@ -1,9 +1,8 @@
 @use "./scss/" as *;
 
-@import url("https://v1.fontapi.ir/css/Sahel");
-
+@import url("https://v1.fontapi.ir/css/Yekan");
 * {
-    font-family: "Sahel", serif;
+    font-family: "Yekan", serif;
 }
 * {
     padding: 0;
@@ -11,6 +10,12 @@
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+}
+
+svg {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
 }
 
 html {
@@ -31,6 +36,7 @@ body {
     scroll-behavior: smooth !important;
     background-color: $black-main;
     color: $white;
+    direction: rtl;
 
     @include mobile {
         margin-bottom: 5rem;
@@ -44,7 +50,7 @@ a {
 
 @media (hover: hover) {
     a:hover {
-        color: $red;
+        color: $blue;
     }
 }
 
@@ -77,4 +83,8 @@ iframe {
     @include tablet {
         padding: 0 1.5rem;
     }
+}
+
+.logo {
+    fill: white !important;
 }

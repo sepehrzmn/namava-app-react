@@ -2,6 +2,8 @@ import { useMemo } from "react";
 
 import { useGetMenuQuery } from "../../features/apis/baseApi";
 import { Header } from "../";
+import { Route, Routes } from "react-router-dom";
+import Home from "../../pages/Home";
 
 const NamavaApp = () => {
     const {
@@ -38,8 +40,11 @@ const NamavaApp = () => {
 
 const Content = ({ dataHeader }) => {
     return (
-        <div>
+        <div style={{ height: "500vh" }}>
             <Header data={dataHeader} />
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
         </div>
     );
 };
