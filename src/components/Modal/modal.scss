@@ -1,0 +1,36 @@
+@use "../../scss/" as *;
+
+.modal {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    background-color: rgba($color: black, $alpha: 0.4);
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+    @include flex(center, center);
+    flex-direction: column;
+
+    &-content {
+        width: 50vw;
+    }
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+    .close {
+        width: 100%;
+        margin-bottom: 2rem;
+
+        & > * {
+            display: inline-block;
+            width: 5%;
+        }
+    }
+}

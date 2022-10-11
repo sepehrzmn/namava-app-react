@@ -1,4 +1,10 @@
 import "./App.scss";
+
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+
 import { useGetConfigQuery } from "./features/apis/baseApi";
 
 import { NamavaApp } from "./components";

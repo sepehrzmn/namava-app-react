@@ -37,7 +37,7 @@ body {
     background-color: $black-main;
     color: $white;
     direction: rtl;
-
+    font-size: 12px;
     @include mobile {
         margin-bottom: 5rem;
     }
@@ -64,7 +64,7 @@ ul {
 }
 
 img {
-    width: 100%;
+    width: auto;
     display: block;
 }
 

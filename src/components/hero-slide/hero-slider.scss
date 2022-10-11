@@ -1,0 +1,149 @@
+@use "../../scss/" as *;
+
+.hero-slider {
+    position: relative;
+
+    .swiper-pagination {
+        display: none;
+    }
+
+    @include mobile {
+        .swiper-pagination {
+            display: block;
+        }
+        .swiper-pagination-bullet {
+            width: 9px;
+            height: 9px;
+        }
+        .swiper-pagination-bullet-active {
+            background: $white;
+        }
+        .swiper-horizontal > .swiper-pagination-bullets,
+        .swiper-pagination-bullets.swiper-pagination-horizontal,
+        .swiper-pagination-custom,
+        .swiper-pagination-fraction {
+            bottom: 5%;
+        }
+    }
+
+    .item {
+        background-position: top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        padding-top: $header-height;
+        padding-top: 10rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease;
+        min-height: 80vh;
+
+        @include mobile {
+            @include flex(center, center);
+            min-height: 60vh;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+
+            width: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background-image: linear-gradient(
+                to top,
+                transparent,
+                $black-main 95%
+            );
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background-image: linear-gradient(transparent, $black-main 95%);
+        }
+
+        &__content {
+            position: relative;
+            padding-bottom: 14%;
+            line-height: 2.5;
+            z-index: 2;
+            @include mobile {
+                @include flex(center, center);
+                flex-direction: column;
+            }
+
+            & > * ~ * {
+                margin-top: 1.5rem;
+            }
+            .logo {
+                min-height: 120px;
+                @include flex(center, flex-start);
+
+                img {
+                    max-width: 20vw;
+                    max-height: 10vw;
+                    margin-bottom: 10px;
+                    display: block;
+
+                    @include tablet {
+                        max-width: 25vw;
+                        max-height: 15vw;
+                    }
+
+                    @include mobile {
+                        max-width: 40vw;
+                        max-height: 30vw;
+                    }
+                }
+            }
+
+            h2 {
+                @include mobile {
+                    font-size: 15px;
+                }
+            }
+            .btns > * ~ * {
+                margin-right: 1rem;
+            }
+        }
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    .btn-swiper-box {
+        position: absolute;
+        z-index: 5;
+        bottom: 15%;
+        left: 0;
+        margin-left: 3rem;
+
+        & > * ~ * {
+            margin-right: 3rem;
+        }
+
+        .btn-swiper {
+            border: none;
+            width: 3rem;
+            height: 3rem;
+            background-color: transparent;
+            cursor: pointer;
+
+            .left {
+                transform: rotate(180deg);
+            }
+        }
+
+        @include mobile {
+            display: none;
+        }
+    }
+}

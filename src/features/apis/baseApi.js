@@ -10,7 +10,11 @@ export const baseApiSlice = createApi({
         getMenu: builder.query({
             query: () => "/v3.0/menus",
         }),
+        getSlider: builder.query({
+            query: (id) => `/v2.0/medias/sliders/${id}`,
+        }),
     }),
 });
 
-export const { useGetConfigQuery, useGetMenuQuery } = baseApiSlice;
+export const { useGetConfigQuery, useGetMenuQuery, useGetSliderQuery } =
+    baseApiSlice;

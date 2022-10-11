@@ -7,7 +7,7 @@ const Header = ({ data }) => {
     const navRef = useRef(null);
 
     useEffect(() => {
-        const onScroll = (event) => {
+        const onScroll = () => {
             if (document.documentElement.scrollTop > 100) {
                 navRef.current.classList.add("shrink");
                 return;
@@ -37,7 +37,7 @@ const Header = ({ data }) => {
 
                     <ul className="nav__content__list">
                         {data.map((item) => (
-                            <MenuItem data={item} />
+                            <MenuItem key={item.menuId} data={item} />
                         ))}
                     </ul>
                 </div>

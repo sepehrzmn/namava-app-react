@@ -3,7 +3,9 @@ import { useMemo } from "react";
 import { useGetMenuQuery } from "../../features/apis/baseApi";
 import { Header } from "../";
 import { Route, Routes } from "react-router-dom";
-import Home from "../../pages/Home";
+import Index from "../../pages/Index";
+
+const Components = [{ name: "Index", Component: Index }];
 
 const NamavaApp = () => {
     const {
@@ -30,7 +32,7 @@ const NamavaApp = () => {
     } else if (isSuccess) {
         content = (
             <div>
-                <Content dataHeader={menu} />
+                <Content dataPages={menu} />
             </div>
         );
     }
@@ -38,12 +40,30 @@ const NamavaApp = () => {
     return <>{content}</>;
 };
 
-const Content = ({ dataHeader }) => {
+const Content = ({ dataPages }) => {
     return (
-        <div style={{ height: "500vh" }}>
-            <Header data={dataHeader} />
+        <div>
+            <Header data={dataPages} />
             <Routes>
-                <Route path="/" element={<Home />} />
+                <>
+                    {dataPages.map((data) => {
+                        const Component = Components.find(
+                            (item) => item.name === data.entityType
+                        );
+                        if (Component) {
+                            return (
+                                <Route
+                                    key={data.slug}
+                                    path={`/${data.slug}`}
+                                    element={
+                                        <Component.Component data={data} />
+                                    }
+                                />
+                            );
+                        }
+                        return "";
+                    })}
+                </>
             </Routes>
         </div>
     );
