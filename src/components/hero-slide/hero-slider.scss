@@ -22,7 +22,7 @@
         .swiper-pagination-bullets.swiper-pagination-horizontal,
         .swiper-pagination-custom,
         .swiper-pagination-fraction {
-            bottom: 5%;
+            bottom: 8%;
         }
     }
 
@@ -36,7 +36,7 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.5s ease;
-        min-height: 80vh;
+        min-height: 85vh;
 
         @include mobile {
             @include flex(center, center);
@@ -51,12 +51,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 50%;
-            background-image: linear-gradient(
-                to top,
-                transparent,
-                $black-main 95%
-            );
+            height: 10%;
+            background-image: linear-gradient(to top, transparent, $black-main);
         }
         &::after {
             content: "";
@@ -66,7 +62,7 @@
             left: 0;
             right: 0;
             height: 50%;
-            background-image: linear-gradient(transparent, $black-main 95%);
+            background-image: linear-gradient(transparent, $black-main);
         }
 
         &__content {
@@ -122,18 +118,18 @@
     .btn-swiper-box {
         position: absolute;
         z-index: 5;
-        bottom: 15%;
+        bottom: 20%;
         left: 0;
         margin-left: 3rem;
 
         & > * ~ * {
-            margin-right: 3rem;
+            margin-right: 1rem;
         }
 
         .btn-swiper {
             border: none;
-            width: 3rem;
-            height: 3rem;
+            width: 2.5rem;
+            height: 2.5rem;
             background-color: transparent;
             cursor: pointer;
 

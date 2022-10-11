@@ -1,0 +1,40 @@
+@use "../../scss/" as *;
+
+.post-group {
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    .swiper-slide {
+        width: 13%;
+        @include tablet {
+            width: 20%;
+        }
+
+        @include mobile {
+            width: 40%;
+        }
+    }
+
+    .title {
+        font-size: 15px;
+        margin: 1rem 0;
+    }
+
+    .item {
+        &__poster {
+            img {
+                width: 100%;
+                border-radius: 0.5rem;
+            }
+        }
+
+        &__title {
+            margin-top: 0.5rem;
+            font-size: 11px;
+        }
+    }
+
+    &.top {
+        margin-top: -5%;
+    }
+}

@@ -13,8 +13,18 @@ export const baseApiSlice = createApi({
         getSlider: builder.query({
             query: (id) => `/v2.0/medias/sliders/${id}`,
         }),
+        getPostGroup: builder.query({
+            query: (id, pi = 1, ps = 20) => ({
+                url: `v1.0/post-groups/${id}/medias`,
+                params: { pi, ps },
+            }),
+        }),
     }),
 });
 
-export const { useGetConfigQuery, useGetMenuQuery, useGetSliderQuery } =
-    baseApiSlice;
+export const {
+    useGetConfigQuery,
+    useGetMenuQuery,
+    useGetSliderQuery,
+    useGetPostGroupQuery,
+} = baseApiSlice;

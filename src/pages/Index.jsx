@@ -22,29 +22,37 @@ const Index = ({ data }) => {
         { name: "StarGroup", Component: StarGroup },
         { name: "BannerGroup", Component: BannerGroup },
     ];
-
+    console.log(data);
     const ids = useMemo(() => {
         const idsArray = [];
         data.pageItems.forEach((item) =>
-            idsArray.push({ key: item.payloadKey, type: item.payloadType })
+            idsArray.push({
+                key: item.payloadKey,
+                type: item.payloadType,
+                caption: item.caption,
+            })
         );
         return idsArray;
     }, [data]);
+    console.log(ids);
 
     return (
         <>
-            {/* <HeroSlide data={Slider} /> */}
-            {ids.map((id) => {
+            {ids.map((id, index) => {
                 const Component = Components.find(
                     (component) => component.name === id.type
                 );
-                console.log(id);
 
+                if (data.key === "") return "";
                 if (Component) {
-                    return <Component.Component data={id} />;
+                    return (
+                        <Component.Component
+                            key={index}
+                            data={id}
+                            className={index === 2 ? true : false}
+                        />
+                    );
                 }
-
-                if (data.type === "") return "";
 
                 return "";
             })}
