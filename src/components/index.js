@@ -14,7 +14,7 @@ export { default as PostGroup } from "./post-group/PostGroup";
 
 export { default as Latest } from "./latest/Latest";
 
-export { default as ExclusiveDubs } from "./exclusive-dubs/ExclusiveDubs";
+export { default as ExclusiveContent } from "./exclusive-content/ExclusiveContent";
 
 export { default as StarGroup } from "./star-group/StarGroup";
 

@@ -28,6 +28,12 @@ export const baseApiSlice = createApi({
                 params: { pi, ps },
             }),
         }),
+        getExclusiveContent: builder.query({
+            query: (id, pi = 1, ps = 20) => ({
+                url: `v1.0/medias/exclusive-content/${id}/`,
+                params: { pi, ps },
+            }),
+        }),
     }),
 });
 
@@ -38,4 +44,5 @@ export const {
     useGetPostGroupQuery,
     useGetBriefPreviewQuery,
     useGetLatestQuery,
+    useGetExclusiveContentQuery,
 } = baseApiSlice;

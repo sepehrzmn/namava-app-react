@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import {
     HeroSlide,
     PostGroup,
-    ExclusiveDubs,
+    ExclusiveContent,
     Latest,
     CategoryGroup,
     StarGroup,
@@ -16,7 +16,7 @@ const Index = ({ data }) => {
             Component: HeroSlide,
         },
         { name: "PostGroup", Component: PostGroup },
-        { name: "ExclusiveDubs", Component: ExclusiveDubs },
+        { name: "ExclusiveContent", Component: ExclusiveContent },
         { name: "Latest", Component: Latest },
         { name: "CategoryGroup", Component: CategoryGroup },
         { name: "StarGroup", Component: StarGroup },
