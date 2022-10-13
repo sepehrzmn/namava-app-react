@@ -22,4 +22,4 @@ export { default as BannerGroup } from "./banner-group/BannerGroup";
 
 export { default as ExclusiveDubs } from "./exclusive-dubs/ExclusiveDubs";
 
-export { CardPost, CardBanner } from "./card/card";
+export { CardPost, CardBanner, CardCasts } from "./card/card";

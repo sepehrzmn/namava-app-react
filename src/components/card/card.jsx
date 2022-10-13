@@ -157,3 +157,20 @@ export const CardBanner = ({ data, base }) => {
         </div>
     );
 };
+
+export const CardCasts = ({ data, base }) => {
+    return (
+        <div className="card cast" title={data.castName}>
+            <Link to={`/person-${data.castId}-${data.castName}`}>
+                <div className={`card__poster`}>
+                    <img
+                        src={`${base}/${data?.castImageUrl}`}
+                        alt={data?.castName}
+                    />
+                </div>
+
+                <div className="card__title">{data.castName}</div>
+            </Link>
+        </div>
+    );
+};

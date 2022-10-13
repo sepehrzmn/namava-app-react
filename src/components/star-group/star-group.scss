@@ -1,0 +1,20 @@
+@use "../../scss/" as *;
+
+.star-group {
+    position: relative;
+    z-index: 2;
+
+    &__content {
+        overflow: hidden;
+    }
+    .swiper-slide {
+        width: 12%;
+        @include tablet {
+            width: 20%;
+        }
+
+        @include mobile {
+            width: 25%;
+        }
+    }
+}

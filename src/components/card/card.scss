@@ -72,4 +72,12 @@
         margin-top: 0.5rem;
         font-size: 11px;
     }
+    &.cast {
+        img {
+            border-radius: 50%;
+        }
+        .card__title {
+            text-align: center;
+        }
+    }
 }

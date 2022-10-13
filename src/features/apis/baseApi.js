@@ -48,6 +48,13 @@ export const baseApiSlice = createApi({
                 params: { pi, ps },
             }),
         }),
+
+        getCasts: builder.query({
+            query: (id, pi = 1, ps = 20) => ({
+                url: `v1.0/casts/collection/${id}/`,
+                params: { pi, ps },
+            }),
+        }),
     }),
 });
 
@@ -61,4 +68,5 @@ export const {
     useGetExclusiveContentQuery,
     useGetBannerQuery,
     useGetExclusiveDubsQuery,
+    useGetCastsQuery,
 } = baseApiSlice;
