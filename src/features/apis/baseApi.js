@@ -34,6 +34,20 @@ export const baseApiSlice = createApi({
                 params: { pi, ps },
             }),
         }),
+
+        getBanner: builder.query({
+            query: (id, pi = 1, ps = 20) => ({
+                url: `v1.0/medias/banners/${id}`,
+                params: { pi, ps },
+            }),
+        }),
+
+        getExclusiveDubs: builder.query({
+            query: (id, pi = 1, ps = 20) => ({
+                url: `v1.0/medias/exclusive-dubs/${id}/`,
+                params: { pi, ps },
+            }),
+        }),
     }),
 });
 
@@ -45,4 +59,6 @@ export const {
     useGetBriefPreviewQuery,
     useGetLatestQuery,
     useGetExclusiveContentQuery,
+    useGetBannerQuery,
+    useGetExclusiveDubsQuery,
 } = baseApiSlice;

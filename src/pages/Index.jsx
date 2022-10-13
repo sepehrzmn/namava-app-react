@@ -7,6 +7,7 @@ import {
     CategoryGroup,
     StarGroup,
     BannerGroup,
+    ExclusiveDubs,
 } from "../components";
 
 const Index = ({ data }) => {
@@ -17,6 +18,7 @@ const Index = ({ data }) => {
         },
         { name: "PostGroup", Component: PostGroup },
         { name: "ExclusiveContent", Component: ExclusiveContent },
+        { name: "ExclusiveDubs", Component: ExclusiveDubs },
         { name: "Latest", Component: Latest },
         { name: "CategoryGroup", Component: CategoryGroup },
         { name: "StarGroup", Component: StarGroup },

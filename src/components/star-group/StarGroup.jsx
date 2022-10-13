@@ -1,6 +1,6 @@
 import React from "react";
 
-const StarGroup = () => {
+const StarGroup = ({ data }) => {
     return <div>StarGroup</div>;
 };
 

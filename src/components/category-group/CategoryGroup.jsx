@@ -1,7 +1,7 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 
-const CategoryGroup = ({ className }) => {
-    return <div className={`${className}`}></div>;
+const CategoryGroup = ({ data }) => {
+    return <div className="">CategoryGroup</div>;
 };
 
 export default CategoryGroup;

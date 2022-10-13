@@ -140,3 +140,20 @@ export const CardPost = ({ data, base }) => {
         </div>
     );
 };
+
+export const CardBanner = ({ data, base }) => {
+    return (
+        <div className="card" title={data.caption}>
+            <Link to={`/collection-${data.id}-${data.caption}`}>
+                <div className={`card__poster`}>
+                    <img
+                        src={`${base}/${data?.imageUrl}`}
+                        alt={data?.caption}
+                    />
+                </div>
+
+                <div className="card__title">{data.caption}</div>
+            </Link>
+        </div>
+    );
+};

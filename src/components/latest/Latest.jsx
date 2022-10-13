@@ -33,9 +33,8 @@ const Latest = ({ data }) => {
                 >
                     {latests?.result.map((item) => {
                         return (
-                            <SwiperSlide>
+                            <SwiperSlide key={item.id}>
                                 <CardPost
-                                    key={item.id}
                                     data={item}
                                     base={config?.result?.staticBaseUrl}
                                 />

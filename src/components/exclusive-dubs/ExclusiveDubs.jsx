@@ -1,21 +1,22 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide, Swiper } from "swiper/react";
+
 import {
     useGetConfigQuery,
-    useGetExclusiveContentQuery,
+    useGetExclusiveDubsQuery,
 } from "../../features/apis/baseApi";
 import { CardPost } from "../card/card";
 
-import "./exclusive-content.scss";
+import "./exclusiveDubs.scss";
 
-const ExclusiveContent = ({ data }) => {
+export const ExclusiveDubs = ({ data }) => {
     const {
-        data: latests,
+        data: Dubs,
         isError,
         error,
         isFetching,
         isLoading,
         isSuccess,
-    } = useGetExclusiveContentQuery(data.key);
+    } = useGetExclusiveDubsQuery(data.key);
     const { data: config } = useGetConfigQuery();
 
     let content;
@@ -31,7 +32,7 @@ const ExclusiveContent = ({ data }) => {
                     style={{ overflow: "visible" }}
                     spaceBetween={16}
                 >
-                    {latests?.result.map((item) => {
+                    {Dubs?.result.map((item) => {
                         return (
                             <SwiperSlide key={item.id}>
                                 <CardPost
@@ -47,8 +48,8 @@ const ExclusiveContent = ({ data }) => {
     }
 
     return (
-        <div className="exclusive-content-group">
-            <div className="exclusive-content-group__content container">
+        <div className="exclusive-dubs-group">
+            <div className="exclusive-dubs-group__content container">
                 <h2 className="title-group">{data.caption}</h2>
                 {content}
             </div>
@@ -56,4 +57,4 @@ const ExclusiveContent = ({ data }) => {
     );
 };
 
-export default ExclusiveContent;
+export default ExclusiveDubs;
