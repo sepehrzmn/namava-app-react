@@ -55,6 +55,13 @@ export const baseApiSlice = createApi({
                 params: { pi, ps },
             }),
         }),
+
+        getCategory: builder.query({
+            query: (type, pi = 1, ps = 20) => ({
+                url: `v1.0/category-groups/${type}/latest-medias`,
+                params: { pi, ps },
+            }),
+        }),
     }),
 });
 
@@ -69,4 +76,5 @@ export const {
     useGetBannerQuery,
     useGetExclusiveDubsQuery,
     useGetCastsQuery,
+    useGetCategoryQuery,
 } = baseApiSlice;
