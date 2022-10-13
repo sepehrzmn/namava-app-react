@@ -23,10 +23,10 @@ export const CardPost = ({ data, base }) => {
                                         {data?.type === "Series"
                                             ? "سریال"
                                             : "فیلم"}
-                                    </span>
-                                    -<span>{preview?.result.year}</span>
+                                    </span>{" "}
+                                    - <span>{preview?.result.year}</span>
                                 </div>
-                                {preview?.result?.hit && (
+                                {preview?.result?.hit ? (
                                     <div className="item">
                                         <div>
                                             <svg
@@ -41,8 +41,10 @@ export const CardPost = ({ data, base }) => {
                                         </div>
                                         <p>{preview?.result.hit}%</p>
                                     </div>
+                                ) : (
+                                    ""
                                 )}
-                                {preview?.result?.imdb && (
+                                {preview?.result?.imdb ? (
                                     <div className="item">
                                         <div>
                                             <svg
@@ -56,8 +58,10 @@ export const CardPost = ({ data, base }) => {
                                         </div>
                                         <p>{preview?.result.imdb}</p>
                                     </div>
+                                ) : (
+                                    ""
                                 )}
-                                {preview?.result?.hasPersianSubtitle && (
+                                {preview?.result?.hasPersianSubtitle ? (
                                     <div className="item">
                                         <div>
                                             <svg
@@ -75,6 +79,8 @@ export const CardPost = ({ data, base }) => {
                                         </div>
                                         <p>زیرنویس فارسی</p>
                                     </div>
+                                ) : (
+                                    ""
                                 )}
                                 {preview?.result?.dubsType |
                                 (preview?.result?.dubsType !== "None") ? (
@@ -110,7 +116,7 @@ export const CardPost = ({ data, base }) => {
             setIsShow(true);
         }, 1000);
     };
-    console.log(isShow);
+
     return (
         <div className="card" title={data.caption}>
             <Link to={`/${data.type}/${data.id}-${data.caption}`}>

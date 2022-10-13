@@ -22,6 +22,12 @@ export const baseApiSlice = createApi({
         getBriefPreview: builder.query({
             query: (id) => `v1.0/medias/${id}/brief-preview`,
         }),
+        getLatest: builder.query({
+            query: (pi = 1, ps = 20) => ({
+                url: "/v1.0/medias/latest",
+                params: { pi, ps },
+            }),
+        }),
     }),
 });
 
@@ -31,4 +37,5 @@ export const {
     useGetSliderQuery,
     useGetPostGroupQuery,
     useGetBriefPreviewQuery,
+    useGetLatestQuery,
 } = baseApiSlice;

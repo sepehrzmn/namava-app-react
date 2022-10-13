@@ -27,9 +27,9 @@ export const PostGroup = ({ data, className }) => {
         <div>{error.message.toString()}</div>;
     } else if (isSuccess) {
         content = (
-            <div className={`post-group ${className ? "top" : ""}`}>
+            <div className={`post-group my-2 ${className ? "top" : ""}`}>
                 <div className="post-group__content container">
-                    <h2 className="title">{data.caption}</h2>
+                    <h2 className="title-group">{data.caption}</h2>
                     <Swiper
                         slidesPerView={"auto"}
                         style={{ overflow: "visible" }}
