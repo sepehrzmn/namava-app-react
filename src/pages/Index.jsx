@@ -22,7 +22,6 @@ const Index = ({ data }) => {
         { name: "StarGroup", Component: StarGroup },
         { name: "BannerGroup", Component: BannerGroup },
     ];
-    console.log(data);
     const ids = useMemo(() => {
         const idsArray = [];
         data.pageItems.forEach((item) =>
@@ -34,7 +33,6 @@ const Index = ({ data }) => {
         );
         return idsArray;
     }, [data]);
-    console.log(ids);
 
     return (
         <>

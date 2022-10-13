@@ -93,7 +93,7 @@ const Item = ({ data, baseUrl, isActive }) => {
     return (
         <div
             style={{
-                backgroundImage: `url(${baseUrl}/${data?.coverLandscape})`,
+                backgroundImage: `linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 135vw), url("${baseUrl}/${data?.coverLandscape}")`,
             }}
             className={`item${isActive ? " active" : ""}`}
         >

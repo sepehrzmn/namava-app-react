@@ -19,3 +19,5 @@ export { default as ExclusiveDubs } from "./exclusive-dubs/ExclusiveDubs";
 export { default as StarGroup } from "./star-group/StarGroup";
 
 export { default as BannerGroup } from "./banner-group/BannerGroup";
+
+export { CardPost } from "./card/card";

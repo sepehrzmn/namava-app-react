@@ -19,6 +19,9 @@ export const baseApiSlice = createApi({
                 params: { pi, ps },
             }),
         }),
+        getBriefPreview: builder.query({
+            query: (id) => `v1.0/medias/${id}/brief-preview`,
+        }),
     }),
 });
 
@@ -27,4 +30,5 @@ export const {
     useGetMenuQuery,
     useGetSliderQuery,
     useGetPostGroupQuery,
+    useGetBriefPreviewQuery,
 } = baseApiSlice;

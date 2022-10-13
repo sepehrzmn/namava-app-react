@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
 import { SwiperSlide, Swiper } from "swiper/react";
+
+import "./post-group.scss";
 
 import {
     useGetConfigQuery,
     useGetPostGroupQuery,
 } from "../../features/apis/baseApi";
 
-import "./post-group.scss";
+import { CardPost } from "../";
 
 export const PostGroup = ({ data, className }) => {
-    console.log(className);
     const {
         data: posts,
         isError,
@@ -38,7 +38,7 @@ export const PostGroup = ({ data, className }) => {
                         {posts?.result?.map((post) => {
                             return (
                                 <SwiperSlide key={post.id}>
-                                    <Item
+                                    <CardPost
                                         data={post}
                                         base={config?.result?.staticBaseUrl}
                                     />
@@ -51,22 +51,6 @@ export const PostGroup = ({ data, className }) => {
         );
     }
     return <div>{content}</div>;
-};
-
-const Item = ({ data, base }) => {
-    return (
-        <div className="item">
-            <Link to={`/${data.type}/${data.id}-${data.caption}`}>
-                <div className="item__poster">
-                    <img
-                        src={`${base}/${data?.imageUrl}`}
-                        alt={data?.caption}
-                    />
-                </div>
-                <div className="item__title">{data.caption}</div>
-            </Link>
-        </div>
-    );
 };
 
 export default PostGroup;

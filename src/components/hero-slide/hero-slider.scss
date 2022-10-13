@@ -36,11 +36,15 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.5s ease;
-        min-height: 85vh;
+        padding-bottom: 5rem;
 
         @include mobile {
             @include flex(center, center);
-            min-height: 60vh;
+            min-height: 60vh !important;
+        }
+
+        @include tablet {
+            min-height: auto;
         }
 
         &::before {
@@ -73,6 +77,10 @@
             @include mobile {
                 @include flex(center, center);
                 flex-direction: column;
+            }
+
+            @include tablet {
+                padding-bottom: 5%;
             }
 
             & > * ~ * {
@@ -118,7 +126,7 @@
     .btn-swiper-box {
         position: absolute;
         z-index: 5;
-        bottom: 20%;
+        bottom: 15%;
         left: 0;
         margin-left: 3rem;
 
@@ -132,6 +140,13 @@
             height: 2.5rem;
             background-color: transparent;
             cursor: pointer;
+
+            svg {
+                transition: fill 0.3s ease;
+                &:hover {
+                    fill: #000000;
+                }
+            }
 
             .left {
                 transform: rotate(180deg);

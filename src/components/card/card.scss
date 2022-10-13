@@ -1,0 +1,75 @@
+@use "../../scss/" as *;
+
+.card {
+    &__poster {
+        position: relative;
+
+        img {
+            width: 100%;
+            border-radius: 0.5rem;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-image: linear-gradient(
+                transparent,
+                rgba($color: #000000, $alpha: 0.9)
+            );
+            border-radius: 0.5rem;
+
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .description {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+            margin-top: auto;
+            @include flex(flex-start, flex-end);
+            flex-direction: column;
+            padding: 1rem 0.5rem;
+
+            color: white;
+
+            & > * ~ * {
+                padding-top: 5px;
+            }
+
+            .item {
+                @include flex(center, flex-start);
+                gap: 0.2rem;
+                font-size: 11px;
+                font-weight: 500;
+            }
+        }
+
+        &.active::before,
+        &.active .description {
+            opacity: 1;
+            visibility: visible;
+            @include tablet {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+    }
+
+    &__title {
+        margin-top: 0.5rem;
+        font-size: 11px;
+    }
+}
