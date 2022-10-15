@@ -62,6 +62,12 @@ export const baseApiSlice = createApi({
                 params: { pi, ps },
             }),
         }),
+        getLatestSeries: builder.query({
+            query: (pi = 1, ps = 20) => ({
+                url: `v1.0/medias/latest-series`,
+                params: { pi, ps },
+            }),
+        }),
     }),
 });
 
@@ -77,4 +83,5 @@ export const {
     useGetExclusiveDubsQuery,
     useGetCastsQuery,
     useGetCategoryQuery,
+    useGetLatestSeriesQuery,
 } = baseApiSlice;

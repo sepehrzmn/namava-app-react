@@ -6,6 +6,7 @@ import ExclusiveDubs from "../components/exclusive-dubs/ExclusiveDubs";
 import Latest from "../components/latest/Latest";
 import PostGroup from "../components/post-group/PostGroup";
 import StarGroup from "../components/star-group/StarGroup";
+import LatestSeries from "../components/latest-series/LatestSeries";
 
 import { Index, Movies, Series, LatestPage } from "../pages/index";
 
@@ -28,4 +29,5 @@ export const componentsPageItems = [
     { name: "CategoryGroup", Component: CategoryGroup },
     { name: "StarGroup", Component: StarGroup },
     { name: "BannerGroup", Component: BannerGroup },
+    { name: "LatestSeries", Component: LatestSeries },
 ];
