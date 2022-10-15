@@ -16,6 +16,7 @@ const CarouselsPostCard = ({
             className={`carousel my-2 ${className ? "top" : ""} ${
                 banner ? "banner" : ""
             }`}
+            id={data.type + "-" + data.key}
         >
             <div className="carousel__content container">
                 <h2 className="title-group">{data.caption}</h2>

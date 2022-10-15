@@ -24,12 +24,16 @@ const ExclusiveContent = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <CarouselsPostCard
-                    className={className}
-                    config={config}
-                    data={data}
-                    posts={latests}
-                />
+                {latests.result.length ? (
+                    <CarouselsPostCard
+                        className={className}
+                        config={config}
+                        data={data}
+                        posts={latests}
+                    />
+                ) : (
+                    ""
+                )}
             </>
         );
     }

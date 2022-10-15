@@ -24,12 +24,16 @@ const LatestSeries = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <CarouselsPostCard
-                    className={className}
-                    config={config}
-                    data={data}
-                    posts={series}
-                />
+                {series.result.length ? (
+                    <CarouselsPostCard
+                        className={className}
+                        config={config}
+                        data={data}
+                        posts={series}
+                    />
+                ) : (
+                    ""
+                )}
             </>
         );
     }

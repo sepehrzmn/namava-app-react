@@ -25,12 +25,16 @@ const LatestMovies = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <CarouselsPostCard
-                    className={className}
-                    config={config}
-                    data={data}
-                    posts={movies}
-                />
+                {movies.result.length ? (
+                    <CarouselsPostCard
+                        className={className}
+                        config={config}
+                        data={data}
+                        posts={movies}
+                    />
+                ) : (
+                    ""
+                )}
             </>
         );
     }

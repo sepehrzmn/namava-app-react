@@ -24,13 +24,17 @@ const StarGroup = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <CarouselsPostCard
-                    castCard
-                    className={className}
-                    config={config}
-                    data={data}
-                    posts={castes}
-                />
+                {castes.result.length ? (
+                    <CarouselsPostCard
+                        className={className}
+                        config={config}
+                        data={data}
+                        posts={castes}
+                        castCard
+                    />
+                ) : (
+                    ""
+                )}
             </>
         );
     }

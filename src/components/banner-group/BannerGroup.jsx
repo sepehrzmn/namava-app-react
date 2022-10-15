@@ -24,13 +24,17 @@ const BannerGroup = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <CarouselsPostCard
-                    banner
-                    className={className}
-                    config={config}
-                    data={data}
-                    posts={banners}
-                />
+                {banners.result.length ? (
+                    <CarouselsPostCard
+                        className={className}
+                        config={config}
+                        data={data}
+                        posts={banners}
+                        banner
+                    />
+                ) : (
+                    ""
+                )}
             </>
         );
     }

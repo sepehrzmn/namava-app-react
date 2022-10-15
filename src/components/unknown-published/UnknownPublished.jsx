@@ -24,12 +24,16 @@ const UnknownPublished = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <CarouselsPostCard
-                    className={className}
-                    config={config}
-                    data={data}
-                    posts={dataMedia}
-                />
+                {dataMedia.result.length ? (
+                    <CarouselsPostCard
+                        className={className}
+                        config={config}
+                        data={data}
+                        posts={dataMedia}
+                    />
+                ) : (
+                    ""
+                )}
             </>
         );
     }

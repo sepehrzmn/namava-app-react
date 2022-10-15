@@ -14,7 +14,7 @@ const CategoryGroup = ({ data, className }) => {
         isSuccess,
     } = useGetCategoryQuery(data.key);
     const { data: config } = useGetConfigQuery();
-
+    console.log(data);
     let content;
     if (isLoading || isFetching) {
         content = <div className=""></div>;
@@ -23,12 +23,16 @@ const CategoryGroup = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <CarouselsPostCard
-                    className={className}
-                    config={config}
-                    data={data}
-                    posts={posts}
-                />
+                {posts.result.length ? (
+                    <CarouselsPostCard
+                        className={className}
+                        config={config}
+                        data={data}
+                        posts={posts}
+                    />
+                ) : (
+                    ""
+                )}
             </>
         );
     }

@@ -24,12 +24,16 @@ export const PostGroup = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <CarouselsPostCard
-                    className={className}
-                    posts={posts}
-                    config={config}
-                    data={data}
-                />
+                {posts.result.length ? (
+                    <CarouselsPostCard
+                        className={className}
+                        config={config}
+                        data={data}
+                        posts={posts}
+                    />
+                ) : (
+                    ""
+                )}
             </>
         );
     }

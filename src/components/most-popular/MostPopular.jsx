@@ -24,12 +24,16 @@ const MostPopular = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <CarouselsPostCard
-                    className={className}
-                    config={config}
-                    data={data}
-                    posts={popular}
-                />
+                {popular.result.length ? (
+                    <CarouselsPostCard
+                        className={className}
+                        config={config}
+                        data={data}
+                        posts={popular}
+                    />
+                ) : (
+                    ""
+                )}
             </>
         );
     }

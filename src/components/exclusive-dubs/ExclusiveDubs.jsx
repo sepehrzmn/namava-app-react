@@ -24,12 +24,16 @@ export const ExclusiveDubs = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <CarouselsPostCard
-                    className={className}
-                    config={config}
-                    data={data}
-                    posts={Dubs}
-                />
+                {Dubs.result.length ? (
+                    <CarouselsPostCard
+                        className={className}
+                        config={config}
+                        data={data}
+                        posts={Dubs}
+                    />
+                ) : (
+                    ""
+                )}
             </>
         );
     }
