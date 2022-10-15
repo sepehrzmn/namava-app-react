@@ -9,6 +9,7 @@ import StarGroup from "../components/star-group/StarGroup";
 import LatestSeries from "../components/latest-series/LatestSeries";
 
 import { Index, Movies, Series, LatestPage } from "../pages/index";
+import MostPopular from "../components/most-popular/MostPopular";
 
 export const componentsPages = [
     { name: "Index", Component: Index },
@@ -30,4 +31,5 @@ export const componentsPageItems = [
     { name: "StarGroup", Component: StarGroup },
     { name: "BannerGroup", Component: BannerGroup },
     { name: "LatestSeries", Component: LatestSeries },
+    { name: "MostPopular", Component: MostPopular },
 ];
