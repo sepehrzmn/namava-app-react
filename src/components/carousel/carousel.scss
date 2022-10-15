@@ -1,6 +1,6 @@
 @use "../../scss/" as *;
 
-.post-group {
+.carousel {
     position: relative;
     z-index: 2;
 
@@ -18,8 +18,16 @@
         }
     }
 
-    .title {
-        font-size: 15px;
-        margin: 1rem 0;
+    &.banner {
+        .swiper-slide {
+            width: 26%;
+            @include tablet {
+                width: 40%;
+            }
+
+            @include mobile {
+                width: 50%;
+            }
+        }
     }
 }

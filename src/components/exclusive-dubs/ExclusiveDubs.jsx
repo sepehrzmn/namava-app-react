@@ -1,14 +1,11 @@
-import { SwiperSlide, Swiper } from "swiper/react";
-
 import {
     useGetConfigQuery,
     useGetExclusiveDubsQuery,
 } from "../../features/apis/baseApi";
-import { CardPost } from "../card/card";
 
-import "./exclusiveDubs.scss";
+import { CarouselsPostCard } from "../";
 
-export const ExclusiveDubs = ({ data }) => {
+export const ExclusiveDubs = ({ data, className }) => {
     const {
         data: Dubs,
         isError,
@@ -27,34 +24,17 @@ export const ExclusiveDubs = ({ data }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <Swiper
-                    slidesPerView={"auto"}
-                    style={{ overflow: "visible" }}
-                    spaceBetween={16}
-                >
-                    {Dubs?.result.map((item) => {
-                        return (
-                            <SwiperSlide key={item.id}>
-                                <CardPost
-                                    data={item}
-                                    base={config?.result?.staticBaseUrl}
-                                />
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
+                <CarouselsPostCard
+                    className={className}
+                    config={config}
+                    data={data}
+                    posts={Dubs}
+                />
             </>
         );
     }
 
-    return (
-        <div className="exclusive-dubs-group">
-            <div className="exclusive-dubs-group__content container">
-                <h2 className="title-group">{data.caption}</h2>
-                {content}
-            </div>
-        </div>
-    );
+    return <div>{content}</div>;
 };
 
 export default ExclusiveDubs;

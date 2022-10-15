@@ -1,13 +1,10 @@
-import { Swiper, SwiperSlide } from "swiper/react";
 import {
     useGetConfigQuery,
     useGetMostPopularQuery,
 } from "../../features/apis/baseApi";
-import { CardPost } from "../card/card";
+import { CarouselsPostCard } from "../";
 
-import "./most-popular.scss";
-
-const MostPopular = ({ data }) => {
+const MostPopular = ({ data, className }) => {
     const {
         data: popular,
         isError,
@@ -27,34 +24,17 @@ const MostPopular = ({ data }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <Swiper
-                    slidesPerView={"auto"}
-                    style={{ overflow: "visible" }}
-                    spaceBetween={16}
-                >
-                    {popular?.result.map((item) => {
-                        return (
-                            <SwiperSlide key={item.id}>
-                                <CardPost
-                                    data={item}
-                                    base={config?.result?.staticBaseUrl}
-                                />
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
+                <CarouselsPostCard
+                    className={className}
+                    config={config}
+                    data={data}
+                    posts={popular}
+                />
             </>
         );
     }
 
-    return (
-        <div className="most-popular my-2">
-            <div className="most-popular__content container">
-                <h2 className="title-group">{data?.caption}</h2>
-                {content}
-            </div>
-        </div>
-    );
+    return <div>{content}</div>;
 };
 
 export default MostPopular;

@@ -1,13 +1,11 @@
-import { Swiper, SwiperSlide } from "swiper/react";
 import {
     useGetConfigQuery,
     useGetExclusiveContentQuery,
 } from "../../features/apis/baseApi";
-import { CardPost } from "../card/card";
 
-import "./exclusive-content.scss";
+import { CarouselsPostCard } from "../";
 
-const ExclusiveContent = ({ data }) => {
+const ExclusiveContent = ({ data, className }) => {
     const {
         data: latests,
         isError,
@@ -26,34 +24,17 @@ const ExclusiveContent = ({ data }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <Swiper
-                    slidesPerView={"auto"}
-                    style={{ overflow: "visible" }}
-                    spaceBetween={16}
-                >
-                    {latests?.result.map((item) => {
-                        return (
-                            <SwiperSlide key={item.id}>
-                                <CardPost
-                                    data={item}
-                                    base={config?.result?.staticBaseUrl}
-                                />
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
+                <CarouselsPostCard
+                    className={className}
+                    config={config}
+                    data={data}
+                    posts={latests}
+                />
             </>
         );
     }
 
-    return (
-        <div className="exclusive-content-group">
-            <div className="exclusive-content-group__content container">
-                <h2 className="title-group">{data.caption}</h2>
-                {content}
-            </div>
-        </div>
-    );
+    return <div>{content}</div>;
 };
 
 export default ExclusiveContent;

@@ -1,13 +1,11 @@
-import { Swiper, SwiperSlide } from "swiper/react";
 import {
     useGetBannerQuery,
     useGetConfigQuery,
 } from "../../features/apis/baseApi";
-import { CardBanner } from "../card/card";
 
-import "./banner-group.scss";
+import { CarouselsPostCard } from "../";
 
-const BannerGroup = ({ data }) => {
+const BannerGroup = ({ data, className }) => {
     const {
         data: banners,
         isError,
@@ -26,35 +24,17 @@ const BannerGroup = ({ data }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <Swiper
-                    slidesPerView={"auto"}
-                    style={{ overflow: "visible" }}
-                    spaceBetween={16}
-                >
-                    {banners?.result.map((item) => {
-                        return (
-                            <SwiperSlide key={item.id}>
-                                <CardBanner
-                                    data={item}
-                                    base={config?.result?.staticBaseUrl}
-                                />
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
+                <CarouselsPostCard
+                    banner
+                    className={className}
+                    config={config}
+                    data={data}
+                    posts={banners}
+                />
             </>
         );
     }
-    return (
-        <>
-            <div className="banner-group my-2">
-                <div className="banner-group__content container">
-                    <h2 className="title-group">{data?.caption}</h2>
-                    {content}
-                </div>
-            </div>
-        </>
-    );
+    return <div>{content}</div>;
 };
 
 export default BannerGroup;

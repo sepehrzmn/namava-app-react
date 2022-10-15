@@ -1,11 +1,10 @@
-import { Swiper, SwiperSlide } from "swiper/react";
 import {
     useGetCategoryQuery,
     useGetConfigQuery,
 } from "../../features/apis/baseApi";
-import { CardPost } from "../card/card";
+import { CarouselsPostCard } from "../";
 
-const CategoryGroup = ({ data }) => {
+const CategoryGroup = ({ data, className }) => {
     const {
         data: posts,
         isError,
@@ -23,27 +22,14 @@ const CategoryGroup = ({ data }) => {
         <div>{error.message.toString()}</div>;
     } else if (isSuccess) {
         content = (
-            <div className="post-group my-2">
-                <div className="post-group__content container">
-                    <h2 className="title-group">{data.caption}</h2>
-                    <Swiper
-                        slidesPerView={"auto"}
-                        style={{ overflow: "visible" }}
-                        spaceBetween={16}
-                    >
-                        {posts?.result?.map((post) => {
-                            return (
-                                <SwiperSlide key={post.id}>
-                                    <CardPost
-                                        data={post}
-                                        base={config?.result?.staticBaseUrl}
-                                    />
-                                </SwiperSlide>
-                            );
-                        })}
-                    </Swiper>
-                </div>
-            </div>
+            <>
+                <CarouselsPostCard
+                    className={className}
+                    config={config}
+                    data={data}
+                    posts={posts}
+                />
+            </>
         );
     }
     return <div>{content}</div>;

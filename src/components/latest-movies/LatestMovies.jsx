@@ -1,11 +1,9 @@
-import { Swiper, SwiperSlide } from "swiper/react";
 import {
     useGetConfigQuery,
     useGetLatestMoviesQuery,
 } from "../../features/apis/baseApi";
-import { CardPost } from "../card/card";
 
-import "./latest-movies.scss";
+import { CarouselsPostCard } from "../";
 
 const LatestMovies = ({ data, className }) => {
     const {
@@ -27,34 +25,17 @@ const LatestMovies = ({ data, className }) => {
     } else if (isSuccess) {
         content = (
             <>
-                <Swiper
-                    slidesPerView={"auto"}
-                    style={{ overflow: "visible" }}
-                    spaceBetween={16}
-                >
-                    {movies?.result.map((item) => {
-                        return (
-                            <SwiperSlide key={item.id}>
-                                <CardPost
-                                    data={item}
-                                    base={config?.result?.staticBaseUrl}
-                                />
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
+                <CarouselsPostCard
+                    className={className}
+                    config={config}
+                    data={data}
+                    posts={movies}
+                />
             </>
         );
     }
 
-    return (
-        <div className={`latest-movies my-2 ${className ? "top" : ""}`}>
-            <div className="latest-movies__content container">
-                <h2 className="title-group">{data?.caption}</h2>
-                {content}
-            </div>
-        </div>
-    );
+    return <div>{content}</div>;
 };
 
 export default LatestMovies;

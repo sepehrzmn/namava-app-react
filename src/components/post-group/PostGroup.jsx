@@ -1,7 +1,3 @@
-import { SwiperSlide, Swiper } from "swiper/react";
-
-import "./post-group.scss";
-
 import {
     useGetConfigQuery,
     useGetPostGroupQuery,
@@ -27,12 +23,14 @@ export const PostGroup = ({ data, className }) => {
         <div>{error.message.toString()}</div>;
     } else if (isSuccess) {
         content = (
-            <CarouselsPostCard
-                className={className}
-                posts={posts}
-                config={config}
-                data={data}
-            />
+            <>
+                <CarouselsPostCard
+                    className={className}
+                    posts={posts}
+                    config={config}
+                    data={data}
+                />
+            </>
         );
     }
     return <div>{content}</div>;
