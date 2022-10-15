@@ -36,6 +36,4 @@ export const componentsPageItems = [
     { name: "MostPopular", Component: MostPopular },
     { name: "LatestMovies", Component: LatestMovies },
     { name: "UnknownDatePublishGroup", Component: UnknownPublished },
-
-    // UnknownDatePublishGroup
 ];

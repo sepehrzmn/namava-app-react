@@ -5,7 +5,9 @@ import {
 } from "../../features/apis/baseApi";
 import { CardPost } from "../card/card";
 
-const LatestMovies = ({ data }) => {
+import "./latest-movies.scss";
+
+const LatestMovies = ({ data, className }) => {
     const {
         data: movies,
         isError,
@@ -46,8 +48,8 @@ const LatestMovies = ({ data }) => {
     }
 
     return (
-        <div className="most-popular my-2">
-            <div className="most-popular__content container">
+        <div className={`latest-movies my-2 ${className ? "top" : ""}`}>
+            <div className="latest-movies__content container">
                 <h2 className="title-group">{data?.caption}</h2>
                 {content}
             </div>

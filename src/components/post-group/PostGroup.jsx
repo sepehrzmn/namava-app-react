@@ -7,7 +7,7 @@ import {
     useGetPostGroupQuery,
 } from "../../features/apis/baseApi";
 
-import { CardPost } from "../";
+import { CarouselsPostCard } from "../";
 
 export const PostGroup = ({ data, className }) => {
     const {
@@ -27,27 +27,12 @@ export const PostGroup = ({ data, className }) => {
         <div>{error.message.toString()}</div>;
     } else if (isSuccess) {
         content = (
-            <div className={`post-group my-2 ${className ? "top" : ""}`}>
-                <div className="post-group__content container">
-                    <h2 className="title-group">{data.caption}</h2>
-                    <Swiper
-                        slidesPerView={"auto"}
-                        style={{ overflow: "visible" }}
-                        spaceBetween={16}
-                    >
-                        {posts?.result?.map((post) => {
-                            return (
-                                <SwiperSlide key={post.id}>
-                                    <CardPost
-                                        data={post}
-                                        base={config?.result?.staticBaseUrl}
-                                    />
-                                </SwiperSlide>
-                            );
-                        })}
-                    </Swiper>
-                </div>
-            </div>
+            <CarouselsPostCard
+                className={className}
+                posts={posts}
+                config={config}
+                data={data}
+            />
         );
     }
     return <div>{content}</div>;

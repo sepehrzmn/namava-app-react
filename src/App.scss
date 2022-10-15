@@ -73,9 +73,9 @@ iframe {
 }
 
 .container {
-    max-width: 1660px;
+    max-width: 1760px;
     margin: auto;
-    padding: 0 1rem;
+    padding: 0 3rem;
     @include mobile {
         padding: 0;
     }
@@ -96,4 +96,8 @@ iframe {
 
 .my-2 {
     margin: 2rem 0;
+}
+
+.top {
+    margin-top: -5%;
 }

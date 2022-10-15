@@ -1,6 +1,6 @@
 @use "../../scss/" as *;
 
-.post-group {
+.latest-movies {
     position: relative;
     z-index: 2;
 
@@ -8,18 +8,13 @@
         overflow: hidden;
     }
     .swiper-slide {
-        width: 13.5%;
+        width: 12%;
         @include tablet {
             width: 20%;
         }
 
         @include mobile {
-            width: 35%;
+            width: 25%;
         }
-    }
-
-    .title {
-        font-size: 15px;
-        margin: 1rem 0;
     }
 }

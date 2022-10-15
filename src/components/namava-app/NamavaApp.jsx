@@ -49,6 +49,7 @@ const Content = ({ dataPages }) => {
                         const Component = componentsPages.find(
                             (item) => item.name === data.entityType
                         );
+
                         if (Component) {
                             return (
                                 <Route

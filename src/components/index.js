@@ -25,3 +25,5 @@ export { default as ExclusiveDubs } from "./exclusive-dubs/ExclusiveDubs";
 export { CardPost, CardBanner, CardCasts } from "./card/card";
 
 export { default as LatestSeries } from "./latest-series/LatestSeries";
+
+export { default as CarouselsPostCard } from "./carousel/Carousels";

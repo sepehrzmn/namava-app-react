@@ -14,6 +14,8 @@ const Latest = ({ data }) => {
         return idsArray;
     }, [data]);
 
+    console.log(ids);
+
     return (
         <>
             {ids.map((id, index) => {
