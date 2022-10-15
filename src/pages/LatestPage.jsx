@@ -1,8 +1,7 @@
 import React, { useMemo } from "react";
-
 import { componentsPageItems } from "../utils/segment";
 
-const Index = ({ data }) => {
+const Latest = ({ data }) => {
     const ids = useMemo(() => {
         const idsArray = [];
         data.pageItems.forEach((item) =>
@@ -28,7 +27,7 @@ const Index = ({ data }) => {
                         <Component.Component
                             key={index}
                             data={id}
-                            className={index === 2 ? true : false}
+                            className={index === 1 ? true : false}
                         />
                     );
                 }
@@ -39,4 +38,4 @@ const Index = ({ data }) => {
     );
 };
 
-export default Index;
+export default Latest;

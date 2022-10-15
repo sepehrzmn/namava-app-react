@@ -3,9 +3,8 @@ import { useMemo } from "react";
 import { useGetMenuQuery } from "../../features/apis/baseApi";
 import { Header } from "../";
 import { Route, Routes } from "react-router-dom";
-import Index from "../../pages/Index";
 
-const Components = [{ name: "Index", Component: Index }];
+import { componentsPages } from "../../utils/segment";
 
 const NamavaApp = () => {
     const {
@@ -47,7 +46,7 @@ const Content = ({ dataPages }) => {
             <Routes>
                 <>
                     {dataPages.map((data) => {
-                        const Component = Components.find(
+                        const Component = componentsPages.find(
                             (item) => item.name === data.entityType
                         );
                         if (Component) {
