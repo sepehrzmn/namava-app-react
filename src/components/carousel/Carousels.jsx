@@ -11,6 +11,8 @@ const CarouselsPostCard = ({
     castCard,
     banner,
 }) => {
+    const [isShowDes, setIsShowDes] = useState(false);
+
     return (
         <div
             className={`carousel my-2 ${className ? "top" : ""} ${
@@ -49,6 +51,7 @@ const CarouselsPostCard = ({
                     })}
                 </Swiper>
             </div>
+            <div className="carousel-des"></div>
         </div>
     );
 };
