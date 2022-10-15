@@ -1,21 +1,20 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
     useGetConfigQuery,
-    useGetLatestSeriesQuery,
+    useGetLatestMoviesQuery,
 } from "../../features/apis/baseApi";
 import { CardPost } from "../card/card";
 
-import "./latest-series.scss";
-
-const LatestSeries = ({ data }) => {
+const LatestMovies = ({ data }) => {
     const {
-        data: series,
+        data: movies,
         isError,
         error,
         isFetching,
         isLoading,
         isSuccess,
-    } = useGetLatestSeriesQuery();
+    } = useGetLatestMoviesQuery();
+
     const { data: config } = useGetConfigQuery();
 
     let content;
@@ -31,7 +30,7 @@ const LatestSeries = ({ data }) => {
                     style={{ overflow: "visible" }}
                     spaceBetween={16}
                 >
-                    {series?.result.map((item) => {
+                    {movies?.result.map((item) => {
                         return (
                             <SwiperSlide key={item.id}>
                                 <CardPost
@@ -47,8 +46,8 @@ const LatestSeries = ({ data }) => {
     }
 
     return (
-        <div className="latest-series my-2">
-            <div className="latest-series__content container">
+        <div className="most-popular my-2">
+            <div className="most-popular__content container">
                 <h2 className="title-group">{data?.caption}</h2>
                 {content}
             </div>
@@ -56,4 +55,4 @@ const LatestSeries = ({ data }) => {
     );
 };
 
-export default LatestSeries;
+export default LatestMovies;

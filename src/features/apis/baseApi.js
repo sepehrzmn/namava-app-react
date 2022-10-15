@@ -95,6 +95,14 @@ export const baseApiSlice = createApi({
                 params: { pi, ps },
             }),
         }),
+
+        // get latest movies TV
+        getLatestMovies: builder.query({
+            query: (pi = 1, ps = 20) => ({
+                url: `v1.0/medias/latest-movies`,
+                params: { pi, ps },
+            }),
+        }),
     }),
 });
 
@@ -112,4 +120,6 @@ export const {
     useGetCategoryQuery,
     useGetLatestSeriesQuery,
     useGetMostPopularQuery,
+    useGetLatestMoviesQuery,
+    useGetUnknownDatePublishedQuery,
 } = baseApiSlice;
