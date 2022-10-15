@@ -103,6 +103,14 @@ export const baseApiSlice = createApi({
                 params: { pi, ps },
             }),
         }),
+
+        // get unknown date published
+        getUnknownDatePublished: builder.query({
+            query: (id, pi = 1, ps = 20) => ({
+                url: `v1.0/medias/unknown-date-published/${id}`,
+                params: { pi, ps },
+            }),
+        }),
     }),
 });
 

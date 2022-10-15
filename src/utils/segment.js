@@ -11,6 +11,7 @@ import LatestSeries from "../components/latest-series/LatestSeries";
 import { Index, Movies, Series, LatestPage } from "../pages/index";
 import MostPopular from "../components/most-popular/MostPopular";
 import LatestMovies from "../components/latest-movies/LatestMovies";
+import UnknownPublished from "../components/unknow-published/UnknownPublished";
 
 export const componentsPages = [
     { name: "Index", Component: Index },
@@ -34,4 +35,7 @@ export const componentsPageItems = [
     { name: "LatestSeries", Component: LatestSeries },
     { name: "MostPopular", Component: MostPopular },
     { name: "LatestMovies", Component: LatestMovies },
+    { name: "UnknownDatePublishGroup", Component: UnknownPublished },
+
+    // UnknownDatePublishGroup
 ];
