@@ -2,7 +2,7 @@ import { useMemo } from "react";
 
 import { useGetMenuQuery } from "../../features/apis/baseApi";
 import { Header } from "../";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { componentsPages } from "../../utils/segment";
 
@@ -54,7 +54,9 @@ const Content = ({ dataPages }) => {
                             return (
                                 <Route
                                     key={data.slug}
-                                    path={`/${data.slug}`}
+                                    path={`/${
+                                        data.slug === "index" ? "" : data.slug
+                                    }`}
                                     element={
                                         <Component.Component data={data} />
                                     }
@@ -64,6 +66,8 @@ const Content = ({ dataPages }) => {
                         return "";
                     })}
                 </>
+
+                <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </div>
     );

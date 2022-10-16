@@ -49,7 +49,9 @@ const Header = ({ data }) => {
 const MenuItem = ({ data }) => {
     return (
         <li className="nav__content__list__item">
-            <Link to={`/${data.slug}`}>{data.caption}</Link>
+            <Link to={`/${data.slug === "index" ? "" : data.slug}`}>
+                {data.caption}
+            </Link>
         </li>
     );
 };

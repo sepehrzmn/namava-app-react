@@ -21,7 +21,6 @@ const CarouselsPostCard = ({
     const [trigger] = baseApiSlice.endpoints.getPlayInfo.useLazyQuery();
 
     const getDesTv = async (event, id) => {
-        console.log(event);
         event.preventDefault();
         const { data: preview, isSuccess } = await trigger(id);
 
@@ -45,9 +44,9 @@ const CarouselsPostCard = ({
                     style={{ overflow: "visible" }}
                     spaceBetween={16}
                 >
-                    {posts?.result?.map((post) => {
+                    {posts?.result?.map((post, index) => {
                         return (
-                            <SwiperSlide key={post.id}>
+                            <SwiperSlide key={index}>
                                 {castCard ? (
                                     <CardCasts
                                         data={post}
