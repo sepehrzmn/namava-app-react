@@ -1,0 +1,43 @@
+@use "../../scss/" as *;
+
+.category-list {
+    padding-top: $header-height;
+
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+        margin: 0 auto;
+
+        @include tablet {
+            grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+        }
+        @include mobile {
+            grid-template-columns: repeat(auto-fill, 48%);
+        }
+
+        gap: 1rem;
+        vertical-align: middle;
+        .item {
+            padding-left: 7px;
+            padding-right: 7px;
+            position: relative;
+            h2 {
+                position: absolute;
+                top: 50%;
+                right: 0;
+                font-size: 20px;
+                display: table-cell;
+                padding-right: 24px;
+                font-weight: 400;
+                @include mobile {
+                    font-size: 12px;
+                }
+            }
+
+            img {
+                width: 100%;
+                border-radius: 0.5rem;
+            }
+        }
+    }
+}

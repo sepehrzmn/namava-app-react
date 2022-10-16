@@ -12,12 +12,14 @@ import { Index, Movies, Series, LatestPage } from "../pages/index";
 import MostPopular from "../components/most-popular/MostPopular";
 import LatestMovies from "../components/latest-movies/LatestMovies";
 import UnknownPublished from "../components/unknown-published/UnknownPublished";
+import CategoryList from "../pages/categotyList.jsx/CategoryList";
 
 export const componentsPages = [
     { name: "Index", Component: Index },
     { name: "Movies", Component: Movies },
     { name: "Series", Component: Series },
     { name: "Latest", Component: LatestPage },
+    { name: "CategoryList", Component: CategoryList },
 ];
 
 export const componentsPageItems = [

@@ -58,7 +58,10 @@ const Content = ({ dataPages }) => {
                                         data.slug === "index" ? "" : data.slug
                                     }`}
                                     element={
-                                        <Component.Component data={data} />
+                                        <Component.Component
+                                            data={data}
+                                            dataPages={dataPages}
+                                        />
                                     }
                                 />
                             );
