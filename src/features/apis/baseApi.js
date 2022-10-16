@@ -111,6 +111,13 @@ export const baseApiSlice = createApi({
                 params: { pi, ps },
             }),
         }),
+
+        // get info tv
+        getPlayInfo: builder.query({
+            query: (id) => ({
+                url: `/v1.0/medias/${id}/preview`,
+            }),
+        }),
     }),
 });
 
@@ -130,4 +137,5 @@ export const {
     useGetMostPopularQuery,
     useGetLatestMoviesQuery,
     useGetUnknownDatePublishedQuery,
+    useGetPlayInfoQuery,
 } = baseApiSlice;

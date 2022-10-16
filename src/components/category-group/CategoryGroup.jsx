@@ -14,7 +14,7 @@ const CategoryGroup = ({ data, className }) => {
         isSuccess,
     } = useGetCategoryQuery(data.key);
     const { data: config } = useGetConfigQuery();
-    console.log(data);
+
     let content;
     if (isLoading || isFetching) {
         content = <div className=""></div>;

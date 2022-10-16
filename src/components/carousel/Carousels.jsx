@@ -1,7 +1,12 @@
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { CardCasts, CardPost, CardBanner } from "../";
+
+import { baseApiSlice } from "../../features/apis/baseApi";
 
 import "./carousel.scss";
+
+import { CardCasts, CardPost, CardBanner } from "../";
+import ContentDes from "./ContentDes";
 
 const CarouselsPostCard = ({
     className,
@@ -12,6 +17,19 @@ const CarouselsPostCard = ({
     banner,
 }) => {
     const [isShowDes, setIsShowDes] = useState(false);
+    const [content, setContent] = useState(null);
+    const [trigger] = baseApiSlice.endpoints.getPlayInfo.useLazyQuery();
+
+    const getDesTv = async (event, id) => {
+        console.log(event);
+        event.preventDefault();
+        const { data: preview, isSuccess } = await trigger(id);
+
+        if (isSuccess) {
+            setIsShowDes(true);
+            setContent(preview);
+        }
+    };
 
     return (
         <div
@@ -44,6 +62,7 @@ const CarouselsPostCard = ({
                                     <CardPost
                                         data={post}
                                         base={config?.result?.staticBaseUrl}
+                                        onClick={getDesTv}
                                     />
                                 )}
                             </SwiperSlide>
@@ -51,7 +70,21 @@ const CarouselsPostCard = ({
                     })}
                 </Swiper>
             </div>
-            <div className="carousel-des"></div>
+            <div
+                className={`carousel-des ${isShowDes ? "active" : ""}`}
+                style={{
+                    backgroundImage:
+                        content &&
+                        content?.result &&
+                        config?.result?.staticBaseUrl
+                            ? `linear-gradient(to right,transparent , #1a1a1a), url(${config?.result?.staticBaseUrl}${content?.result?.coverLandscape})`
+                            : "",
+                }}
+            >
+                <div className="carousel-des__content container">
+                    <ContentDes data={content} />
+                </div>
+            </div>
         </div>
     );
 };

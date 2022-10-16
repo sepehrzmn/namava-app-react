@@ -3,7 +3,7 @@
 .btn {
     background-color: $white;
     border: none;
-    padding: 0.4rem 1.3rem;
+    padding: 0.8rem 1.3rem;
     border-radius: 5px;
     font-size: 11px;
     cursor: pointer;
@@ -23,5 +23,26 @@
     &:hover.dark {
         background-color: rgba($color: $white, $alpha: 0.5) !important;
         color: black !important;
+    }
+    &.transparent {
+        background-color: transparent;
+        color: white !important;
+        white-space: nowrap;
+
+        svg {
+            fill: white;
+        }
+    }
+    &:hover.transparent {
+        color: $blue !important;
+
+        svg {
+            fill: $blue !important;
+        }
+    }
+
+    &.flex {
+        @include flex(center, center);
+        gap: 10px;
     }
 }

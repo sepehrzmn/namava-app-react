@@ -1,8 +1,13 @@
 import "./button.scss";
 
-const Button = ({ children, eventF, dark }) => {
+const Button = ({ children, eventF, dark, transparent, flex }) => {
     return (
-        <button className={`btn${dark ? " dark" : ""}`} onClick={eventF}>
+        <button
+            className={`btn${dark ? " dark" : ""}${
+                transparent ? " transparent" : ""
+            }${flex ? " flex" : ""}`}
+            onClick={eventF}
+        >
             {children}
         </button>
     );

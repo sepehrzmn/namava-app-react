@@ -4,7 +4,7 @@ import { baseApiSlice } from "../../features/apis/baseApi";
 
 import "./card.scss";
 
-export const CardPost = ({ data, base }) => {
+export const CardPost = ({ data, base, onClick }) => {
     const [trigger, { data: backPreview }] =
         baseApiSlice.endpoints.getBriefPreview.useLazyQuery(data.id);
     const [content, setContent] = useState("");
@@ -116,7 +116,12 @@ export const CardPost = ({ data, base }) => {
 
     return (
         <div className="card" title={data.caption}>
-            <Link to={`/${data.type}/${data.id}-${data.caption}`}>
+            <Link
+                to={`/${data.type}/${data.id}-${data.caption}`}
+                onClick={(event) => {
+                    onClick(event, data.id);
+                }}
+            >
                 <div
                     className={`card__poster ${isShow ? "active" : ""}`}
                     onMouseEnter={getPreview}
@@ -124,6 +129,7 @@ export const CardPost = ({ data, base }) => {
                         setIsShow(false);
                         timeOut !== undefined && clearTimeout(timeOut);
                     }}
+                    onClick={() => {}}
                 >
                     <img
                         src={`${base}/${data?.imageUrl}`}
