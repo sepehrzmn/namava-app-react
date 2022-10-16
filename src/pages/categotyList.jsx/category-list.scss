@@ -22,12 +22,16 @@
             position: relative;
             h2 {
                 position: absolute;
-                top: 50%;
+                top: 0;
                 right: 0;
                 font-size: 20px;
                 display: table-cell;
                 padding-right: 24px;
                 font-weight: 400;
+                height: 100%;
+                width: 100%;
+                @include flex(center, flex-start);
+
                 @include mobile {
                     font-size: 12px;
                 }
