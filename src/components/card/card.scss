@@ -8,6 +8,9 @@
             width: 100%;
             border-radius: 0.5rem;
         }
+        span.lazy-load-image-background {
+            display: block !important;
+        }
 
         &::before {
             content: "";

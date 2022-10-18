@@ -1,44 +1,55 @@
+import { useState } from "react";
+
+import VisibilitySensor from "react-visibility-sensor";
+
 import {
-    useGetBannerQuery,
+    useLazyGetBannerQuery,
     useGetConfigQuery,
 } from "../../features/apis/baseApi";
 
 import { CarouselsPostCard } from "../";
 
 const BannerGroup = ({ data, className }) => {
-    const {
-        data: banners,
-        isError,
-        error,
-        isFetching,
-        isLoading,
-        isSuccess,
-    } = useGetBannerQuery(data.key);
-    const { data: config } = useGetConfigQuery();
+    const [load, setLoad] = useState(true);
+    const [content, setContent] = useState(null);
 
-    let content;
-    if (isLoading || isFetching) {
-        content = <div className=""></div>;
-    } else if (isError) {
-        <div>{error.message}</div>;
-    } else if (isSuccess) {
-        content = (
-            <>
-                {banners.result.length ? (
-                    <CarouselsPostCard
-                        className={className}
-                        config={config}
-                        data={data}
-                        posts={banners}
-                        banner
-                    />
-                ) : (
-                    ""
-                )}
-            </>
-        );
-    }
-    return <div>{content}</div>;
+    const { data: config } = useGetConfigQuery();
+    const [trigger] = useLazyGetBannerQuery();
+
+    const onChange = async (isVisible) => {
+        if (isVisible) {
+            if (!content) {
+                const { data: posts, isSuccess } = await trigger(data.key);
+                if (isSuccess) {
+                    console.log(posts.result.length);
+                    setContent(
+                        <>
+                            {posts.result.length ? (
+                                <CarouselsPostCard
+                                    className={className}
+                                    config={config}
+                                    data={data}
+                                    posts={posts}
+                                    banner
+                                />
+                            ) : (
+                                ""
+                            )}
+                        </>
+                    );
+                    setLoad(() => {
+                        return posts?.result?.length ? true : false;
+                    });
+                }
+            }
+        }
+    };
+
+    return (
+        <VisibilitySensor onChange={onChange}>
+            <div className={`step ${load ? "" : "disable"}`}>{content}</div>
+        </VisibilitySensor>
+    );
 };
 
 export default BannerGroup;

@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { baseApiSlice } from "../../features/apis/baseApi";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+import "react-lazy-load-image-component/src/effects/opacity.css";
+
 import "./card.scss";
 
 export const CardPost = ({ data, base, onClick }) => {
@@ -131,9 +135,14 @@ export const CardPost = ({ data, base, onClick }) => {
                     }}
                     onClick={() => {}}
                 >
-                    <img
+                    {/* <img
                         src={`${base}/${data?.imageUrl}`}
                         alt={data?.caption}
+                    /> */}
+                    <LazyLoadImage
+                        src={`${base}/${data?.imageUrl}`}
+                        alt={data?.caption}
+                        effect="opacity"
                     />
                     <div className="description">{content}</div>
                 </div>

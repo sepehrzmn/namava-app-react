@@ -1,42 +1,53 @@
+import { useState } from "react";
 import {
-    useGetCategoryQuery,
     useGetConfigQuery,
+    useLazyGetCategoryQuery,
 } from "../../features/apis/baseApi";
+
+import VisibilitySensor from "react-visibility-sensor";
+
 import { CarouselsPostCard } from "../";
 
 const CategoryGroup = ({ data, className }) => {
-    const {
-        data: posts,
-        isError,
-        error,
-        isFetching,
-        isLoading,
-        isSuccess,
-    } = useGetCategoryQuery(data.key);
-    const { data: config } = useGetConfigQuery();
+    const [load, setLoad] = useState(true);
+    const [content, setContent] = useState(null);
 
-    let content;
-    if (isLoading || isFetching) {
-        content = <div className=""></div>;
-    } else if (isError) {
-        <div>{error.message.toString()}</div>;
-    } else if (isSuccess) {
-        content = (
-            <>
-                {posts.result.length ? (
-                    <CarouselsPostCard
-                        className={className}
-                        config={config}
-                        data={data}
-                        posts={posts}
-                    />
-                ) : (
-                    ""
-                )}
-            </>
-        );
-    }
-    return <div>{content}</div>;
+    const { data: config } = useGetConfigQuery();
+    const [trigger] = useLazyGetCategoryQuery();
+
+    const onChange = async (isVisible) => {
+        if (isVisible) {
+            if (!content) {
+                const { data: posts, isSuccess } = await trigger(data.key);
+                if (isSuccess) {
+                    console.log(posts.result.length);
+                    setContent(
+                        <>
+                            {posts.result.length ? (
+                                <CarouselsPostCard
+                                    className={className}
+                                    config={config}
+                                    data={data}
+                                    posts={posts}
+                                />
+                            ) : (
+                                ""
+                            )}
+                        </>
+                    );
+                    setLoad(() => {
+                        return posts?.result?.length ? true : false;
+                    });
+                }
+            }
+        }
+    };
+
+    return (
+        <VisibilitySensor onChange={onChange}>
+            <div className={`step ${load ? "" : "disable"}`}>{content}</div>
+        </VisibilitySensor>
+    );
 };
 
 export default CategoryGroup;

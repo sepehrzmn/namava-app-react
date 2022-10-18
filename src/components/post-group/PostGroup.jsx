@@ -1,43 +1,54 @@
+import { useState } from "react";
+
 import {
     useGetConfigQuery,
-    useGetPostGroupQuery,
+    // useGetPostGroupQuery,
+    useLazyGetPostGroupQuery,
 } from "../../features/apis/baseApi";
+
+import VisibilitySensor from "react-visibility-sensor";
 
 import { CarouselsPostCard } from "../";
 
 export const PostGroup = ({ data, className }) => {
-    const {
-        data: posts,
-        isError,
-        error,
-        isFetching,
-        isLoading,
-        isSuccess,
-    } = useGetPostGroupQuery(data.key);
+    const [load, setLoad] = useState(true);
+    const [content, setContent] = useState(null);
+
+    const [trigger] = useLazyGetPostGroupQuery();
     const { data: config } = useGetConfigQuery();
 
-    let content;
-    if (isLoading || isFetching) {
-        content = <div className=""></div>;
-    } else if (isError) {
-        <div>{error.message.toString()}</div>;
-    } else if (isSuccess) {
-        content = (
-            <>
-                {posts.result.length ? (
-                    <CarouselsPostCard
-                        className={className}
-                        config={config}
-                        data={data}
-                        posts={posts}
-                    />
-                ) : (
-                    ""
-                )}
-            </>
-        );
-    }
-    return <div>{content}</div>;
+    const onChange = async (isVisible) => {
+        if (isVisible) {
+            if (!content) {
+                const { data: posts, isSuccess } = await trigger(data.key);
+                if (isSuccess) {
+                    setContent(
+                        <>
+                            {posts.result.length ? (
+                                <CarouselsPostCard
+                                    className={className}
+                                    config={config}
+                                    data={data}
+                                    posts={posts}
+                                />
+                            ) : (
+                                ""
+                            )}
+                        </>
+                    );
+                    setLoad(() => {
+                        return posts?.result?.length ? true : false;
+                    });
+                }
+            }
+        }
+    };
+
+    return (
+        <VisibilitySensor onChange={onChange}>
+            <div className={`step ${load ? "" : "disable"}`}>{content}</div>
+        </VisibilitySensor>
+    );
 };
 
 export default PostGroup;

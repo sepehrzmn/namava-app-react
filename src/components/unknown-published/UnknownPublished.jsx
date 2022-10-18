@@ -1,44 +1,53 @@
+import { useState } from "react";
 import {
     useGetConfigQuery,
-    useGetUnknownDatePublishedQuery,
+    useLazyGetUnknownDatePublishedQuery,
 } from "../../features/apis/baseApi";
+
+import VisibilitySensor from "react-visibility-sensor";
 
 import { CarouselsPostCard } from "../";
 
 const UnknownPublished = ({ data, className }) => {
-    const {
-        data: dataMedia,
-        isError,
-        error,
-        isFetching,
-        isLoading,
-        isSuccess,
-    } = useGetUnknownDatePublishedQuery(data.key);
+    const [load, setLoad] = useState(true);
+    const [content, setContent] = useState(null);
+
     const { data: config } = useGetConfigQuery();
+    const [trigger] = useLazyGetUnknownDatePublishedQuery();
 
-    let content;
-    if (isLoading || isFetching) {
-        content = <div className=""></div>;
-    } else if (isError) {
-        <div>{error.message.toString()}</div>;
-    } else if (isSuccess) {
-        content = (
-            <>
-                {dataMedia.result.length ? (
-                    <CarouselsPostCard
-                        className={className}
-                        config={config}
-                        data={data}
-                        posts={dataMedia}
-                    />
-                ) : (
-                    ""
-                )}
-            </>
-        );
-    }
+    const onChange = async (isVisible) => {
+        if (isVisible) {
+            if (!content) {
+                const { data: posts, isSuccess } = await trigger(data.key);
+                if (isSuccess) {
+                    console.log(posts.result.length);
+                    setContent(
+                        <>
+                            {posts.result.length ? (
+                                <CarouselsPostCard
+                                    className={className}
+                                    config={config}
+                                    data={data}
+                                    posts={posts}
+                                />
+                            ) : (
+                                ""
+                            )}
+                        </>
+                    );
+                    setLoad(() => {
+                        return posts?.result?.length ? true : false;
+                    });
+                }
+            }
+        }
+    };
 
-    return <div>{content}</div>;
+    return (
+        <VisibilitySensor onChange={onChange}>
+            <div className={`step ${load ? "" : "disable"}`}>{content}</div>
+        </VisibilitySensor>
+    );
 };
 
 export default UnknownPublished;

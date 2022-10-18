@@ -39,60 +39,62 @@ const CarouselsPostCard = ({
     };
 
     return (
-        <div
-            className={`carousel my-2 ${className ? "top" : ""} ${
-                banner ? "banner" : ""
-            }`}
-            id={data.type + "-" + data.key}
-        >
-            <div className="carousel__content container">
-                <h2 className="title-group">{data.caption}</h2>
-                <Swiper
-                    slidesPerView={"auto"}
-                    style={{ overflow: "visible" }}
-                    spaceBetween={16}
-                >
-                    {posts?.result?.map((post, index) => {
-                        return (
-                            <SwiperSlide key={index}>
-                                {castCard ? (
-                                    <CardCasts
-                                        data={post}
-                                        base={config?.result?.staticBaseUrl}
-                                    />
-                                ) : banner ? (
-                                    <CardBanner
-                                        base={config?.result?.staticBaseUrl}
-                                        data={post}
-                                    />
-                                ) : (
-                                    <CardPost
-                                        data={post}
-                                        base={config?.result?.staticBaseUrl}
-                                        onClick={getDesTv}
-                                    />
-                                )}
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
-            </div>
+        <>
             <div
-                className={`carousel-des ${isShowDes ? "active" : ""}`}
-                style={{
-                    backgroundImage:
-                        content &&
-                        content?.result &&
-                        config?.result?.staticBaseUrl
-                            ? `linear-gradient(to right,transparent , #1a1a1a), url(${config?.result?.staticBaseUrl}${content?.result?.coverLandscape})`
-                            : "",
-                }}
+                className={`carousel my-2 ${className ? "top" : ""} ${
+                    banner ? "banner" : ""
+                }`}
+                id={data.type + "-" + data.key}
             >
-                <div className="carousel-des__content container">
-                    <ContentDes data={content} />
+                <div className="carousel__content container">
+                    <h2 className="title-group">{data.caption}</h2>
+                    <Swiper
+                        slidesPerView={"auto"}
+                        style={{ overflow: "visible" }}
+                        spaceBetween={16}
+                    >
+                        {posts?.result?.map((post, index) => {
+                            return (
+                                <SwiperSlide key={index}>
+                                    {castCard ? (
+                                        <CardCasts
+                                            data={post}
+                                            base={config?.result?.staticBaseUrl}
+                                        />
+                                    ) : banner ? (
+                                        <CardBanner
+                                            base={config?.result?.staticBaseUrl}
+                                            data={post}
+                                        />
+                                    ) : (
+                                        <CardPost
+                                            data={post}
+                                            base={config?.result?.staticBaseUrl}
+                                            onClick={getDesTv}
+                                        />
+                                    )}
+                                </SwiperSlide>
+                            );
+                        })}
+                    </Swiper>
+                </div>
+                <div
+                    className={`carousel-des ${isShowDes ? "active" : ""}`}
+                    style={{
+                        backgroundImage:
+                            content &&
+                            content?.result &&
+                            config?.result?.staticBaseUrl
+                                ? `linear-gradient(to right,transparent , #1a1a1a), url(${config?.result?.staticBaseUrl}${content?.result?.coverLandscape})`
+                                : "",
+                    }}
+                >
+                    <div className="carousel-des__content container">
+                        <ContentDes data={content} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
