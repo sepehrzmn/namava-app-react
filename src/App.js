@@ -21,9 +21,9 @@ function App() {
         <div>{error.message.toString()}</div>;
     } else if (isSuccess) {
         content = (
-            <div>
+            <>
                 <NamavaApp />
-            </div>
+            </>
         );
     }
 

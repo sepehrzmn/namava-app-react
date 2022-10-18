@@ -32,9 +32,9 @@ const NamavaApp = () => {
         <div>{error.message.toString()}</div>;
     } else if (isSuccess) {
         content = (
-            <div>
+            <>
                 <Content dataPages={menu} />
-            </div>
+            </>
         );
     }
 
@@ -43,41 +43,45 @@ const NamavaApp = () => {
 
 const Content = ({ dataPages }) => {
     return (
-        <div>
+        <>
             <Header data={dataPages} />
-            <Routes>
-                <>
-                    {dataPages.map((data) => {
-                        const Component = componentsPages.find(
-                            (item) => item.name === data.entityType
-                        );
-
-                        if (Component) {
-                            return (
-                                <Route
-                                    key={data.slug}
-                                    path={`/${
-                                        data.slug === "index" ? "" : data.slug
-                                    }`}
-                                    element={
-                                        <Component.Component
-                                            data={data}
-                                            dataPages={dataPages}
-                                        />
-                                    }
-                                />
+            <main>
+                <Routes>
+                    <>
+                        {dataPages.map((data) => {
+                            const Component = componentsPages.find(
+                                (item) => item.name === data.entityType
                             );
-                        }
-                        return "";
-                    })}
-                </>
-                <Route
-                    path="/:type/:id-:namePe"
-                    element={<SinglePageMedia />}
-                />
-                <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-        </div>
+
+                            if (Component) {
+                                return (
+                                    <Route
+                                        key={data.slug}
+                                        path={`/${
+                                            data.slug === "index"
+                                                ? ""
+                                                : data.slug
+                                        }`}
+                                        element={
+                                            <Component.Component
+                                                data={data}
+                                                dataPages={dataPages}
+                                            />
+                                        }
+                                    />
+                                );
+                            }
+                            return "";
+                        })}
+                    </>
+                    <Route
+                        path="/:type/:id-:namePe"
+                        element={<SinglePageMedia />}
+                    />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+            </main>
+        </>
     );
 };
 
