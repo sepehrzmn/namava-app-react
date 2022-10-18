@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { baseApiSlice } from "../../features/apis/baseApi";
-
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { baseApiSlice } from "../../features/apis/baseApi";
 
 import "react-lazy-load-image-component/src/effects/opacity.css";
 
@@ -158,9 +157,14 @@ export const CardBanner = ({ data, base }) => {
         <div className="card" title={data.caption}>
             <Link to={`/collection-${data.id}-${data.caption}`}>
                 <div className={`card__poster`}>
-                    <img
+                    {/* <img
                         src={`${base}/${data?.imageUrl}`}
                         alt={data?.caption}
+                    /> */}
+                    <LazyLoadImage
+                        src={`${base}/${data?.imageUrl}`}
+                        alt={data?.caption}
+                        effect="opacity"
                     />
                 </div>
 
@@ -175,9 +179,10 @@ export const CardCasts = ({ data, base }) => {
         <div className="card cast" title={data.castName}>
             <Link to={`/person-${data.castId}-${data.castName}`}>
                 <div className={`card__poster`}>
-                    <img
-                        src={`${base}/${data?.castImageUrl}`}
-                        alt={data?.castName}
+                    <LazyLoadImage
+                        src={`${base}/${data?.imageUrl}`}
+                        alt={data?.caption}
+                        effect="opacity"
                     />
                 </div>
 
