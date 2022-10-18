@@ -23,7 +23,7 @@ const HeroSlide = ({ data }) => {
 
     let content;
     if (isLoading || isFetching) {
-        content = <div className=""></div>;
+        content = <div className="hero-slider"></div>;
     } else if (isError) {
         <div>{error.message.toString()}</div>;
     } else if (isSuccess) {

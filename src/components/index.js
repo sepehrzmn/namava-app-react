@@ -27,3 +27,5 @@ export { CardPost, CardBanner, CardCasts } from "./card/card";
 export { default as LatestSeries } from "./latest-series/LatestSeries";
 
 export { default as CarouselsPostCard } from "./carousel/Carousels";
+
+export { default as LazyComponent } from "./lazy-component/LazyComponent";

@@ -2,6 +2,8 @@
 
 .hero-slider {
     position: relative;
+    min-height: 50vh;
+    display: block;
 
     .swiper-pagination {
         display: none;

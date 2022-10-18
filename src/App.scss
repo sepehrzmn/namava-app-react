@@ -102,7 +102,10 @@ iframe {
     margin-top: -5%;
 }
 .step {
-    min-height: 100px;
+    min-height: 250px;
+    @include mobile {
+        min-height: 200px;
+    }
     display: block;
 }
 .disable {
