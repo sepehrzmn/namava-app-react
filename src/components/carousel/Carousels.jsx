@@ -19,14 +19,22 @@ const CarouselsPostCard = ({
     const [isShowDes, setIsShowDes] = useState(false);
     const [content, setContent] = useState(null);
     const [trigger] = baseApiSlice.endpoints.getPlayInfo.useLazyQuery();
+    const [backId, setBackId] = useState("");
 
     const getDesTv = async (event, id) => {
         event.preventDefault();
         const { data: preview, isSuccess } = await trigger(id);
 
         if (isSuccess) {
-            setIsShowDes(true);
+            setIsShowDes(() => {
+                if (id === backId) {
+                    return !isShowDes;
+                }
+                return true;
+            });
             setContent(preview);
+
+            setBackId(id);
         }
     };
 

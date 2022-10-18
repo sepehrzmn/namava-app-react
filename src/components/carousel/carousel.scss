@@ -33,8 +33,8 @@
 
     .carousel-des {
         display: block;
-        transition: height 0.5s ease, opacity 0.5s ease;
-        transition-delay: 250ms;
+        transition: height 0.8s ease, opacity 0.5s ease;
+        transition-delay: 0.2s, 0.9s;
         margin-top: 2rem;
         height: 0;
         background-repeat: no-repeat;
@@ -62,9 +62,16 @@
             }
 
             opacity: 1;
+
+            .carousel-des__content {
+                opacity: 1;
+            }
         }
 
         &__content {
+            opacity: 0;
+            transition: opacity 0.1s ease;
+
             width: 100%;
             height: 100%;
             @include flex(flex-start, center);
