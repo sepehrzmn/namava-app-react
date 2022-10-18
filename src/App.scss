@@ -111,3 +111,30 @@ iframe {
 .disable {
     display: none !important;
 }
+.logo-media {
+    min-height: 120px;
+    @include flex(center, flex-start);
+
+    img {
+        max-width: 20vw;
+        max-height: 10vw;
+        margin-bottom: 10px;
+        display: block;
+
+        @include tablet {
+            max-width: 25vw;
+            max-height: 15vw;
+        }
+
+        @include mobile {
+            max-width: 40vw;
+            max-height: 30vw;
+        }
+    }
+}
+.space {
+    &::after {
+        content: "-";
+        padding: 0 0.5rem;
+    }
+}

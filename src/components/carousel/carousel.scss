@@ -101,10 +101,6 @@
                 @include flex(center, flex-start);
                 gap: 1rem;
             }
-            .space::after {
-                content: "-";
-                padding: 0 0.5rem;
-            }
         }
     }
 }
