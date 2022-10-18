@@ -6,6 +6,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import { componentsPages } from "../../utils/segment";
 
+import { SinglePageMedia } from "../../pages";
+
 const NamavaApp = () => {
     const {
         data = [],
@@ -69,7 +71,10 @@ const Content = ({ dataPages }) => {
                         return "";
                     })}
                 </>
-
+                <Route
+                    path="/:type/:id-:namePe"
+                    element={<SinglePageMedia />}
+                />
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </div>
