@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-import Button from "../button/Button";
-import BadgeInfo from "./BadgeInfo";
+
+import { Button, BadgeInfo } from "../";
 
 const ContentDes = ({ data }) => {
     const dataContent = data ? data?.result ?? null : null;

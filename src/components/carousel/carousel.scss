@@ -89,57 +89,6 @@
                 font-size: 16px;
             }
 
-            .badges {
-                @include flex(flex-start, flex-start);
-                text-align: center;
-                white-space: nowrap;
-
-                @include mobile {
-                    flex-wrap: wrap;
-                }
-
-                gap: 1rem;
-
-                .badge {
-                    @include flex(center, center);
-
-                    & > * ~ * {
-                        margin-right: 0.2rem;
-                    }
-
-                    &.range {
-                        color: #000000;
-                        width: 28px;
-                        height: 18px;
-                        display: inline-block;
-                        font-size: 14px;
-                        font-weight: bold;
-                        border-radius: 4px;
-                        vertical-align: middle;
-
-                        &.r__15 {
-                            background-color: rgb(240, 132, 83);
-                        }
-
-                        &.r__12 {
-                            background-color: rgb(255, 196, 0);
-                        }
-
-                        &.r__7 {
-                            background-color: rgb(242, 242, 242);
-                        }
-
-                        &.r__3 {
-                            background-color: rgb(153, 193, 77);
-                        }
-
-                        &.r__18 {
-                            background-color: rgb(217, 92, 92);
-                        }
-                    }
-                }
-            }
-
             .story {
                 max-width: 40%;
 

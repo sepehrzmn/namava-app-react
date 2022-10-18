@@ -1,3 +1,5 @@
+import "./badge-info.scss";
+
 const BadgeInfo = ({ dataContent }) => {
     return (
         <>
