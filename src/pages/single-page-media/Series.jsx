@@ -1,7 +1,12 @@
 import React from "react";
+import { Banner } from "../../components";
 
-const Series = () => {
-    return <div>Series</div>;
+const Series = ({ data, name, config }) => {
+    return (
+        <div>
+            <Banner />
+        </div>
+    );
 };
 
 export default Series;

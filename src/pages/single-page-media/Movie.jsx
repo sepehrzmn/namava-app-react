@@ -9,9 +9,8 @@ import { Banner, CarouselsPostCard } from "../../components";
 
 import "./single-media.scss";
 
-const Movie = ({ id, name }) => {
+const Movie = ({ id, name, config }) => {
     const { data, isSuccess } = useGetSingleMovieQuery(id);
-    const { data: config } = useGetConfigQuery();
 
     let content;
     if (isSuccess) {
