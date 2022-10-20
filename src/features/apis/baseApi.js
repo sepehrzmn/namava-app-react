@@ -123,6 +123,11 @@ export const baseApiSlice = createApi({
         getSingleMovie: builder.query({
             query: (id) => `v2.0/medias/${id}/single-movie`,
         }),
+
+        // get data for single series
+        getSingleSeries: builder.query({
+            query: (id) => `v2.0/medias/${id}/single-series`,
+        }),
     }),
 });
 
@@ -155,4 +160,5 @@ export const {
     useLazyGetUnknownDatePublishedQuery,
     useGetPlayInfoQuery,
     useGetSingleMovieQuery,
+    useGetSingleSeriesQuery,
 } = baseApiSlice;
