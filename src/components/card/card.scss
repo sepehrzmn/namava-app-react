@@ -76,11 +76,16 @@
         font-size: 11px;
     }
     &.cast {
+        width: 90%;
         img {
             border-radius: 50%;
         }
         .card__title {
             text-align: center;
+        }
+        svg {
+            width: 100%;
+            height: auto;
         }
     }
 }

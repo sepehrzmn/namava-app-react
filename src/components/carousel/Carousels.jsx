@@ -38,6 +38,12 @@ const CarouselsPostCard = ({
         }
     };
 
+    const loopContent = posts?.result
+        ? posts.result
+        : Array.isArray(posts)
+        ? posts
+        : [];
+
     return (
         <>
             <div
@@ -53,29 +59,40 @@ const CarouselsPostCard = ({
                         style={{ overflow: "visible" }}
                         spaceBetween={16}
                     >
-                        {posts?.result?.map((post, index) => {
-                            return (
-                                <SwiperSlide key={index}>
-                                    {castCard ? (
-                                        <CardCasts
-                                            data={post}
-                                            base={config?.result?.staticBaseUrl}
-                                        />
-                                    ) : banner ? (
-                                        <CardBanner
-                                            base={config?.result?.staticBaseUrl}
-                                            data={post}
-                                        />
-                                    ) : (
-                                        <CardPost
-                                            data={post}
-                                            base={config?.result?.staticBaseUrl}
-                                            onClick={getDesTv}
-                                        />
-                                    )}
-                                </SwiperSlide>
-                            );
-                        })}
+                        {loopContent.length
+                            ? loopContent?.map((post, index) => {
+                                  return (
+                                      <SwiperSlide key={index}>
+                                          {castCard ? (
+                                              <CardCasts
+                                                  data={post}
+                                                  base={
+                                                      config?.result
+                                                          ?.staticBaseUrl
+                                                  }
+                                              />
+                                          ) : banner ? (
+                                              <CardBanner
+                                                  base={
+                                                      config?.result
+                                                          ?.staticBaseUrl
+                                                  }
+                                                  data={post}
+                                              />
+                                          ) : (
+                                              <CardPost
+                                                  data={post}
+                                                  base={
+                                                      config?.result
+                                                          ?.staticBaseUrl
+                                                  }
+                                                  onClick={getDesTv}
+                                              />
+                                          )}
+                                      </SwiperSlide>
+                                  );
+                              })
+                            : ""}
                     </Swiper>
                 </div>
                 <div

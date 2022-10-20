@@ -100,7 +100,7 @@ const Item = ({ data, baseUrl, isActive }) => {
             <div className="container item__content">
                 <Link
                     to={`/${data.type}/${data.id}-${data.caption}`}
-                    className="logo"
+                    className="logo-media"
                 >
                     <img
                         src={`${baseUrl}/${data.logoImageUrl}`}
