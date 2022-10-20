@@ -1,41 +1,17 @@
-import React, { Fragment, useEffect, useState } from "react";
-import BadgeInfo from "../../components/badge-info/BadgeInfo";
+import { Fragment } from "react";
 import {
     useGetConfigQuery,
     useGetSingleMovieQuery,
 } from "../../features/apis/baseApi";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import { Button, CarouselsPostCard } from "../../components";
+import { Banner, CarouselsPostCard } from "../../components";
 
 import "./single-media.scss";
-import ListHorizontal from "../../components/list-horizontal/ListHorizontal";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Movie = ({ id, name }) => {
     const { data, isSuccess } = useGetSingleMovieQuery(id);
     const { data: config } = useGetConfigQuery();
-    const [resize, setResize] = useState(() => {
-        if (window.innerWidth < 600) {
-            return false;
-        } else {
-            return true;
-        }
-    });
-
-    useEffect(() => {
-        const setBackground = () => {
-            if (window.innerWidth < 600) {
-                setResize(false);
-            } else {
-                setResize(true);
-            }
-        };
-
-        window.addEventListener("resize", setBackground);
-        return () => {
-            window.removeEventListener("resize", setBackground);
-        };
-    }, []);
 
     let content;
     if (isSuccess) {
@@ -44,7 +20,7 @@ const Movie = ({ id, name }) => {
 
         content = dataContent && (
             <>
-                <div
+                {/* <div
                     className="banner"
                     style={{
                         backgroundImage: `linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 100vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%), url(${base}${
@@ -76,7 +52,8 @@ const Movie = ({ id, name }) => {
                             itemName="castName"
                         />
                     </div>
-                </div>
+                </div> */}
+                <Banner base={base} dataContent={dataContent} name={name} />
                 <div className="gallery container">
                     {dataContent?.slideImageList.map((slideImage) => {
                         return (
