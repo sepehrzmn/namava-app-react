@@ -1,8 +1,5 @@
 import { Fragment } from "react";
-import {
-    useGetConfigQuery,
-    useGetSingleMovieQuery,
-} from "../../features/apis/baseApi";
+import { useGetSingleMovieQuery } from "../../features/apis/baseApi";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { Banner, CarouselsPostCard } from "../../components";

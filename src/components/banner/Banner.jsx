@@ -6,7 +6,7 @@ import "./banner.scss";
 
 const Banner = ({ dataContent, name, base }) => {
     const [resize, setResize] = useState(() => {
-        if (window.innerWidth < 600) {
+        if (window.innerWidth < 700) {
             return false;
         } else {
             return true;
@@ -15,7 +15,7 @@ const Banner = ({ dataContent, name, base }) => {
 
     useEffect(() => {
         const setBackground = () => {
-            if (window.innerWidth < 600) {
+            if (window.innerWidth < 700) {
                 setResize(false);
             } else {
                 setResize(true);

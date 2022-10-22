@@ -76,6 +76,7 @@ iframe {
 .container {
     margin: auto;
     padding: 0 3rem;
+    margin: 0 auto;
     @include mobile {
         padding: 0;
     }
