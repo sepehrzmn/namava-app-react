@@ -5,12 +5,22 @@ import React, {
     useRef,
     useState,
 } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import VisibilitySensor from "react-visibility-sensor";
 
-import { Banner, Button } from "../../components";
+import {
+    Banner,
+    Button,
+    CarouselsPostCard,
+    Gallery,
+    InfoText,
+    LazyComponent,
+    ListHorizontal,
+} from "../../components";
 import {
     useGetSingleSeriesQuery,
     useLazyGetEpisodesQuery,
+    useLazyGetRecommendItemForUserQuery,
 } from "../../features/apis/baseApi";
 
 import "./single-series.scss";
@@ -151,6 +161,56 @@ const Series = ({ name, config, id }) => {
                             : ""}
                     </div>
                 </VisibilitySensor>
+                <div className="container">
+                    <h2 style={{ margin: "3rem 0 1rem 0" }}>تصاویر و جزییات</h2>
+                    <Gallery base={base} slides={dataContent.slideImageList} />
+                </div>
+                <InfoText
+                    about={dataContent?.about}
+                    movieLatinName={dataContent?.movieLatinName}
+                    name={name}
+                    story={dataContent?.story}
+                />
+                <div
+                    className="container"
+                    style={{ margin: "1rem 0", fontSize: "12px" }}
+                >
+                    <ListHorizontal
+                        dataContent={dataContent?.categories}
+                        itemName={"categoryName"}
+                        title="دسته بندی"
+                    />
+                </div>
+                <CarouselsPostCard
+                    castCard
+                    config={config}
+                    posts={dataContent.casts.filter(
+                        (item) => item.castRole === "Actor"
+                    )}
+                    data={{
+                        key: "",
+                        type: "",
+                        caption: `ستارگان فیلم  ${name}`,
+                    }}
+                />
+                <CarouselsPostCard
+                    castCard
+                    config={config}
+                    posts={dataContent.casts.filter(
+                        (item) => item.castRole !== "Actor"
+                    )}
+                    data={{
+                        key: "",
+                        type: "",
+                        caption: `عوامل فیلم  ${name}`,
+                    }}
+                />
+
+                <LazyComponent
+                    data={{ key: id }}
+                    useLazyApi={useLazyGetRecommendItemForUserQuery}
+                    recommend
+                />
             </div>
         );
     }
@@ -221,7 +281,7 @@ const Episode = ({ data, base }) => (
     <div className="episode">
         <div className="responsive">
             <div className="poster">
-                <img
+                <LazyLoadImage
                     src={`${base}${data?.imageUrl}?anchor=middlecenter&crop=auto&scale=both&w=300&h=195`}
                     alt={data.caption}
                 />
