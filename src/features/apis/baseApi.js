@@ -19,11 +19,18 @@ export const baseApiSlice = createApi({
             query: (id) => `/v2.0/medias/sliders/${id}`,
         }),
 
-        // get data post group
+        // get slider post group
         getPostGroup: builder.query({
-            query: (id, pi = 1, ps = 20) => ({
-                url: `v1.0/post-groups/${id}/medias`,
+            query: (id, medias, pi = 1, ps = 20) => ({
+                url: `v1.0/post-groups/${id}/${medias}`,
                 params: { pi, ps },
+            }),
+        }),
+
+        // get info post group
+        getInfoPostGroup: builder.query({
+            query: (id) => ({
+                url: `v1.0/post-groups/${id}/`,
             }),
         }),
 
@@ -178,4 +185,6 @@ export const {
     useLazyGetEpisodesQuery,
     useGetRecommendItemForUserQuery,
     useLazyGetRecommendItemForUserQuery,
+    useLazyGetInfoPostGroupQuery,
+    useGetInfoPostGroupQuery,
 } = baseApiSlice;
