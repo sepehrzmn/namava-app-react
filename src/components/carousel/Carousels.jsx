@@ -8,14 +8,7 @@ import "./carousel.scss";
 import { CardCasts, CardPost, CardBanner } from "../";
 import ContentDes from "./ContentDes";
 
-const CarouselsPostCard = ({
-    className,
-    posts,
-    config,
-    data,
-    castCard,
-    banner,
-}) => {
+const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
     const [isShowDes, setIsShowDes] = useState(false);
     const [content, setContent] = useState(null);
     const [trigger] = baseApiSlice.endpoints.getPlayInfo.useLazyQuery();
@@ -47,9 +40,7 @@ const CarouselsPostCard = ({
     return (
         <>
             <div
-                className={`carousel my-2 ${className ? "top" : ""} ${
-                    banner ? "banner" : ""
-                }`}
+                className={`carousel my-2 ${banner ? "banner" : ""}`}
                 id={data?.type + "-" + data?.key}
             >
                 <div className="carousel__content container">

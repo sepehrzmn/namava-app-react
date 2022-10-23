@@ -5,7 +5,9 @@
 
     &__content {
         display: grid;
+        vertical-align: middle;
         grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+        gap: 0.8rem;
 
         @include tablet {
             grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
@@ -14,11 +16,7 @@
             grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
         }
 
-        gap: 1rem;
-        vertical-align: middle;
         .item {
-            padding-left: 7px;
-            padding-right: 7px;
             position: relative;
             h2 {
                 position: absolute;

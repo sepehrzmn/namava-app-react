@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { baseApiSlice } from "../../features/apis/baseApi";
 
-import "react-lazy-load-image-component/src/effects/opacity.css";
-
 import "./card.scss";
 
 export const CardPost = ({ data, base, onClick }) => {
@@ -120,7 +118,9 @@ export const CardPost = ({ data, base, onClick }) => {
     return (
         <div className="card" title={data.caption}>
             <Link
-                to={`/${data.type}/${data.id}-${data.caption}`}
+                to={`/${data.type}/${data.id}-${data.caption
+                    .split(" ")
+                    .join("_")}`}
                 onClick={(event) => {
                     onClick(event, data.id);
                 }}
@@ -134,10 +134,6 @@ export const CardPost = ({ data, base, onClick }) => {
                     }}
                     onClick={() => {}}
                 >
-                    {/* <img
-                        src={`${base}/${data?.imageUrl}`}
-                        alt={data?.caption}
-                    /> */}
                     <LazyLoadImage
                         src={`${base}/${data?.imageUrl}`}
                         alt={data?.caption}
@@ -155,7 +151,11 @@ export const CardPost = ({ data, base, onClick }) => {
 export const CardBanner = ({ data, base }) => {
     return (
         <div className="card" title={data.caption}>
-            <Link to={`/collection-${data.id}-${data.caption}`}>
+            <Link
+                to={`/collection-${data.id}-${data.caption
+                    .split(" ")
+                    .join("_")}`}
+            >
                 <div className={`card__poster`}>
                     {/* <img
                         src={`${base}/${data?.imageUrl}`}
@@ -177,7 +177,11 @@ export const CardBanner = ({ data, base }) => {
 export const CardCasts = ({ data, base }) => {
     return (
         <div className="card cast" title={data.castName}>
-            <Link to={`/person-${data.castId}-${data.castName}`}>
+            <Link
+                to={`/person-${data.castId}-${data.castName
+                    .split(" ")
+                    .join("_")}`}
+            >
                 <div className={`card__poster`}>
                     {Boolean(data?.imageUrl) || Boolean(data?.castImageUrl) ? (
                         <LazyLoadImage

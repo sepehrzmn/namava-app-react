@@ -19,9 +19,11 @@ const Movie = ({ id, name, config }) => {
         const dataContent = data?.result ?? undefined;
         const base = config?.result?.staticBaseUrl ?? "";
 
+        const nameSet = name.split("_").join(" ");
+
         content = dataContent && (
             <>
-                <Banner base={base} dataContent={dataContent} name={name} />
+                <Banner base={base} dataContent={dataContent} name={nameSet} />
                 <div className="container">
                     <Gallery
                         slides={dataContent?.slideImageList}
@@ -33,7 +35,7 @@ const Movie = ({ id, name, config }) => {
                 <InfoText
                     about={dataContent?.about}
                     movieLatinName={dataContent?.movieLatinName}
-                    name={name}
+                    name={nameSet}
                     story={dataContent?.story}
                 />
                 <CarouselsPostCard
@@ -45,7 +47,7 @@ const Movie = ({ id, name, config }) => {
                     data={{
                         key: "",
                         type: "",
-                        caption: `ستارگان فیلم  ${name}`,
+                        caption: `ستارگان فیلم  ${nameSet}`,
                     }}
                 />
                 <CarouselsPostCard
@@ -57,7 +59,7 @@ const Movie = ({ id, name, config }) => {
                     data={{
                         key: "",
                         type: "",
-                        caption: `عوامل فیلم  ${name}`,
+                        caption: `عوامل فیلم  ${nameSet}`,
                     }}
                 />
                 <LazyComponent

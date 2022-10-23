@@ -60,7 +60,13 @@ const LazyComponent = ({ useLazyApi, data, className, castCard, banner }) => {
 
     return (
         <VisibilitySensor onChange={onChange}>
-            <div className={`step ${load ? "" : "disable"}`}>{content}</div>
+            <div
+                className={`step my-2${
+                    load ? `${className ? " top" : ""}` : "disable"
+                }`}
+            >
+                {content}
+            </div>
         </VisibilitySensor>
     );
 };

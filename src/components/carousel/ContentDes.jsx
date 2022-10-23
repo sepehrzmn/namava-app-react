@@ -19,7 +19,9 @@ const ContentDes = ({ data }) => {
                     )}
                     <div className="btns">
                         <Link
-                            to={`/${dataContent.type}/${dataContent.id}-${dataContent.caption}`}
+                            to={`/${dataContent.type}/${
+                                dataContent.id
+                            }-${dataContent.caption.split(" ").join("_")}`}
                         >
                             <Button>
                                 {data.type !== "Series"
@@ -28,7 +30,9 @@ const ContentDes = ({ data }) => {
                             </Button>
                         </Link>
                         <Link
-                            to={`/${dataContent.type}/${dataContent.id}-${dataContent.caption}`}
+                            to={`/${dataContent.type}/${
+                                dataContent.id
+                            }-${dataContent.caption.split(" ").join("_")}`}
                         >
                             <Button transparent flex>
                                 <svg

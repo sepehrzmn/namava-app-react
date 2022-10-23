@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import {
     useGetConfigQuery,
@@ -35,13 +36,19 @@ const CategoryList = () => {
 
 const Item = ({ data }) => {
     const { data: config } = useGetConfigQuery();
-
     return (
-        <Link to={`/category/${data?.slug ?? ""}`}>
+        <Link
+            to={`/${
+                data?.entityType === "PostGroup"
+                    ? `collection-${data?.entityId}-${data?.slug}`
+                    : `category/${data?.slug}`
+            }`}
+        >
             <div className="item">
-                <img
+                <LazyLoadImage
                     src={`${config.result.staticBaseUrl}${data?.imageUrl}`}
                     alt=""
+                    effect="blur"
                 />
                 <h2>{data?.caption}</h2>
             </div>

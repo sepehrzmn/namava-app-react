@@ -82,11 +82,16 @@ const Series = ({ name, config, id }) => {
                 seasonId: item.seasonId,
             };
         });
+        const nameSet = name.split("_").join(" ");
 
         content = (
             <div className="single-series">
                 <div>
-                    <Banner dataContent={dataContent} base={base} name={name} />
+                    <Banner
+                        dataContent={dataContent}
+                        base={base}
+                        name={nameSet}
+                    />
                 </div>
                 <div className="season container">
                     <SeasonBtn
@@ -155,8 +160,14 @@ const Series = ({ name, config, id }) => {
                 >
                     <div className="container step episodes">
                         {episodes?.result && episodes.result.length
-                            ? episodes.result.map((episode) => {
-                                  return <Episode data={episode} base={base} />;
+                            ? episodes.result.map((episode, index) => {
+                                  return (
+                                      <Episode
+                                          data={episode}
+                                          base={base}
+                                          key={index}
+                                      />
+                                  );
                               })
                             : ""}
                     </div>
@@ -168,7 +179,7 @@ const Series = ({ name, config, id }) => {
                 <InfoText
                     about={dataContent?.about}
                     movieLatinName={dataContent?.movieLatinName}
-                    name={name}
+                    name={nameSet}
                     story={dataContent?.story}
                 />
                 <div
@@ -190,7 +201,7 @@ const Series = ({ name, config, id }) => {
                     data={{
                         key: "",
                         type: "",
-                        caption: `ستارگان فیلم  ${name}`,
+                        caption: `ستارگان فیلم  ${nameSet}`,
                     }}
                 />
                 <CarouselsPostCard
@@ -202,7 +213,7 @@ const Series = ({ name, config, id }) => {
                     data={{
                         key: "",
                         type: "",
-                        caption: `عوامل فیلم  ${name}`,
+                        caption: `عوامل فیلم  ${nameSet}`,
                     }}
                 />
 
