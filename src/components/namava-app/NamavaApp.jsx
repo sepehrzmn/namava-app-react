@@ -79,7 +79,7 @@ const Content = ({ dataPages }) => {
                         element={<SinglePageMedia />}
                     />
                     <Route
-                        path="/:collection-:id-:namePe"
+                        path="/:collection-:id-:slug"
                         element={<Collection />}
                     />
                     <Route path="*" element={<Navigate to="/" replace />} />

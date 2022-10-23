@@ -1,0 +1,73 @@
+@use "../../scss/" as *;
+
+.collection-page {
+    &__banner {
+        position: relative;
+        min-height: 40vw;
+        @include flex(flex-end, flex-start);
+        background-size: 100% auto;
+        z-index: -2;
+        padding-bottom: 5rem;
+        background-repeat: no-repeat;
+
+        @include tablet {
+            height: 50vw;
+        }
+
+        @media only screen and (max-width: calc($mobile-width + 100px)) {
+            background-size: cover;
+            min-height: 60vh;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20%;
+            top: 0;
+            background-image: linear-gradient($black-main, transparent);
+            z-index: -1;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20%;
+            bottom: 0;
+            z-index: -1;
+            background-image: linear-gradient(transparent, $black-main);
+        }
+
+        &__content {
+            position: relative;
+            p {
+                width: 50%;
+                text-align: start;
+                margin-top: 1rem;
+
+                @include tablet {
+                    width: 80%;
+                }
+
+                @include mobile {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .posts {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        justify-content: center;
+
+        @include tablet {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+        @include mobile {
+            grid-template-columns: repeat(auto-fill, 30%);
+        }
+    }
+}
+//

@@ -12,6 +12,8 @@ import { useGetConfigQuery } from "./features/apis/baseApi";
 
 import { NamavaApp } from "./components";
 
+import { ResizeProvider } from "./contexts/ResizeContext";
+
 function App() {
     const { isError, error, isFetching, isLoading, isSuccess } =
         useGetConfigQuery();
@@ -25,7 +27,9 @@ function App() {
     } else if (isSuccess) {
         content = (
             <>
-                <NamavaApp />
+                <ResizeProvider>
+                    <NamavaApp />
+                </ResizeProvider>
             </>
         );
     }
