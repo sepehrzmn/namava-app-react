@@ -21,8 +21,8 @@ export const baseApiSlice = createApi({
 
         // get slider post group
         getPostGroup: builder.query({
-            query: (id, medias, pi = 1, ps = 20) => ({
-                url: `v1.0/post-groups/${id}/${medias}`,
+            query: (id, pi = 1, ps = 20) => ({
+                url: `v1.0/post-groups/${id}/medias`,
                 params: { pi, ps },
             }),
         }),
