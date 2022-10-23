@@ -77,8 +77,12 @@
     }
     &.cast {
         width: 90%;
+        height: 50%;
         img {
             border-radius: 50%;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
         }
         .card__title {
             text-align: center;

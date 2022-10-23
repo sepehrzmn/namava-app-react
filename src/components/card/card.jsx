@@ -183,7 +183,7 @@ export const CardCasts = ({ data, base }) => {
                         <LazyLoadImage
                             src={`${base}/${
                                 data?.imageUrl ?? data?.castImageUrl
-                            }`}
+                            }?anchor=middlecenter&crop=auto&scale=both&w=140&h=140`}
                             alt={data?.caption}
                             effect="opacity"
                         />

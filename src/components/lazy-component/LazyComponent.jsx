@@ -49,7 +49,7 @@ const LazyComponent = ({ useLazyApi, data, className, castCard, banner }) => {
                     setLoad(() => {
                         return posts?.result?.length
                             ? true
-                            : posts?.result?.items.length
+                            : posts?.result?.items?.length
                             ? true
                             : false;
                     });
