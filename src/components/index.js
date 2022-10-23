@@ -37,3 +37,5 @@ export { default as ListHorizontal } from "./list-horizontal/ListHorizontal";
 export { default as Banner } from "./banner/Banner";
 
 export { default as Gallery } from "./gallery/Gallery";
+
+export { default as InfoText } from "./info-text/InfoText";

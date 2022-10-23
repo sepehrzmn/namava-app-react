@@ -1,0 +1,8 @@
+.info-text {
+    font-size: 0.79rem;
+    color: rgba($color: #ffffff, $alpha: 0.8);
+
+    & > * ~ * {
+        margin-top: 1rem;
+    }
+}
