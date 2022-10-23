@@ -209,7 +209,6 @@ const Series = ({ name, config, id }) => {
                 <LazyComponent
                     data={{ key: id }}
                     useLazyApi={useLazyGetRecommendItemForUserQuery}
-                    recommend
                 />
             </div>
         );

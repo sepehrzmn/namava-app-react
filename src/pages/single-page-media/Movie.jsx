@@ -1,6 +1,15 @@
-import { useGetSingleMovieQuery } from "../../features/apis/baseApi";
+import {
+    useGetSingleMovieQuery,
+    useLazyGetRecommendItemForUserQuery,
+} from "../../features/apis/baseApi";
 
-import { Banner, CarouselsPostCard, Gallery, InfoText } from "../../components";
+import {
+    Banner,
+    CarouselsPostCard,
+    Gallery,
+    InfoText,
+    LazyComponent,
+} from "../../components";
 
 const Movie = ({ id, name, config }) => {
     const { data, isSuccess } = useGetSingleMovieQuery(id);
@@ -50,6 +59,10 @@ const Movie = ({ id, name, config }) => {
                         type: "",
                         caption: `عوامل فیلم  ${name}`,
                     }}
+                />
+                <LazyComponent
+                    data={{ key: id }}
+                    useLazyApi={useLazyGetRecommendItemForUserQuery}
                 />
             </>
         );
