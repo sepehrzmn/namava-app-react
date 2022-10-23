@@ -1,17 +1,20 @@
 @use "../../scss/" as *;
 
 .gallery {
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative !important;
+    margin-bottom: 4rem;
+
     @include flex(center, flex-start);
 
     @media only screen and (max-width: calc($mobile-width + 100px)) {
         justify-content: center;
     }
 
-    flex-wrap: wrap;
-    gap: 1rem;
-    position: relative !important;
-    margin-top: 1rem;
-    margin-bottom: 4rem;
+    &.top {
+        margin-top: -12%;
+    }
     img {
         border-radius: 0.4rem;
         @include mobile {

@@ -2,10 +2,9 @@ import { Fragment } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./gallery.scss";
 
-const Gallery = ({ base, slides }) => {
-    console.log(slides);
+const Gallery = ({ base, slides, top }) => {
     return (
-        <div className="gallery">
+        <div className={`gallery ${top ? "top" : ""}`}>
             {slides
                 ? slides.map((slideImage) => {
                       return (
