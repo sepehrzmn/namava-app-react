@@ -35,3 +35,5 @@ export { default as BadgeInfo } from "./badge-info/BadgeInfo";
 export { default as ListHorizontal } from "./list-horizontal/ListHorizontal";
 
 export { default as Banner } from "./banner/Banner";
+
+export { default as Gallery } from "./gallery/Gallery";
