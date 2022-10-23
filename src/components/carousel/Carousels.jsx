@@ -20,7 +20,6 @@ const CarouselsPostCard = ({
     const [content, setContent] = useState(null);
     const [trigger] = baseApiSlice.endpoints.getPlayInfo.useLazyQuery();
     const [backId, setBackId] = useState("");
-
     const getDesTv = async (event, id) => {
         event.preventDefault();
         const { data: preview, isSuccess } = await trigger(id);
@@ -38,28 +37,29 @@ const CarouselsPostCard = ({
         }
     };
 
-    const loopContent = posts?.result
+    const loopContent = Array.isArray(posts)
+        ? posts
+        : posts?.result
         ? posts.result
         : Array.isArray(posts)
         ? posts
         : [];
-
     return (
         <>
             <div
                 className={`carousel my-2 ${className ? "top" : ""} ${
                     banner ? "banner" : ""
                 }`}
-                id={data.type + "-" + data.key}
+                id={data?.type + "-" + data?.key}
             >
                 <div className="carousel__content container">
-                    <h2 className="title-group">{data.caption}</h2>
+                    <h2 className="title-group">{data?.caption}</h2>
                     <Swiper
                         slidesPerView={"auto"}
                         style={{ overflow: "visible" }}
                         spaceBetween={16}
                     >
-                        {loopContent.length
+                        {loopContent?.length
                             ? loopContent?.map((post, index) => {
                                   return (
                                       <SwiperSlide key={index}>

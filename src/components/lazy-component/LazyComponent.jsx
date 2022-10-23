@@ -19,6 +19,7 @@ const LazyComponent = ({ useLazyApi, data, className, castCard, banner }) => {
                 const { data: posts, isSuccess } = data?.key
                     ? await trigger(data?.key)
                     : await trigger();
+
                 if (isSuccess) {
                     setContent(
                         <>
@@ -31,13 +32,26 @@ const LazyComponent = ({ useLazyApi, data, className, castCard, banner }) => {
                                     castCard={castCard ? true : false}
                                     banner={banner ? true : false}
                                 />
+                            ) : posts.result?.items ? (
+                                <CarouselsPostCard
+                                    className={className}
+                                    config={config}
+                                    data={data}
+                                    posts={posts.result?.items}
+                                    castCard={castCard ? true : false}
+                                    banner={banner ? true : false}
+                                />
                             ) : (
                                 ""
                             )}
                         </>
                     );
                     setLoad(() => {
-                        return posts?.result?.length ? true : false;
+                        return posts?.result?.length
+                            ? true
+                            : posts?.result?.items.length
+                            ? true
+                            : false;
                     });
                 }
             }
