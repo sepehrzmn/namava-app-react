@@ -133,6 +133,14 @@ export const baseApiSlice = createApi({
         getEpisodes: builder.query({
             query: (id) => `/v2.0/medias/seasons/${id}/episodes`,
         }),
+
+        // https://www.namava.ir/api/v1.0/medias/105412/recommend-items-anonymous-user?pi=1&ps=20&iskid=false
+        getRecommendItemForUser: builder.query({
+            query: (id, pi = 1, ps = 20, iskid = false) => ({
+                url: `/v1.0/medias/${id}/recommend-items-anonymous-user`,
+                params: { ps, pi, iskid },
+            }),
+        }),
     }),
 });
 
@@ -168,4 +176,6 @@ export const {
     useGetSingleSeriesQuery,
     useGetEpisodesQuery,
     useLazyGetEpisodesQuery,
+    useGetRecommendItemForUserQuery,
+    useLazyGetRecommendItemForUserQuery,
 } = baseApiSlice;
