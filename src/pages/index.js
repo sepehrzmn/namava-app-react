@@ -11,3 +11,5 @@ export { default as SinglePageMedia } from "./single-page-media/SinglePageMedia"
 export { default as Collection } from "./collection/Collection";
 
 export { default as Category } from "./Category";
+
+export { default as Cast } from "./cast/Cast";
