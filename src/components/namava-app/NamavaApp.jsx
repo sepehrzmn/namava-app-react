@@ -6,7 +6,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import { componentsPages } from "../../utils/segment";
 
-import { Category, Collection, SinglePageMedia } from "../../pages";
+import { Cast, Category, Collection, SinglePageMedia } from "../../pages";
 
 const NamavaApp = () => {
     const {
@@ -98,6 +98,7 @@ const Content = ({ dataPages, dataCategory }) => {
                             element={<Category data={dataCategory} />}
                         />
                     </Route>
+                    <Route path="/person-:id-:name" element={<Cast />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </main>
