@@ -156,6 +156,11 @@ export const baseApiSlice = createApi({
                 params: { pi, ps },
             }),
         }),
+
+        // v1.0/casts/1278
+        getCastById: builder.query({
+            query: ({ id }) => `v1.0/casts/${id}`,
+        }),
     }),
 });
 
@@ -197,4 +202,6 @@ export const {
     useGetInfoPostGroupQuery,
     useGetCategoryTagQuery,
     useLazyGetCategoryTagQuery,
+    useGetCastByIdQuery,
+    useLazyGetCastByIdQuery,
 } = baseApiSlice;
