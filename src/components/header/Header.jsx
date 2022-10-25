@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { GroupContext } from "../../contexts/CroupContext";
 
 import "./header.scss";
 
@@ -47,10 +48,21 @@ const Header = ({ data }) => {
 };
 
 const MenuItem = ({ data }) => {
+    const { group, setGroup } = useContext(GroupContext);
     return (
         <li className="nav__content__list__item">
-            <Link to={`/${data.slug === "index" ? "" : data.slug}`}>
-                {data.caption}
+            <Link
+                to={`/${data.slug === "index" ? "" : data.slug}`}
+                onClick={() => {
+                    setGroup((preventGroup) => {
+                        return { ...preventGroup, status: false, text: "" };
+                    });
+                }}
+            >
+                {data.caption}{" "}
+                {data.slug === "grouping" && group.status
+                    ? `(${group.text})`
+                    : ""}
             </Link>
         </li>
     );

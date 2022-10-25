@@ -15,7 +15,7 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
     const [backId, setBackId] = useState("");
     const getDesTv = async (event, id) => {
         event.preventDefault();
-        const { data: preview, isSuccess } = await trigger(id);
+        const { data: preview, isSuccess } = await trigger({ id });
 
         if (isSuccess) {
             setIsShowDes(() => {

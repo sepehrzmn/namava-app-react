@@ -12,7 +12,7 @@ import {
 } from "../../components";
 
 const Movie = ({ id, name, config }) => {
-    const { data, isSuccess } = useGetSingleMovieQuery(id);
+    const { data, isSuccess } = useGetSingleMovieQuery({ id });
 
     let content;
     if (isSuccess) {

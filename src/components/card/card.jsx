@@ -7,14 +7,16 @@ import "./card.scss";
 
 export const CardPost = ({ data, base, onClick }) => {
     const [trigger, { data: backPreview }] =
-        baseApiSlice.endpoints.getBriefPreview.useLazyQuery(data.id);
+        baseApiSlice.endpoints.getBriefPreview.useLazyQuery();
     const [content, setContent] = useState("");
     const [isShow, setIsShow] = useState(false);
     let timeOut;
     const getPreview = () => {
         timeOut = setTimeout(async () => {
             if (backPreview === undefined) {
-                const { data: preview, isSuccess } = await trigger(data.id);
+                const { data: preview, isSuccess } = await trigger({
+                    id: data.id,
+                });
                 if (isSuccess) {
                     setContent(
                         preview?.succeeded ? (

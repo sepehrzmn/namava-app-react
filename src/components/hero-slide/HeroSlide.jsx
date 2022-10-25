@@ -18,7 +18,7 @@ const HeroSlide = ({ data }) => {
         isFetching,
         isLoading,
         isSuccess,
-    } = useGetSliderQuery(data.key);
+    } = useGetSliderQuery({ id: data.key });
     const { data: config } = useGetConfigQuery();
 
     let content;

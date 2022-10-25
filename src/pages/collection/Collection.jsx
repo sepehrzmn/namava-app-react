@@ -14,8 +14,8 @@ import "./collection-page.scss";
 const Collection = () => {
     const { id } = useParams();
     const resize = useContext(ResizeContext);
-    const { data, isSuccess } = useGetInfoPostGroupQuery(id);
-    const { data: posts } = useGetPostGroupQuery(id);
+    const { data, isSuccess } = useGetInfoPostGroupQuery({ id });
+    const { data: posts } = useGetPostGroupQuery({ id });
     const { data: config } = useGetConfigQuery();
     const base = config?.result?.staticBaseUrl ?? "";
 

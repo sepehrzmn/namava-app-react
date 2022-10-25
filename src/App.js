@@ -13,6 +13,7 @@ import { useGetConfigQuery } from "./features/apis/baseApi";
 import { NamavaApp } from "./components";
 
 import { ResizeProvider } from "./contexts/ResizeContext";
+import CroupContextProvider from "./contexts/CroupContext";
 
 function App() {
     const { isError, error, isFetching, isLoading, isSuccess } =
@@ -27,9 +28,11 @@ function App() {
     } else if (isSuccess) {
         content = (
             <>
-                <ResizeProvider>
-                    <NamavaApp />
-                </ResizeProvider>
+                <CroupContextProvider>
+                    <ResizeProvider>
+                        <NamavaApp />
+                    </ResizeProvider>
+                </CroupContextProvider>
             </>
         );
     }

@@ -9,3 +9,5 @@ export { default as LatestPage } from "./LatestPage";
 export { default as SinglePageMedia } from "./single-page-media/SinglePageMedia";
 
 export { default as Collection } from "./collection/Collection";
+
+export { default as Category } from "./Category";

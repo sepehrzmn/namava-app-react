@@ -6,7 +6,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import { componentsPages } from "../../utils/segment";
 
-import { Collection, SinglePageMedia } from "../../pages";
+import { Category, Collection, SinglePageMedia } from "../../pages";
 
 const NamavaApp = () => {
     const {
@@ -24,6 +24,12 @@ const NamavaApp = () => {
         } else return [];
     }, [data]);
 
+    const categoriesMemo = useMemo(() => {
+        if (data?.result || Boolean(data?.succeeded)) {
+            return data?.result.filter((item) => Number(item?.parentId) === 5);
+        } else return [];
+    }, [data]);
+
     let content;
 
     if (isLoading || isFetching) {
@@ -33,7 +39,7 @@ const NamavaApp = () => {
     } else if (isSuccess) {
         content = (
             <>
-                <Content dataPages={menu} />
+                <Content dataPages={menu} dataCategory={categoriesMemo} />
             </>
         );
     }
@@ -41,7 +47,7 @@ const NamavaApp = () => {
     return <>{content}</>;
 };
 
-const Content = ({ dataPages }) => {
+const Content = ({ dataPages, dataCategory }) => {
     return (
         <>
             <Header data={dataPages} />
@@ -79,9 +85,19 @@ const Content = ({ dataPages }) => {
                         element={<SinglePageMedia />}
                     />
                     <Route
-                        path="/:collection-:id-:slug"
+                        path="/collection-:id-:slug"
                         element={<Collection />}
                     />
+                    <Route path="/category">
+                        <Route
+                            path=":slug"
+                            element={<Category data={dataCategory} />}
+                        />
+                        <Route
+                            path=":slug-:slugMore"
+                            element={<Category data={dataCategory} />}
+                        />
+                    </Route>
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </main>

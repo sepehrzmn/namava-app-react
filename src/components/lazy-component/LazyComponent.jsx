@@ -6,7 +6,14 @@ import { useGetConfigQuery } from "../../features/apis/baseApi";
 
 import { CarouselsPostCard } from "../";
 
-const LazyComponent = ({ useLazyApi, data, className, castCard, banner }) => {
+const LazyComponent = ({
+    useLazyApi,
+    data,
+    className,
+    castCard,
+    banner,
+    slugItem,
+}) => {
     const [load, setLoad] = useState(true);
     const [content, setContent] = useState(null);
 
@@ -17,8 +24,13 @@ const LazyComponent = ({ useLazyApi, data, className, castCard, banner }) => {
         if (isVisible) {
             if (!content) {
                 const { data: posts, isSuccess } = data?.key
-                    ? await trigger(data?.key)
-                    : await trigger();
+                    ? await trigger({ id: data?.key, pi: 1, ps: 20 })
+                    : data?.caption && data?.slug
+                    ? await trigger({
+                          slug: slugItem ?? "",
+                          type: encodeURIComponent(data?.slug),
+                      })
+                    : await trigger({ pi: 1, ps: 20 });
 
                 if (isSuccess) {
                     setContent(
@@ -57,13 +69,13 @@ const LazyComponent = ({ useLazyApi, data, className, castCard, banner }) => {
             }
         }
     };
-
     return (
         <VisibilitySensor onChange={onChange}>
             <div
                 className={`step my-2${
-                    load ? `${className ? " top" : ""}` : "disable"
+                    load ? `${className ? " top" : ""}` : " disable"
                 }`}
+                id={data.type}
             >
                 {content}
             </div>

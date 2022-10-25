@@ -16,12 +16,12 @@ export const baseApiSlice = createApi({
 
         // get data slider
         getSlider: builder.query({
-            query: (id) => `/v2.0/medias/sliders/${id}`,
+            query: ({ id }) => `/v2.0/medias/sliders/${id}`,
         }),
 
         // get slider post group
         getPostGroup: builder.query({
-            query: (id, pi = 1, ps = 20) => ({
+            query: ({ id, pi = 1, ps = 28 }) => ({
                 url: `v1.0/post-groups/${id}/medias`,
                 params: { pi, ps },
             }),
@@ -29,27 +29,27 @@ export const baseApiSlice = createApi({
 
         // get info post group
         getInfoPostGroup: builder.query({
-            query: (id) => ({
+            query: ({ id }) => ({
                 url: `v1.0/post-groups/${id}/`,
             }),
         }),
 
         // get brief Preview data
         getBriefPreview: builder.query({
-            query: (id) => `v1.0/medias/${id}/brief-preview`,
+            query: ({ id }) => `v1.0/medias/${id}/brief-preview`,
         }),
 
         // get latest media data
         getLatest: builder.query({
-            query: (pi = 1, ps = 20) => ({
-                url: "/v1.0/medias/latest",
-                params: { pi, ps },
+            query: () => ({
+                url: "v1.0/medias/latest",
+                params: { pi: 1, ps: 20 },
             }),
         }),
 
         // get data Exclusive default content
         getExclusiveContent: builder.query({
-            query: (id, pi = 1, ps = 20) => ({
+            query: ({ id, pi, ps }) => ({
                 url: `v1.0/medias/exclusive-content/${id}/`,
                 params: { pi, ps },
             }),
@@ -57,7 +57,7 @@ export const baseApiSlice = createApi({
 
         // get data banner
         getBanner: builder.query({
-            query: (id, pi = 1, ps = 20) => ({
+            query: ({ id, pi, ps }) => ({
                 url: `v1.0/medias/banners/${id}`,
                 params: { pi, ps },
             }),
@@ -65,7 +65,7 @@ export const baseApiSlice = createApi({
 
         // get data Exclusive default dubs
         getExclusiveDubs: builder.query({
-            query: (id, pi = 1, ps = 20) => ({
+            query: ({ id, pi = 1, ps = 20 }) => ({
                 url: `v1.0/medias/exclusive-dubs/${id}/`,
                 params: { pi, ps },
             }),
@@ -73,7 +73,7 @@ export const baseApiSlice = createApi({
 
         // get data casts
         getCasts: builder.query({
-            query: (id, pi = 1, ps = 20) => ({
+            query: ({ id, pi, ps }) => ({
                 url: `v1.0/casts/collection/${id}/`,
                 params: { pi, ps },
             }),
@@ -81,15 +81,15 @@ export const baseApiSlice = createApi({
 
         // get data categories
         getCategory: builder.query({
-            query: (type, pi = 1, ps = 20) => ({
-                url: `v1.0/category-groups/${type}/latest-medias`,
+            query: ({ id, pi, ps }) => ({
+                url: `v1.0/category-groups/${id}/latest-medias`,
                 params: { pi, ps },
             }),
         }),
 
         // get latest series TV
         getLatestSeries: builder.query({
-            query: (pi = 1, ps = 20) => ({
+            query: ({ pi, ps }) => ({
                 url: `v1.0/medias/latest-series`,
                 params: { pi, ps },
             }),
@@ -97,7 +97,7 @@ export const baseApiSlice = createApi({
 
         // get latest most popular
         getMostPopular: builder.query({
-            query: (pi = 1, ps = 20) => ({
+            query: ({ pi, ps }) => ({
                 url: `v1.0/medias/latest-series`,
                 params: { pi, ps },
             }),
@@ -105,7 +105,7 @@ export const baseApiSlice = createApi({
 
         // get latest movies TV
         getLatestMovies: builder.query({
-            query: (pi = 1, ps = 20) => ({
+            query: ({ pi, ps }) => ({
                 url: `v1.0/medias/latest-movies`,
                 params: { pi, ps },
             }),
@@ -113,7 +113,7 @@ export const baseApiSlice = createApi({
 
         // get unknown date published
         getUnknownDatePublished: builder.query({
-            query: (id, pi = 1, ps = 20) => ({
+            query: ({ id, pi, ps }) => ({
                 url: `v1.0/medias/unknown-date-published/${id}`,
                 params: { pi, ps },
             }),
@@ -121,31 +121,39 @@ export const baseApiSlice = createApi({
 
         // get info tv
         getPlayInfo: builder.query({
-            query: (id) => ({
+            query: ({ id }) => ({
                 url: `/v1.0/medias/${id}/preview`,
             }),
         }),
 
         // get data for single movie
         getSingleMovie: builder.query({
-            query: (id) => `v2.0/medias/${id}/single-movie`,
+            query: ({ id }) => `v2.0/medias/${id}/single-movie`,
         }),
 
         // get data for single series
         getSingleSeries: builder.query({
-            query: (id) => `v2.0/medias/${id}/single-series`,
+            query: ({ id }) => `v2.0/medias/${id}/single-series`,
         }),
 
         // get data episodes series tv
         getEpisodes: builder.query({
-            query: (id) => `/v2.0/medias/seasons/${id}/episodes`,
+            query: ({ id }) => `/v2.0/medias/seasons/${id}/episodes`,
         }),
 
-        // https://www.namava.ir/api/v1.0/medias/105412/recommend-items-anonymous-user?pi=1&ps=20&iskid=false
         getRecommendItemForUser: builder.query({
-            query: (id, pi = 1, ps = 20, iskid = false) => ({
+            query: ({ id, pi, ps, iskid = false }) => ({
                 url: `/v1.0/medias/${id}/recommend-items-anonymous-user`,
                 params: { ps, pi, iskid },
+            }),
+        }),
+
+        // /v1.0/category-groups/tops/tags/کمدی/latest-medias?pi=1&ps=21
+        // get data tag
+        getCategoryTag: builder.query({
+            query: ({ slug, type }, pi, ps) => ({
+                url: `v1.0/category-groups/${slug}/tags/${type}/latest-medias?pi=1&ps=21`,
+                params: { pi, ps },
             }),
         }),
     }),
@@ -187,4 +195,6 @@ export const {
     useLazyGetRecommendItemForUserQuery,
     useLazyGetInfoPostGroupQuery,
     useGetInfoPostGroupQuery,
+    useGetCategoryTagQuery,
+    useLazyGetCategoryTagQuery,
 } = baseApiSlice;

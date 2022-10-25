@@ -1,6 +1,7 @@
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
+import { GroupContext } from "../../contexts/CroupContext";
 import {
     useGetConfigQuery,
     useGetMenuQuery,
@@ -10,6 +11,7 @@ import "./category-list.scss";
 
 const CategoryList = () => {
     const { data = [] } = useGetMenuQuery();
+
     const categories = useMemo(() => {
         if (data?.result) {
             const filter = data.result.filter((category) => {
@@ -36,6 +38,8 @@ const CategoryList = () => {
 
 const Item = ({ data }) => {
     const { data: config } = useGetConfigQuery();
+    const { setGroup } = useContext(GroupContext);
+
     return (
         <Link
             to={`/${
@@ -43,12 +47,21 @@ const Item = ({ data }) => {
                     ? `collection-${data?.entityId}-${data?.slug}`
                     : `category/${data?.slug}`
             }`}
+            onClick={() => {
+                setGroup((preventGroup) => {
+                    return {
+                        ...preventGroup,
+                        text: data?.caption,
+                        status: true,
+                    };
+                });
+            }}
         >
             <div className="item">
                 <LazyLoadImage
                     src={`${config.result.staticBaseUrl}${data?.imageUrl}`}
                     alt=""
-                    effect="blur"
+                    effect="opacity"
                 />
                 <h2>{data?.caption}</h2>
             </div>

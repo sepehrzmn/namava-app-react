@@ -1,6 +1,8 @@
 import React, { useMemo } from "react";
+import { useLazyGetCategoryTagQuery } from "../../features/apis/baseApi";
 
 import { componentsPageItems } from "../../utils/segment";
+import LazyComponent from "../lazy-component/LazyComponent";
 
 const CheckComponent = ({ data, Index }) => {
     const ids = useMemo(() => {
@@ -14,6 +16,8 @@ const CheckComponent = ({ data, Index }) => {
         );
         return idsArray;
     }, [data]);
+
+    const idsTags = data?.tagItems ?? {};
 
     return (
         <>
@@ -35,6 +39,18 @@ const CheckComponent = ({ data, Index }) => {
 
                 return "";
             })}
+            {idsTags.length
+                ? idsTags.map((item, index) => {
+                      return (
+                          <LazyComponent
+                              key={index}
+                              data={item}
+                              useLazyApi={useLazyGetCategoryTagQuery}
+                              slugItem={data.slug}
+                          />
+                      );
+                  })
+                : ""}
         </>
     );
 };
