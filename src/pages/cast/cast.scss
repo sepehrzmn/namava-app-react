@@ -1,0 +1,53 @@
+@use "../../scss/" as *;
+
+.cast-page {
+    .info {
+        @include flex(center, flex-start);
+        padding-top: $header-height;
+
+        @include mobile {
+            flex-direction: column;
+            gap: 5rem;
+        }
+
+        .poster {
+            width: 20%;
+            img {
+                width: 100%;
+                border-radius: 50%;
+            }
+
+            @include tablet {
+                width: 30%;
+            }
+
+            @include mobile {
+                width: 50%;
+            }
+        }
+        .text {
+            flex: 1;
+            margin-right: 2rem;
+            & > * ~ * {
+                margin-top: 1rem;
+            }
+            & > * {
+                width: 80%;
+                @include tablet {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .medias {
+        margin-top: 5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+
+        @include mobile {
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        }
+    }
+}

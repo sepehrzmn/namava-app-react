@@ -15,7 +15,7 @@ export const CardPost = ({ data, base, onClick }) => {
         timeOut = setTimeout(async () => {
             if (backPreview === undefined) {
                 const { data: preview, isSuccess } = await trigger({
-                    id: data.id,
+                    id: data.id ?? data?.mediaId ?? "",
                 });
                 if (isSuccess) {
                     setContent(
@@ -120,11 +120,11 @@ export const CardPost = ({ data, base, onClick }) => {
     return (
         <div className="card" title={data.caption}>
             <Link
-                to={`/${data.type}/${data.id}-${data.caption
-                    .split(" ")
-                    .join("_")}`}
+                to={`/${data.type}/${
+                    data?.id ?? data?.mediaId ?? ""
+                }-${data.caption.split(" ").join("_")}`}
                 onClick={(event) => {
-                    onClick(event, data.id);
+                    onClick?.(event, data.id);
                 }}
             >
                 <div
