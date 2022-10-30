@@ -9,6 +9,8 @@ import {
 import { Button, Modal } from "../";
 
 import "./hero-slider.scss";
+import { useContext } from "react";
+import { ResizeContext } from "../../contexts/ResizeContext";
 
 const HeroSlide = ({ data }) => {
     const {
@@ -89,11 +91,14 @@ const Item = ({ data, baseUrl, isActive }) => {
         const modal = document.getElementById(`modal_${data.id}`);
         modal.classList.add("active");
     };
+    const { ResizeMd: resize } = useContext(ResizeContext);
 
     return (
         <div
             style={{
-                backgroundImage: `linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 135vw), url("${baseUrl}/${data?.coverLandscape}")`,
+                backgroundImage: `linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 135vw), url("${baseUrl}/${
+                    resize ? data?.coverLandscape : data?.coverPortrait
+                }")`,
             }}
             className={`item${isActive ? " active" : ""}`}
         >

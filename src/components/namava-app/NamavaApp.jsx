@@ -2,13 +2,20 @@ import { useMemo } from "react";
 
 import { useGetMenuQuery } from "../../features/apis/baseApi";
 import { Header } from "../";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { componentsPages } from "../../utils/segment";
 
 import { Cast, Category, Collection, SinglePageMedia } from "../../pages";
+import { useEffect } from "react";
 
 const NamavaApp = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo({ behavior: "smooth", top: 0 });
+    }, [pathname]);
+
     const {
         data = [],
         isError,

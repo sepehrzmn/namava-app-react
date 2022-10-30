@@ -14,7 +14,7 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
     const [content, setContent] = useState(null);
     const [trigger] = baseApiSlice.endpoints.getPlayInfo.useLazyQuery();
     const [backId, setBackId] = useState("");
-    const resize = useContext(ResizeContext);
+    const { ResizeMd: resize, resizeLg } = useContext(ResizeContext);
 
     const getDesTv = async (event, id) => {
         event.preventDefault();
@@ -54,8 +54,6 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
                     >
                         {loopContent?.length
                             ? loopContent?.map((post, index) => {
-                                  console.log(content);
-
                                   return (
                                       <SwiperSlide key={index}>
                                           {castCard ? (
@@ -95,11 +93,14 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
                     style={{
                         backgroundImage:
                             content &&
+                            isShowDes &&
                             content?.result &&
                             config?.result?.staticBaseUrl
-                                ? `linear-gradient(to right,transparent , #1a1a1a), url(${
-                                      config?.result?.staticBaseUrl
-                                  }${
+                                ? `linear-gradient(to ${
+                                      resize ? "right" : " bottom"
+                                  },transparent  , #1a1a1a ${
+                                      resizeLg ? "70vw" : "100vw"
+                                  }), url(${config?.result?.staticBaseUrl}${
                                       resize
                                           ? content?.result?.coverLandscape
                                           : content?.result?.coverPortrait

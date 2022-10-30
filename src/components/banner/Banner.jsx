@@ -1,32 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useContext } from "react";
 
 import { ListHorizontal, Button, BadgeInfo } from "../";
+import { ResizeContext } from "../../contexts/ResizeContext";
 
 import "./banner.scss";
 
 const Banner = ({ dataContent, name, base }) => {
-    const [resize, setResize] = useState(() => {
-        if (window.innerWidth < 700) {
-            return false;
-        } else {
-            return true;
-        }
-    });
-
-    useEffect(() => {
-        const setBackground = () => {
-            if (window.innerWidth < 700) {
-                setResize(false);
-            } else {
-                setResize(true);
-            }
-        };
-
-        window.addEventListener("resize", setBackground);
-        return () => {
-            window.removeEventListener("resize", setBackground);
-        };
-    }, []);
+    const { ResizeMd: resize } = useContext(ResizeContext);
 
     return (
         <div

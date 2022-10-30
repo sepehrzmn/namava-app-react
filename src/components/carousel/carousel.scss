@@ -32,34 +32,31 @@
     }
 
     .carousel-des {
+        position: relative;
         display: block;
         transition: height 0.8s ease, opacity 0.5s ease;
         transition-delay: 0.2s, 0.9s;
         margin-top: 2rem;
-        height: 0;
         background-repeat: no-repeat;
-        background-size: 80% auto;
+        background-size: contain;
         background-color: $black-main;
         opacity: 0;
+        height: 0 !important;
+        overflow: hidden;
         width: 100%;
 
         @include tablet {
             background-size: 100vw auto;
         }
-        @media only screen and (max-width: calc($mobile-width + 300px)) {
+        @media only screen and (max-width: calc($tablet-width)) {
             background-size: cover !important;
+            background-image: "";
         }
 
         &.active {
-            height: max-content;
-            padding: 5rem 0;
-
-            @include tablet {
-                background-size: 100vw auto;
-            }
-
+            height: 60vh !important;
             @include mobile {
-                height: max-content;
+                height: 50vh !important;
                 padding: 5rem 0;
             }
 
@@ -71,6 +68,7 @@
         }
 
         &__content {
+            position: relative;
             opacity: 0;
             transition: opacity 0.1s ease;
 

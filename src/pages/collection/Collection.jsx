@@ -13,7 +13,7 @@ import "./collection-page.scss";
 
 const Collection = () => {
     const { id } = useParams();
-    const resize = useContext(ResizeContext);
+    const { resize } = useContext(ResizeContext);
     const { data, isSuccess } = useGetInfoPostGroupQuery({ id });
     const { data: posts } = useGetPostGroupQuery({ id });
     const { data: config } = useGetConfigQuery();
@@ -50,7 +50,6 @@ const Collection = () => {
                 <div className="posts container">
                     {postsContent && postsContent?.length
                         ? postsContent.map((post, index) => {
-                              console.log(post);
                               return (
                                   <CardPost
                                       data={post}

@@ -8,11 +8,17 @@ import PostGroup from "../components/post-group/PostGroup";
 import StarGroup from "../components/star-group/StarGroup";
 import LatestSeries from "../components/latest-series/LatestSeries";
 
-import { Index, Movies, Series, LatestPage } from "../pages/index";
+import {
+    Index,
+    Movies,
+    Series,
+    LatestPage,
+    KidsPage,
+    CategoryList,
+} from "../pages/index";
 import MostPopular from "../components/most-popular/MostPopular";
 import LatestMovies from "../components/latest-movies/LatestMovies";
 import UnknownPublished from "../components/unknown-published/UnknownPublished";
-import CategoryList from "../pages/categotyList.jsx/CategoryList";
 
 export const componentsPages = [
     { name: "Index", Component: Index },
@@ -20,6 +26,7 @@ export const componentsPages = [
     { name: "Series", Component: Series },
     { name: "Latest", Component: LatestPage },
     { name: "CategoryList", Component: CategoryList },
+    { name: "Kids", Component: KidsPage },
 ];
 
 export const componentsPageItems = [
