@@ -13,7 +13,11 @@ const NamavaApp = () => {
     const { pathname } = useLocation();
 
     useEffect(() => {
-        window.scrollTo({ behavior: "smooth", top: 0 });
+        window.scrollTo({ top: 0 });
+
+        pathname === "/kids"
+            ? document.body.classList.add("kids")
+            : document.body.classList.remove("kids");
     }, [pathname]);
 
     const {

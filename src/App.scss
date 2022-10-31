@@ -42,6 +42,10 @@ body {
     @include mobile {
         margin-bottom: 5rem;
     }
+
+    &.kids {
+        background-color: white;
+    }
 }
 
 a {

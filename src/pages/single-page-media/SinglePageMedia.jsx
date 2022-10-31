@@ -9,7 +9,7 @@ const SinglePageMedia = () => {
     const { type, id, namePe } = useParams();
     return type === "Series" ? (
         <Series id={id} name={namePe} config={config} />
-    ) : type === "Movie" ? (
+    ) : type === "Movie" || type === "PurchasableMovie" ? (
         <Movie id={id} name={namePe} config={config} />
     ) : (
         <Navigate to="/" replace />

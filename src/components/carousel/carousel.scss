@@ -54,10 +54,12 @@
         }
 
         &.active {
-            height: 60vh !important;
+            height: 55vh !important;
             @include mobile {
+                height: 45vh !important;
+            }
+            @include tablet {
                 height: 50vh !important;
-                padding: 5rem 0;
             }
 
             opacity: 1;

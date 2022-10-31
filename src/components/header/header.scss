@@ -19,12 +19,19 @@ header {
 
             .logo {
                 width: 80px;
+                &.kids {
+                    padding-top: 0.5rem;
+                    width: 140px;
+                }
             }
 
             &__list {
                 margin-right: 20px;
                 @include flex(center, flex-start);
-
+                .nav__content__list__item.kids {
+                    font-size: 0.8rem;
+                    color: $black-main;
+                }
                 @include mobile {
                     display: none;
                 }
@@ -38,6 +45,9 @@ header {
         &.shrink {
             background-color: $black-main;
             height: $header-shrink-height;
+            &.kids {
+                background-color: #ffffff;
+            }
         }
     }
 }
