@@ -20,6 +20,18 @@
         color: white !important;
     }
 
+    &.kids {
+        background-color: #9bf59f;
+
+        &.transparent {
+            color: $blue !important;
+
+            svg {
+                fill: $blue !important;
+            }
+        }
+    }
+
     &:hover.dark {
         background-color: rgba($color: $white, $alpha: 0.5) !important;
         color: black !important;

@@ -46,7 +46,7 @@ header {
             background-color: $black-main;
             height: $header-shrink-height;
             &.kids {
-                background-color: #ffffff;
+                background-color: #ffffff !important;
             }
         }
     }

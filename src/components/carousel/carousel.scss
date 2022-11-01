@@ -105,4 +105,34 @@
             }
         }
     }
+
+    &.kids {
+        .swiper-slide {
+            width: 20.5%;
+            @include tablet {
+                width: 28%;
+            }
+
+            @include mobile {
+                width: 36%;
+            }
+        }
+
+        &.banner {
+            .swiper-slide {
+                width: 20%;
+                @include tablet {
+                    width: 40%;
+                }
+
+                @include mobile {
+                    width: 50%;
+                }
+            }
+        }
+        .carousel-des {
+            background-color: white;
+            color: $black-main;
+        }
+    }
 }

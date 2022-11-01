@@ -8,6 +8,7 @@ import "./carousel.scss";
 import { CardCasts, CardPost, CardBanner } from "../";
 import ContentDes from "./ContentDes";
 import { ResizeContext } from "../../contexts/ResizeContext";
+import { useLocation } from "react-router-dom";
 
 const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
     const [isShowDes, setIsShowDes] = useState(false);
@@ -15,6 +16,7 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
     const [trigger] = baseApiSlice.endpoints.getPlayInfo.useLazyQuery();
     const [backId, setBackId] = useState("");
     const { ResizeMd: resize, resizeLg } = useContext(ResizeContext);
+    const { pathname } = useLocation();
 
     const getDesTv = async (event, id) => {
         event.preventDefault();
@@ -42,7 +44,9 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
     return (
         <>
             <div
-                className={`carousel my-2 ${banner ? "banner" : ""}`}
+                className={`carousel my-2 ${banner ? "banner" : ""} ${
+                    pathname === "/kids" ? "kids" : ""
+                } `}
                 id={data?.type + "-" + data?.key}
             >
                 <div className="carousel__content container">
@@ -98,9 +102,11 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
                             config?.result?.staticBaseUrl
                                 ? `linear-gradient(to ${
                                       resize ? "right" : " bottom"
-                                  },transparent  , #1a1a1a ${
-                                      resizeLg ? "70vw" : "100vw"
-                                  }), url(${config?.result?.staticBaseUrl}${
+                                  },transparent  , ${
+                                      pathname === "/kids" ? "#ffff" : "#1a1a1a"
+                                  } ${resizeLg ? "70vw" : "100vw"}), url(${
+                                      config?.result?.staticBaseUrl
+                                  }${
                                       resize
                                           ? content?.result?.coverLandscape
                                           : content?.result?.coverPortrait

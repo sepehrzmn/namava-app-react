@@ -13,10 +13,12 @@ const Header = ({ data }) => {
         const onScroll = () => {
             if (document.documentElement.scrollTop > 100) {
                 navRef.current.classList.add("shrink");
-                window.location.pathname === "kids" &&
+                window.location.pathname === "/kids" &&
                     navRef.current.classList.add("kids");
                 return;
             }
+
+            navRef.current.classList.remove("kids");
             navRef.current.classList.remove("shrink");
         };
 

@@ -5,6 +5,8 @@ import { componentsPageItems } from "../../utils/segment";
 import LazyComponent from "../lazy-component/LazyComponent";
 
 const CheckComponent = ({ data, Index }) => {
+    console.log(data);
+
     const ids = useMemo(() => {
         const idsArray = [];
         data.pageItems.forEach((item) =>
