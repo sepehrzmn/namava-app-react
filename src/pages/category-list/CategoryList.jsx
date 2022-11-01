@@ -1,4 +1,5 @@
 import { useContext, useMemo } from "react";
+import { Helmet } from "react-helmet";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { GroupContext } from "../../contexts/CroupContext";
@@ -9,7 +10,7 @@ import {
 
 import "./category-list.scss";
 
-const CategoryList = () => {
+const CategoryList = ({ data: dataBase }) => {
     const { data = [] } = useGetMenuQuery();
 
     const categories = useMemo(() => {
@@ -26,6 +27,18 @@ const CategoryList = () => {
 
     return (
         <div className="category-list">
+            <Helmet>
+                {dataBase?.metaKeywords && (
+                    <meta name="keyword" content={data.result.metaKeywords} />
+                )}
+                {dataBase?.metaDescription && (
+                    <meta
+                        name="description"
+                        content={data.result.metaDescription}
+                    />
+                )}
+                {dataBase?.metaTitle && <title>{dataBase.metaTitle}</title>}
+            </Helmet>
             <div className="category-list__content container">
                 {categories &&
                     categories?.map((category, index) => {

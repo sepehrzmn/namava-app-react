@@ -8,6 +8,7 @@ import {
 import { CardPost } from "../../components";
 
 import "./cast.scss";
+import { Helmet } from "react-helmet";
 
 const Cast = () => {
     const { id, name } = useParams();
@@ -21,6 +22,23 @@ const Cast = () => {
 
         content = dataContent && (
             <>
+                <Helmet>
+                    {data?.result?.metaKeywords && (
+                        <meta
+                            name="keyword"
+                            content={data.result.metaKeywords}
+                        />
+                    )}
+                    {data?.result?.metaDescription && (
+                        <meta
+                            name="description"
+                            content={data.result.metaDescription}
+                        />
+                    )}
+                    {data?.result?.metaTitle && (
+                        <title>{data.result.metaTitle}</title>
+                    )}
+                </Helmet>
                 <div className="info container">
                     <div className="poster">
                         <img

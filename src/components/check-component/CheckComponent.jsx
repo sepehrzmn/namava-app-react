@@ -1,12 +1,11 @@
 import React, { useMemo } from "react";
+import { Helmet } from "react-helmet";
 import { useLazyGetCategoryTagQuery } from "../../features/apis/baseApi";
 
 import { componentsPageItems } from "../../utils/segment";
 import LazyComponent from "../lazy-component/LazyComponent";
 
 const CheckComponent = ({ data, Index }) => {
-    console.log(data);
-
     const ids = useMemo(() => {
         const idsArray = [];
         data.pageItems.forEach((item) =>
@@ -23,6 +22,11 @@ const CheckComponent = ({ data, Index }) => {
 
     return (
         <>
+            <Helmet>
+                <meta name="description" content={data?.metaDescription} />
+                <meta name="keywords" content={data?.metaKeywords} />
+                <title>{data?.metaTitle}</title>
+            </Helmet>
             {ids.map((id, index) => {
                 const Component = componentsPageItems.find(
                     (component) => component.name === id.type

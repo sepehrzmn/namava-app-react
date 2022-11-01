@@ -5,8 +5,8 @@ import Series from "./Series";
 
 const SinglePageMedia = () => {
     const { data: config } = useGetConfigQuery();
-
     const { type, id, namePe } = useParams();
+
     return type === "Series" ? (
         <Series id={id} name={namePe} config={config} />
     ) : type === "Movie" || type === "PurchasableMovie" ? (

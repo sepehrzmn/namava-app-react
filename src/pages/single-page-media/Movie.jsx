@@ -10,6 +10,7 @@ import {
     InfoText,
     LazyComponent,
 } from "../../components";
+import { Helmet } from "react-helmet";
 
 const Movie = ({ id, name, config }) => {
     const { data, isSuccess } = useGetSingleMovieQuery({ id });
@@ -23,6 +24,14 @@ const Movie = ({ id, name, config }) => {
 
         content = dataContent && (
             <>
+                <Helmet>
+                    <meta
+                        name="description"
+                        content={dataContent?.metaDescription}
+                    />
+                    <meta name="keywords" content={dataContent?.metaKeywords} />
+                    <title> {nameSet}</title>
+                </Helmet>
                 <Banner base={base} dataContent={dataContent} name={nameSet} />
                 <div className="container">
                     <Gallery

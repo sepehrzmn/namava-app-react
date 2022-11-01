@@ -5,6 +5,7 @@ import React, {
     useRef,
     useState,
 } from "react";
+import { Helmet } from "react-helmet";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import VisibilitySensor from "react-visibility-sensor";
 
@@ -86,6 +87,14 @@ const Series = ({ name, config, id }) => {
 
         content = (
             <div className="single-series">
+                <Helmet>
+                    <meta
+                        name="description"
+                        content={dataContent?.metaDescription}
+                    />
+                    <meta name="keywords" content={dataContent?.metaKeywords} />
+                    <title> {nameSet}</title>
+                </Helmet>
                 <div>
                     <Banner
                         dataContent={dataContent}

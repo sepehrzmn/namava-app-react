@@ -7,7 +7,6 @@ import "./banner.scss";
 
 const Banner = ({ dataContent, name, base }) => {
     const { ResizeMd: resize } = useContext(ResizeContext);
-
     return (
         <div
             className="banner-single"

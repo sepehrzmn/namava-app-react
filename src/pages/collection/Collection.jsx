@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import { CardPost } from "../../components";
 import { ResizeContext } from "../../contexts/ResizeContext";
@@ -24,8 +25,27 @@ const Collection = () => {
     if (isSuccess) {
         const dataContent = data?.result ?? null;
         const postsContent = posts?.result ?? null;
+
+        console.log(dataContent);
         content = dataContent && (
             <>
+                <Helmet>
+                    {dataContent?.metaDescription && (
+                        <meta
+                            key="description"
+                            content={dataContent?.metaDescription}
+                        />
+                    )}
+                    {dataContent?.metaKeywords && (
+                        <meta
+                            key="keyword"
+                            content={dataContent?.metaKeywords}
+                        />
+                    )}
+                    {dataContent?.metaTitle && (
+                        <title>{dataContent.metaTitle}</title>
+                    )}
+                </Helmet>
                 <div
                     className="collection-page__banner"
                     style={{
