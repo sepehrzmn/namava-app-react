@@ -98,7 +98,7 @@ export const baseApiSlice = createApi({
         // get latest most popular
         getMostPopular: builder.query({
             query: ({ pi, ps }) => ({
-                url: `v1.0/medias/latest-series`,
+                url: `v1.0/medias/most-popular`,
                 params: { pi, ps },
             }),
         }),
@@ -161,6 +161,14 @@ export const baseApiSlice = createApi({
         getCastById: builder.query({
             query: ({ id }) => `v1.0/casts/${id}`,
         }),
+
+        // latest kids
+        getLatestKids: builder.query({
+            query: ({ pi = 1, ps = 20 }) => ({
+                url: `/v1.0/category-groups/kid/latest-medias`,
+                params: { pi, ps },
+            }),
+        }),
     }),
 });
 
@@ -204,4 +212,6 @@ export const {
     useLazyGetCategoryTagQuery,
     useGetCastByIdQuery,
     useLazyGetCastByIdQuery,
+    useGetLatestKidsQuery,
+    useLazyGetLatestKidsQuery,
 } = baseApiSlice;

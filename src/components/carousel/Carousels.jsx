@@ -41,6 +41,7 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
         : Array.isArray(posts)
         ? posts
         : [];
+
     return (
         <>
             <div
@@ -50,7 +51,13 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
                 id={data?.type + "-" + data?.key}
             >
                 <div className="carousel__content container">
-                    <h2 className="title-group">{data?.caption}</h2>
+                    <h2
+                        className={`title-group ${
+                            pathname === "/kids" ? "kids" : ""
+                        }`}
+                    >
+                        {data?.caption}
+                    </h2>
                     <Swiper
                         slidesPerView={"auto"}
                         style={{ overflow: "visible" }}
@@ -104,7 +111,7 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
                                       resize ? "right" : " bottom"
                                   },transparent  , ${
                                       pathname === "/kids" ? "#ffff" : "#1a1a1a"
-                                  } ${resizeLg ? "70vw" : "100vw"}), url(${
+                                  } ${resizeLg ? "65vw" : "100vw"}), url(${
                                       config?.result?.staticBaseUrl
                                   }${
                                       resize
