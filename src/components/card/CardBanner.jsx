@@ -3,14 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 
 const CardBanner = ({ data, base }) => {
     const { pathname } = useLocation();
-
+    console.log(data);
     return (
         <div
             className={`card banner ${pathname === "/kids" ? "kids" : ""}`}
             title={data.caption}
         >
             <Link
-                to={`/collection-${data.id}-${data.caption
+                to={`/collection-${data.referenceId}-${data.caption
                     .split(" ")
                     .join("_")}`}
             >
