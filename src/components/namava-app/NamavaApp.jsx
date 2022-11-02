@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { Suspense, useMemo } from "react";
 
 import { useGetMenuQuery } from "../../features/apis/baseApi";
 import { Header } from "../";
@@ -8,6 +8,7 @@ import { componentsPages } from "../../utils/segment";
 
 import { Cast, Category, Collection, SinglePageMedia } from "../../pages";
 import { useEffect } from "react";
+import Loading from "../loading/Loading";
 
 const NamavaApp = () => {
     const { pathname } = useLocation();
@@ -62,57 +63,59 @@ const Content = ({ dataPages, dataCategory }) => {
     return (
         <>
             <Header data={dataPages} />
-            <main>
-                <Routes>
-                    <>
-                        {dataPages.map((data) => {
-                            const Component = componentsPages.find(
-                                (item) => item.name === data.entityType
-                            );
-
-                            if (Component) {
-                                return (
-                                    <Route
-                                        key={data.slug}
-                                        path={`/${
-                                            data.slug === "index"
-                                                ? ""
-                                                : data.slug
-                                        }`}
-                                        element={
-                                            <Component.Component
-                                                data={data}
-                                                dataPages={dataPages}
-                                            />
-                                        }
-                                    />
+            <Suspense fallback={<Loading />}>
+                <main>
+                    <Routes>
+                        <>
+                            {dataPages.map((data) => {
+                                const Component = componentsPages.find(
+                                    (item) => item.name === data.entityType
                                 );
-                            }
-                            return "";
-                        })}
-                    </>
-                    <Route
-                        path="/:type/:id-:namePe"
-                        element={<SinglePageMedia />}
-                    />
-                    <Route
-                        path="/collection-:id-:slug"
-                        element={<Collection />}
-                    />
-                    <Route path="/category">
+
+                                if (Component) {
+                                    return (
+                                        <Route
+                                            key={data.slug}
+                                            path={`/${
+                                                data.slug === "index"
+                                                    ? ""
+                                                    : data.slug
+                                            }`}
+                                            element={
+                                                <Component.Component
+                                                    data={data}
+                                                    dataPages={dataPages}
+                                                />
+                                            }
+                                        />
+                                    );
+                                }
+                                return "";
+                            })}
+                        </>
                         <Route
-                            path=":slug"
-                            element={<Category data={dataCategory} />}
+                            path="/:type/:id-:namePe"
+                            element={<SinglePageMedia />}
                         />
                         <Route
-                            path=":slug-:slugMore"
-                            element={<Category data={dataCategory} />}
+                            path="/collection-:id-:slug"
+                            element={<Collection />}
                         />
-                    </Route>
-                    <Route path="/person-:id-:name" element={<Cast />} />
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-            </main>
+                        <Route path="/category">
+                            <Route
+                                path=":slug"
+                                element={<Category data={dataCategory} />}
+                            />
+                            <Route
+                                path=":slug-:slugMore"
+                                element={<Category data={dataCategory} />}
+                            />
+                        </Route>
+                        <Route path="/person-:id-:name" element={<Cast />} />
+                        <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                </main>
+            </Suspense>
         </>
     );
 };

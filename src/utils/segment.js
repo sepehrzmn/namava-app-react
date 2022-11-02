@@ -16,6 +16,7 @@ import {
     KidsPage,
     CategoryList,
 } from "../pages/index";
+
 import MostPopular from "../components/most-popular/MostPopular";
 import LatestMovies from "../components/latest-movies/LatestMovies";
 import UnknownPublished from "../components/unknown-published/UnknownPublished";

@@ -145,6 +145,7 @@
             & > :nth-child(2n) {
                 background-color: #00000011;
             }
+
             & > :nth-child(2n + 1) {
                 background-color: #000000aa;
             }
@@ -154,7 +155,10 @@
             cursor: pointer;
             border-radius: 0.5rem;
             &.kids {
-                color: $black-main !important;
+                color: $black-main;
+                &:nth-child(2n + 1) {
+                    background-color: transparent;
+                }
             }
             .responsive {
                 & > * ~ * {

@@ -11,6 +11,7 @@ import { Button, Modal } from "../";
 import "./hero-slider.scss";
 import { useContext } from "react";
 import { ResizeContext } from "../../contexts/ResizeContext";
+import { KidsContext } from "../../contexts/kidsContext";
 
 const HeroSlide = ({ data }) => {
     const {
@@ -92,6 +93,7 @@ const Item = ({ data, baseUrl, isActive }) => {
         modal.classList.add("active");
     };
     const { ResizeMd: resize } = useContext(ResizeContext);
+    const { isKids } = useContext(KidsContext);
 
     return (
         <div
@@ -114,9 +116,17 @@ const Item = ({ data, baseUrl, isActive }) => {
                 </Link>
                 <h2>{data.caption}</h2>
                 <div className="btns">
-                    <Button>
-                        {data.type !== "Series" ? "ورود و پخش" : "قسمت ها"}
-                    </Button>
+                    <Link
+                        to={`/${data.type}/${
+                            data?.id ?? data?.mediaId ?? ""
+                        }-${data.caption.split(" ").join("_")}? ${
+                            isKids ? "kids=true" : ""
+                        } `}
+                    >
+                        <Button>
+                            {data.type !== "Series" ? "ورود و پخش" : "قسمت ها"}
+                        </Button>
+                    </Link>
                     {data?.trailerVideoUrl && (
                         <Button dark eventF={showTrailer}>
                             پیش نمایش

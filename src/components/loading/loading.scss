@@ -1,0 +1,25 @@
+@use "../../scss/" as *;
+
+.loading {
+    height: 100vh;
+    @include flex(center, center);
+    font-size: 2rem;
+    direction: ltr !important;
+
+    animation-name: opacity;
+    animation-duration: 3s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 100;
+    }
+    100% {
+        opacity: 0;
+    }
+}
