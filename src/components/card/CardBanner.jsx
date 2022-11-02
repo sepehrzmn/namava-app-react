@@ -3,7 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 
 const CardBanner = ({ data, base }) => {
     const { pathname } = useLocation();
-    console.log(data);
+
+    const isKids = pathname === "/kids";
+
     return (
         <div
             className={`card banner ${pathname === "/kids" ? "kids" : ""}`}
@@ -12,13 +14,9 @@ const CardBanner = ({ data, base }) => {
             <Link
                 to={`/collection-${data.referenceId}-${data.caption
                     .split(" ")
-                    .join("_")}`}
+                    .join("_")}?${isKids ? "kids=true" : ""}`}
             >
                 <div className={`card__poster`}>
-                    {/* <img
-                        src={`${base}/${data?.imageUrl}`}
-                        alt={data?.caption}
-                    /> */}
                     <LazyLoadImage
                         src={`${base}/${data?.imageUrl}`}
                         alt={data?.caption}

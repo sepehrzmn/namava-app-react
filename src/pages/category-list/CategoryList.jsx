@@ -58,6 +58,8 @@ const Item = ({ data }) => {
             to={`/${
                 data?.entityType === "PostGroup"
                     ? `collection-${data?.entityId}-${data?.slug}`
+                    : data?.slug === "kid"
+                    ? "kids"
                     : `category/${data?.slug}`
             }`}
             onClick={() => {

@@ -121,15 +121,16 @@ export const CardPost = ({ data, base, onClick }) => {
         }, 1000);
     };
 
+    const isKids = pathname === "/kids";
+
     return (
-        <div
-            className={`card ${pathname === "/kids" ? "kids" : ""}`}
-            title={data.caption}
-        >
+        <div className={`card ${isKids ? "kids" : ""}`} title={data.caption}>
             <Link
                 to={`/${data.type}/${
                     data?.id ?? data?.mediaId ?? ""
-                }-${data.caption.split(" ").join("_")}`}
+                }-${data.caption.split(" ").join("_")}? ${
+                    isKids ? "kids=true" : ""
+                } `}
                 onClick={(event) => {
                     onClick?.(event, data.id);
                 }}
