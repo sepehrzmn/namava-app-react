@@ -1,14 +1,14 @@
+import { useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { KidsContext } from "../../contexts/kidsContext";
 
 const CardBanner = ({ data, base }) => {
-    const { pathname } = useLocation();
-
-    const isKids = pathname === "/kids";
+    const { isKids } = useContext(KidsContext);
 
     return (
         <div
-            className={`card banner ${pathname === "/kids" ? "kids" : ""}`}
+            className={`card banner ${isKids ? "kids" : ""}`}
             title={data.caption}
         >
             <Link

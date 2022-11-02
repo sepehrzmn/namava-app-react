@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import VisibilitySensor from "react-visibility-sensor";
 
 import { useGetConfigQuery } from "../../features/apis/baseApi";
 
 import { CarouselsPostCard } from "../";
+import { KidsContext } from "../../contexts/kidsContext";
 
 const LazyComponent = ({
     useLazyApi,
@@ -19,6 +20,7 @@ const LazyComponent = ({
 
     const [trigger] = useLazyApi();
     const { data: config } = useGetConfigQuery();
+    const { isKids } = useContext(KidsContext);
 
     const onChange = async (isVisible) => {
         if (isVisible) {
@@ -30,7 +32,7 @@ const LazyComponent = ({
                           slug: slugItem ?? "",
                           type: encodeURIComponent(data?.slug),
                       })
-                    : await trigger({ pi: 1, ps: 20 });
+                    : await trigger({ pi: 1, ps: 20, isKids });
 
                 if (isSuccess) {
                     setContent(

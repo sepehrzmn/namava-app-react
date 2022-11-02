@@ -5,20 +5,28 @@ import { ResizeContext } from "../../contexts/ResizeContext";
 
 import "./banner.scss";
 
-const Banner = ({ dataContent, name, base }) => {
+const Banner = ({ dataContent, name, base, isKids }) => {
     const { ResizeMd: resize } = useContext(ResizeContext);
     return (
         <div
-            className="banner-single"
+            className={`banner-single  ${isKids ? "kids" : ""}`}
             style={{
-                backgroundImage: `linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 100vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%), url(${base}${
+                backgroundImage: `linear-gradient(rgba( ${
+                    isKids ? "200,200,200" : "18, 18, 18"
+                } , 0) 10vw, rgb( ${
+                    isKids ? "200,200,200" : "18, 18, 18"
+                }) 100vw), linear-gradient(to left, rgba( ${
+                    isKids ? "200,200,200" : "18, 18, 18"
+                }, 0.7), rgba(1${
+                    isKids ? "200,200,200" : "18, 18, 18"
+                }, 0) 50%), url(${base}${
                     resize
                         ? dataContent?.coverLandscape
                         : dataContent?.coverPortrait
                 })`,
             }}
         >
-            <div className="container banner-single__content">
+            <div className={`container banner-single__content `}>
                 <div className="logo-media">
                     <img
                         src={`${base}${dataContent?.logoImageUrl}`}

@@ -12,7 +12,7 @@ import {
 } from "../../components";
 import { Helmet } from "react-helmet";
 
-const Movie = ({ id, name, config }) => {
+const Movie = ({ id, name, config, isKids }) => {
     const { data, isSuccess } = useGetSingleMovieQuery({ id });
 
     let content;
@@ -32,7 +32,12 @@ const Movie = ({ id, name, config }) => {
                     <meta name="keywords" content={dataContent?.metaKeywords} />
                     <title> {nameSet}</title>
                 </Helmet>
-                <Banner base={base} dataContent={dataContent} name={nameSet} />
+                <Banner
+                    base={base}
+                    dataContent={dataContent}
+                    name={nameSet}
+                    isKids={isKids}
+                />
                 <div className="container">
                     <Gallery
                         slides={dataContent?.slideImageList}
@@ -46,6 +51,7 @@ const Movie = ({ id, name, config }) => {
                     movieLatinName={dataContent?.movieLatinName}
                     name={nameSet}
                     story={dataContent?.story}
+                    isKids={isKids}
                 />
                 <CarouselsPostCard
                     castCard

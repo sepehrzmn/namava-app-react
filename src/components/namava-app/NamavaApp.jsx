@@ -11,11 +11,11 @@ import { useEffect } from "react";
 
 const NamavaApp = () => {
     const { pathname } = useLocation();
-
     useEffect(() => {
         window.scrollTo({ top: 0 });
 
-        pathname === "/kids"
+        window.location.pathname === "/kids" ||
+        window.location.search.split("=")[1]
             ? document.body.classList.add("kids")
             : document.body.classList.remove("kids");
     }, [pathname]);

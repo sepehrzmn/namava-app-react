@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import { useRef } from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import { Button, CardPost } from "../../components";

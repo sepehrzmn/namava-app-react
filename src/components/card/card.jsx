@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { baseApiSlice } from "../../features/apis/baseApi";
 
 import "./card.scss";
+import { KidsContext } from "../../contexts/kidsContext";
 
 export const CardPost = ({ data, base, onClick }) => {
-    const { pathname } = useLocation();
-
     const [trigger, { data: backPreview }] =
         baseApiSlice.endpoints.getBriefPreview.useLazyQuery();
     const [content, setContent] = useState("");
     const [isShow, setIsShow] = useState(false);
+    const { isKids } = useContext(KidsContext);
 
     let timeOut;
 
@@ -121,8 +121,6 @@ export const CardPost = ({ data, base, onClick }) => {
         }, 1000);
     };
 
-    const isKids = pathname === "/kids";
-
     return (
         <div className={`card ${isKids ? "kids" : ""}`} title={data.caption}>
             <Link
@@ -148,6 +146,7 @@ export const CardPost = ({ data, base, onClick }) => {
                         src={`${base}/${data?.imageUrl}`}
                         alt={data?.caption}
                         effect="opacity"
+                        height={"auto"}
                     />
                     <div className="description">{content}</div>
                 </div>

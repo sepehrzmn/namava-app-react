@@ -26,7 +26,7 @@ import {
 
 import "./single-series.scss";
 
-const Series = ({ name, config, id }) => {
+const Series = ({ name, config, id, isKids }) => {
     const [seasons, setSeasons] = useState({
         selectSeason: "",
         active: false,
@@ -100,6 +100,7 @@ const Series = ({ name, config, id }) => {
                         dataContent={dataContent}
                         base={base}
                         name={nameSet}
+                        isKids={isKids}
                     />
                 </div>
                 <div className="season container">
@@ -175,6 +176,7 @@ const Series = ({ name, config, id }) => {
                                           data={episode}
                                           base={base}
                                           key={index}
+                                          isKids={isKids}
                                       />
                                   );
                               })
@@ -190,6 +192,7 @@ const Series = ({ name, config, id }) => {
                     movieLatinName={dataContent?.movieLatinName}
                     name={nameSet}
                     story={dataContent?.story}
+                    isKids={isKids}
                 />
                 <div
                     className="container"
@@ -212,6 +215,7 @@ const Series = ({ name, config, id }) => {
                         type: "",
                         caption: `ستارگان فیلم  ${nameSet}`,
                     }}
+                    isKids={isKids}
                 />
                 <CarouselsPostCard
                     castCard
@@ -283,7 +287,7 @@ const SeasonList = forwardRef(
                             }}
                             className={
                                 seasons.selectSeason === season.season
-                                    ? "select"
+                                    ? `select`
                                     : ""
                             }
                         >
@@ -296,8 +300,8 @@ const SeasonList = forwardRef(
     }
 );
 
-const Episode = ({ data, base }) => (
-    <div className="episode">
+const Episode = ({ data, base, isKids }) => (
+    <div className={`episode ${isKids ? "kids" : ""}`}>
         <div className="responsive">
             <div className="poster">
                 <LazyLoadImage

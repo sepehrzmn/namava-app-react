@@ -54,6 +54,9 @@
                 &.select {
                     cursor: default;
                 }
+                &.kids {
+                    color: $black-main;
+                }
             }
 
             & > * ~ * {
@@ -150,7 +153,9 @@
             padding: 1rem;
             cursor: pointer;
             border-radius: 0.5rem;
-
+            &.kids {
+                color: $black-main !important;
+            }
             .responsive {
                 & > * ~ * {
                     margin-top: 1rem;

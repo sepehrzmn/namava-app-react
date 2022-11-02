@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Button, BadgeInfo, ListHorizontal } from "../";
 
-const ContentDes = ({ data }) => {
+const ContentDes = ({ data, isKids }) => {
     const dataContent = data ? data?.result ?? null : null;
 
     return (
@@ -21,7 +21,9 @@ const ContentDes = ({ data }) => {
                         <Link
                             to={`/${dataContent.type}/${
                                 dataContent.id
-                            }-${dataContent.caption.split(" ").join("_")}`}
+                            }-${dataContent.caption.split(" ").join("_")}${
+                                isKids ? "?isKids=true" : ""
+                            }`}
                         >
                             <Button>
                                 {data.type !== "Series"
@@ -32,7 +34,9 @@ const ContentDes = ({ data }) => {
                         <Link
                             to={`/${dataContent.type}/${
                                 dataContent.id
-                            }-${dataContent.caption.split(" ").join("_")}`}
+                            }-${dataContent.caption.split(" ").join("_")}${
+                                isKids ? "?isKids=true" : ""
+                            }`}
                         >
                             <Button transparent flex>
                                 <svg

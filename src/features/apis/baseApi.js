@@ -142,9 +142,9 @@ export const baseApiSlice = createApi({
         }),
 
         getRecommendItemForUser: builder.query({
-            query: ({ id, pi, ps, iskid = false }) => ({
+            query: ({ id, pi, ps, iskids = false }) => ({
                 url: `/v1.0/medias/${id}/recommend-items-anonymous-user`,
-                params: { ps, pi, iskid },
+                params: { ps, pi, iskid: iskids },
             }),
         }),
 

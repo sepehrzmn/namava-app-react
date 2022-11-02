@@ -1,19 +1,20 @@
 import { useContext, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { GroupContext } from "../../contexts/CroupContext";
+import { KidsContext } from "../../contexts/kidsContext";
 
 import "./header.scss";
 
 const Header = ({ data }) => {
     const navRef = useRef(null);
-    const { pathname } = useLocation();
-    const conditionPathname = pathname === "/kids";
+    const { isKids } = useContext(KidsContext);
 
     useEffect(() => {
         const onScroll = () => {
             if (document.documentElement.scrollTop > 100) {
                 navRef.current.classList.add("shrink");
-                window.location.pathname === "/kids" &&
+                (window.location.pathname === "/kids" ||
+                    window.location.search.split("=")[1]) &&
                     navRef.current.classList.add("kids");
                 return;
             }
@@ -33,8 +34,8 @@ const Header = ({ data }) => {
         <header>
             <nav className="nav" ref={navRef}>
                 <div className="nav__content container">
-                    <div className={`logo ${conditionPathname ? "kids" : ""}`}>
-                        {conditionPathname ? (
+                    <div className={`logo ${isKids ? "kids" : ""}`}>
+                        {isKids ? (
                             <span>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -141,14 +142,23 @@ const Header = ({ data }) => {
                     </div>
 
                     <ul className="nav__content__list">
-                        {conditionPathname ? (
-                            <MenuItem
-                                data={{
-                                    slug: "index",
-                                    caption: "خانه",
-                                }}
-                                kids
-                            />
+                        {isKids ? (
+                            <>
+                                <MenuItem
+                                    data={{
+                                        slug: "kids",
+                                        caption: "خانه",
+                                    }}
+                                    kids={isKids}
+                                />
+                                <MenuItem
+                                    data={{
+                                        slug: "index",
+                                        caption: "برگشت به نماوا",
+                                    }}
+                                    kids={isKids}
+                                />
+                            </>
                         ) : (
                             data.map((item) => (
                                 <MenuItem key={item.menuId} data={item} />
@@ -163,6 +173,7 @@ const Header = ({ data }) => {
 
 const MenuItem = ({ data, kids }) => {
     const { group, setGroup } = useContext(GroupContext);
+
     return (
         <li className={`nav__content__list__item${kids ? " kids" : ""} `}>
             <Link

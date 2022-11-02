@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { baseApiSlice } from "../../features/apis/baseApi";
@@ -8,7 +8,7 @@ import "./carousel.scss";
 import { CardCasts, CardPost, CardBanner } from "../";
 import ContentDes from "./ContentDes";
 import { ResizeContext } from "../../contexts/ResizeContext";
-import { useLocation } from "react-router-dom";
+import { KidsContext } from "../../contexts/kidsContext";
 
 const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
     const [isShowDes, setIsShowDes] = useState(false);
@@ -16,7 +16,7 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
     const [trigger] = baseApiSlice.endpoints.getPlayInfo.useLazyQuery();
     const [backId, setBackId] = useState("");
     const { ResizeMd: resize, resizeLg } = useContext(ResizeContext);
-    const { pathname } = useLocation();
+    const { isKids } = useContext(KidsContext);
 
     const getDesTv = async (event, id) => {
         event.preventDefault();
@@ -46,16 +46,12 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
         <>
             <div
                 className={`carousel my-2 ${banner ? "banner" : ""} ${
-                    pathname === "/kids" ? "kids" : ""
+                    isKids ? "kids" : ""
                 } `}
                 id={data?.type + "-" + data?.key}
             >
                 <div className="carousel__content container">
-                    <h2
-                        className={`title-group ${
-                            pathname === "/kids" ? "kids" : ""
-                        }`}
-                    >
+                    <h2 className={`title-group ${isKids ? "kids" : ""}`}>
                         {data?.caption}
                     </h2>
                     <Swiper
@@ -110,7 +106,7 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
                                 ? `linear-gradient(to ${
                                       resize ? "right" : " bottom"
                                   },transparent  , ${
-                                      pathname === "/kids" ? "#ffff" : "#1a1a1a"
+                                      isKids ? "#ffff" : "#1a1a1a"
                                   } ${resizeLg ? "65vw" : "100vw"}), url(${
                                       config?.result?.staticBaseUrl
                                   }${
@@ -122,7 +118,7 @@ const CarouselsPostCard = ({ posts, config, data, castCard, banner }) => {
                     }}
                 >
                     <div className="carousel-des__content container">
-                        <ContentDes data={content} />
+                        <ContentDes data={content} isKids={isKids} />
                     </div>
                 </div>
             </div>

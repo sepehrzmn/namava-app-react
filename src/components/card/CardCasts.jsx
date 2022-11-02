@@ -1,9 +1,16 @@
+import { useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
+import { KidsContext } from "../../contexts/kidsContext";
 
 const CardCasts = ({ data, base }) => {
+    const { isKids } = useContext(KidsContext);
+
     return (
-        <div className="card cast" title={data.castName}>
+        <div
+            className={`card cast ${isKids ? "kids" : ""}`}
+            title={data.castName}
+        >
             <Link
                 to={`/person-${data.castId}-${data.castName
                     .split(" ")

@@ -14,6 +14,7 @@ import { NamavaApp } from "./components";
 
 import { ResizeProvider } from "./contexts/ResizeContext";
 import CroupContextProvider from "./contexts/CroupContext";
+import KidsContextProvider from "./contexts/kidsContext";
 
 function App() {
     const { isError, error, isFetching, isLoading, isSuccess } =
@@ -30,7 +31,9 @@ function App() {
             <>
                 <CroupContextProvider>
                     <ResizeProvider>
-                        <NamavaApp />
+                        <KidsContextProvider>
+                            <NamavaApp />
+                        </KidsContextProvider>
                     </ResizeProvider>
                 </CroupContextProvider>
             </>

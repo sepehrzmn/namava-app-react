@@ -1,14 +1,15 @@
-import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { KidsContext } from "../../contexts/kidsContext";
 import "./button.scss";
 
 const Button = ({ children, eventF, dark, transparent, flex }) => {
-    const { pathname } = useLocation();
+    const { isKids } = useContext(KidsContext);
 
     return (
         <button
             className={`btn${dark ? " dark" : ""}${
                 transparent ? " transparent" : ""
-            }${flex ? " flex" : ""}${pathname === "/kids" ? " kids" : ""}`}
+            }${flex ? " flex" : ""}${isKids ? " kids" : ""}`}
             onClick={eventF}
         >
             {children}

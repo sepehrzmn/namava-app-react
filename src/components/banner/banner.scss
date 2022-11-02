@@ -17,6 +17,26 @@
         height: 10vw;
         background: linear-gradient(to top, $black-main 10%, transparent);
     }
+
+    &.kids {
+        color: $black-main !important;
+        fill: $black-main !important;
+        &::after {
+            background: linear-gradient(
+                to top,
+                $white 10%,
+                transparent
+            ) !important;
+        }
+        &::before {
+            background: linear-gradient(
+                to top,
+                $white 10%,
+                transparent
+            ) !important;
+        }
+    }
+
     &::before {
         content: "";
         position: absolute;

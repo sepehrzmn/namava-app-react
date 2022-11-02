@@ -1,9 +1,10 @@
 @use "../../scss/" as *;
 
 .card {
+    height: 100%;
     &__poster {
+        height: 100%;
         position: relative;
-
         img {
             width: 100%;
             border-radius: 0.5rem;
