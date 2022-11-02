@@ -19,6 +19,9 @@
             min-height: 60vh;
         }
 
+        &.kids {
+        }
+
         &::before {
             content: "";
             position: absolute;
@@ -37,7 +40,15 @@
             z-index: -1;
             background-image: linear-gradient(transparent, $black-main);
         }
-
+        &.kids {
+            &::after {
+                background-image: linear-gradient(transparent, $white);
+            }
+            &::before {
+                background-image: linear-gradient(to top, transparent, $white);
+            }
+            color: rgba($color: #000000, $alpha: 0.8);
+        }
         &__content {
             position: relative;
             p {

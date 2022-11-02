@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { baseApiSlice } from "../../features/apis/baseApi";

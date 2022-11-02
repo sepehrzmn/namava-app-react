@@ -2,6 +2,7 @@ import { useContext, useState, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import { Button, CardPost } from "../../components";
+import { KidsContext } from "../../contexts/kidsContext";
 import { ResizeContext } from "../../contexts/ResizeContext";
 
 import {
@@ -19,6 +20,7 @@ const Collection = () => {
 
     const { id } = useParams();
     const { resize } = useContext(ResizeContext);
+    const { isKids } = useContext(KidsContext);
     const btnRef = useRef(null);
 
     const { data, isSuccess } = useGetInfoPostGroupQuery({ id });
@@ -64,11 +66,15 @@ const Collection = () => {
                     )}
                 </Helmet>
                 <div
-                    className="collection-page__banner"
+                    className={`collection-page__banner ${
+                        isKids ? "kids" : ""
+                    } `}
                     style={{
-                        backgroundImage: `linear-gradient(rgba(18, 18, 18, 0) 5vw, rgb(18, 18, 18) ${
-                            resize ? "55vw" : ""
-                        }), url(${base}${
+                        backgroundImage: `linear-gradient(  rgba( ${
+                            isKids ? "200, 200, 200" : "18, 18, 18"
+                        } ,0) 5vw, rgb(${
+                            isKids ? "200, 200, 200" : "18, 18, 18"
+                        } ) ${resize ? "55vw" : ""}), url(${base}${
                             resize
                                 ? dataContent?.coverLandscape ?? ""
                                 : dataContent?.coverPortrait ?? ""

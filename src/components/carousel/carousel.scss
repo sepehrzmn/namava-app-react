@@ -3,10 +3,8 @@
 .carousel {
     position: relative;
     z-index: 2;
-    height: 100%;
 
     &__content {
-        height: 100%;
         overflow: hidden;
     }
     .swiper-slide {
@@ -132,6 +130,7 @@
                 }
             }
         }
+
         .carousel-des {
             background-color: white;
             color: $black-main;
