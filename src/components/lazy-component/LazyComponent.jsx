@@ -16,7 +16,7 @@ const LazyComponent = ({
     slugItem,
 }) => {
     const [load, setLoad] = useState(true);
-    const [content, setContent] = useState(null);
+    const [content, setContent] = useState();
 
     const [trigger] = useLazyApi();
     const { data: config } = useGetConfigQuery();

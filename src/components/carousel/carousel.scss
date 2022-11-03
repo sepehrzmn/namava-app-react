@@ -136,4 +136,30 @@
             color: $black-main;
         }
     }
+
+    .loading {
+        .swiper-slide {
+            width: 13.5%;
+            @include tablet {
+                width: 20%;
+            }
+
+            @include mobile {
+                width: 35%;
+            }
+        }
+
+        &.banner {
+            .swiper-slide {
+                width: 26%;
+                @include tablet {
+                    width: 40%;
+                }
+
+                @include mobile {
+                    width: 50%;
+                }
+            }
+        }
+    }
 }

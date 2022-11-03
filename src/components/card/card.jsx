@@ -123,6 +123,7 @@ export const CardPost = ({ data, base, onClick }) => {
 
     return (
         <div className={`card ${isKids ? "kids" : ""}`} title={data.caption}>
+            {false ? "" : ""}
             <Link
                 to={`/${data.type}/${
                     data?.id ?? data?.mediaId ?? ""

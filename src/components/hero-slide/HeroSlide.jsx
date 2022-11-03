@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper";
-
 import {
     useGetConfigQuery,
     useGetSliderQuery,
@@ -68,7 +67,7 @@ const HeroSlide = ({ data }) => {
                               <Modal key={video.id} id={video.id}>
                                   <video
                                       width="100%"
-                                      height="100%"
+                                      height="max-content"
                                       controls
                                       poster={`${config?.result?.staticBaseUrl}/${video?.trailerImageUrl}`}
                                   >

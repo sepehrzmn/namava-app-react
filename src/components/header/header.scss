@@ -1,6 +1,7 @@
 @use "../../scss/" as *;
 
 header {
+    position: relative;
     .nav {
         height: $header-height;
         position: fixed;
@@ -14,11 +15,12 @@ header {
             @include flex(center, flex-start);
 
             @include mobile {
-                justify-content: center !important;
+                justify-content: space-between;
             }
 
             .logo {
                 width: 80px;
+                transition: opacity 0.3s ease;
                 &.kids {
                     padding-top: 0.5rem;
                     width: 140px;
@@ -41,14 +43,112 @@ header {
                 & > * ~ * {
                     margin-right: 20px;
                 }
+
+                .icon {
+                    display: none;
+                    @include mobile {
+                        display: block;
+                    }
+                }
             }
         }
+        .menu-icons {
+            opacity: 0;
+            visibility: hidden;
+            cursor: pointer;
+            &.kids {
+                color: $black-main;
+            }
 
+            @include mobile {
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 0.5s ease;
+                @include flex(center, center);
+                .close {
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: opacity 0.5s ease;
+                    position: relative;
+                    &.active {
+                        right: 1rem;
+                        opacity: 1;
+                        visibility: visible;
+                        position: absolute;
+                    }
+                }
+                .open {
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: opacity 0.5s ease;
+                    position: absolute;
+                    right: 1rem;
+                    &.active {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
         &.shrink {
             background-color: $black-main;
             height: $header-shrink-height;
             &.kids {
                 background-color: #ffffff !important;
+            }
+        }
+    }
+    .mobile-menu {
+        opacity: 0;
+        visibility: hidden;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 99;
+        transition: opacity 0.5s ease;
+        background-color: rgba($color: #000000, $alpha: 0.4);
+        @include mobile {
+            &.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        .content {
+            display: inline-block;
+            padding-left: 5rem;
+            background-color: $black-main;
+            height: 100%;
+            transition: transform 0.5s ease;
+            padding-top: 3rem;
+
+            .logo {
+                width: 80px;
+                @include flex(center, center);
+                &.kids {
+                    padding-top: 0.5rem;
+                    width: 140px;
+                }
+                margin-right: 20px;
+            }
+
+            &.kids {
+                background-color: $white;
+                color: $black-main;
+            }
+            ul {
+                margin-top: 2rem;
+                font-size: 1.5rem;
+                padding: 0 2rem;
+                & > * ~ * {
+                    margin-top: 1rem;
+                }
+
+                & > * > * {
+                    @include flex(center, flex-start);
+                    gap: 1rem;
+                }
             }
         }
     }
