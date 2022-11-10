@@ -6,6 +6,7 @@ import { useGetConfigQuery } from "../../features/apis/baseApi";
 
 import { CarouselsPostCard } from "../";
 import { KidsContext } from "../../contexts/kidsContext";
+import Loading from "../carousel/Loading";
 
 const LazyComponent = ({
     useLazyApi,
@@ -79,7 +80,13 @@ const LazyComponent = ({
                 }`}
                 id={data.type}
             >
-                {content}
+                {content ?? (
+                    <Loading
+                        castCard={castCard ? true : false}
+                        banner={banner ? true : false}
+                        data={data ? data : ""}
+                    />
+                )}
             </div>
         </VisibilitySensor>
     );

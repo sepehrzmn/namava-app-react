@@ -377,22 +377,22 @@ const MenuItem = ({ data, kids, setIsMenus }) => {
                 <div>
                     {/* logo item list (mobile) */}
                     {data.slug === "index" && (
-                        <AiFillHome className="icon" size={"2rem"} />
+                        <AiFillHome className="icon" size={20} />
                     )}
                     {data.slug === "series" && (
-                        <RiFilmFill className="icon" size={"2rem"} />
+                        <RiFilmFill className="icon" size={20} />
                     )}
                     {data.slug === "movies" && (
-                        <GiFilmProjector className="icon" size={"2rem"} />
+                        <GiFilmProjector className="icon" size={20} />
                     )}
                     {data.slug === "grouping" && (
-                        <MdCategory className="icon" size={"2rem"} />
+                        <MdCategory className="icon" size={20} />
                     )}
                     {data.slug === "latest" && (
-                        <MdOutlineFiberNew className="icon" size={"2rem"} />
+                        <MdOutlineFiberNew className="icon" size={20} />
                     )}
                     {data.slug === "kids" && (
-                        <GiKidSlide className="icon" size={"2rem"} />
+                        <GiKidSlide className="icon" size={20} />
                     )}
                 </div>
                 {/* text list item */}

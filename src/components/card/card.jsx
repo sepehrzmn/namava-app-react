@@ -6,7 +6,7 @@ import { baseApiSlice } from "../../features/apis/baseApi";
 import "./card.scss";
 import { KidsContext } from "../../contexts/kidsContext";
 
-export const CardPost = ({ data, base, onClick }) => {
+export const CardPost = ({ data, base, onClick, loading }) => {
     const [trigger, { data: backPreview }] =
         baseApiSlice.endpoints.getBriefPreview.useLazyQuery();
     const [content, setContent] = useState("");
@@ -121,6 +121,10 @@ export const CardPost = ({ data, base, onClick }) => {
         }, 1000);
     };
 
+    if (loading) {
+        return <div className="card-loading" />;
+    }
+
     return (
         <div className={`card ${isKids ? "kids" : ""}`} title={data.caption}>
             {false ? "" : ""}
@@ -148,6 +152,7 @@ export const CardPost = ({ data, base, onClick }) => {
                         alt={data?.caption}
                         effect="opacity"
                         height={"auto"}
+                        defaultValue="img"
                     />
                     <div className="description">{content}</div>
                 </div>

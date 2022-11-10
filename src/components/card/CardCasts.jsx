@@ -3,8 +3,12 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { KidsContext } from "../../contexts/kidsContext";
 
-const CardCasts = ({ data, base }) => {
+const CardCasts = ({ data, base, loading }) => {
     const { isKids } = useContext(KidsContext);
+
+    if (loading) {
+        return <div className="card-loading" />;
+    }
 
     return (
         <div

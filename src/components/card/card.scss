@@ -109,3 +109,16 @@
         }
     }
 }
+.card-loading {
+    height: 19vw;
+    display: block;
+    background-color: rgba($color: #0000, $alpha: 0.5);
+    border-radius: 0.5rem;
+
+    @include tablet {
+        height: 28vw !important;
+    }
+    @include mobile {
+        height: 42vw !important;
+    }
+}
