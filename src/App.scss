@@ -3,147 +3,156 @@
 @import url("https://v1.fontapi.ir/css/Shabnam");
 
 * {
-    font-family: Shabnam, serif;
+  font-family: Shabnam, serif;
 }
+
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 svg {
-    display: inline-block;
-    vertical-align: middle;
-    width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
 }
 
 html {
-    font-size: 100%;
+  font-size: 100%;
 
-    @include tablet {
-        font-size: 90%;
-    }
+  @include tablet {
+    font-size: 90%;
+  }
 
-    @include mobile {
-        font-size: 80%;
-    }
+  @include mobile {
+    font-size: 80%;
+  }
 }
 
 body {
-    font-weight: 400;
-    line-height: 1.5;
-    scroll-behavior: smooth !important;
-    background-color: $black-main;
-    color: $white;
-    direction: rtl;
-    font-size: 12px;
-    @include mobile {
-        margin-bottom: 5rem;
-    }
+  font-weight: 400;
+  line-height: 1.5;
+  scroll-behavior: smooth !important;
+  background-color: $black-main;
+  color: $white;
+  direction: rtl;
+  font-size: 12px;
 
-    &.kids {
-        background-color: white;
-    }
+  @include mobile {
+    margin-bottom: 5rem;
+  }
+
+  &.kids {
+    background-color: white;
+  }
 }
 
 a {
-    text-decoration: none;
-    color: unset;
+  text-decoration: none;
+  color: unset;
 }
 
 @media (hover: hover) {
-    a:hover {
-        color: $blue;
-    }
+  a:hover {
+    color: $blue;
+  }
 }
 
 button,
 input {
-    outline: none;
+  outline: none;
 }
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 img {
-    width: auto;
-    display: block;
+  width: auto;
+  display: block;
 }
 
 iframe {
-    border: none;
+  border: none;
 }
 
 .container {
-    margin: auto;
-    padding: 0 3rem;
-    margin: 0 auto;
-    @include mobile {
-        padding: 0;
-    }
+  margin: auto;
+  padding: 0 3rem;
+  margin: 0 auto;
+  max-width: 1700px;
+  @include mobile {
+    padding: 0;
+  }
 
-    @include tablet {
-        padding: 0 1.5rem;
-    }
+  @include tablet {
+    padding: 0 1.5rem;
+  }
 }
 
 .logo {
-    fill: white !important;
+  fill: white !important;
 }
 
 .title-group {
-    font-size: 15px;
-    margin: 1rem 0;
+  font-size: 15px;
+  margin: 1rem 0;
 
-    &.kids {
-        color: $black-main;
-    }
+  &.kids {
+    color: $black-main;
+  }
 }
 
 .my-2 {
-    margin: 2rem 0;
+  margin: 2rem 0;
 }
 
 .top {
-    margin-top: -5%;
+  margin-top: -8%;
 }
+
 .step {
-    min-height: 250px;
-    @include mobile {
-        min-height: 200px;
-    }
-    display: block;
+  min-height: 250px;
+
+  @include mobile {
+    min-height: 200px;
+  }
+
+  display: block;
 }
+
 .disable {
-    display: none !important;
+  display: none !important;
 }
+
 .logo-media {
-    min-height: 120px;
-    @include flex(center, flex-start);
+  min-height: 120px;
+  @include flex(center, flex-start);
 
-    img {
-        max-width: 20vw;
-        max-height: 10vw;
-        margin-bottom: 10px;
-        display: block;
+  img {
+    max-width: 20vw;
+    max-height: 10vw;
+    margin-bottom: 10px;
+    display: block;
 
-        @include tablet {
-            max-width: 25vw;
-            max-height: 15vw;
-        }
-
-        @include mobile {
-            max-width: 40vw;
-            max-height: 30vw;
-        }
+    @include tablet {
+      max-width: 25vw;
+      max-height: 15vw;
     }
+
+    @include mobile {
+      max-width: 40vw;
+      max-height: 30vw;
+    }
+  }
 }
+
 .space {
-    &::after {
-        content: "-";
-        padding: 0 0.5rem;
-    }
+  &::after {
+    content: "-";
+    padding: 0 0.5rem;
+  }
 }

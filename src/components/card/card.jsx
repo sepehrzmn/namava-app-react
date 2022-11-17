@@ -147,6 +147,7 @@ export const CardPost = ({ data, base, onClick, loading }) => {
                     }}
                     onClick={() => {}}
                 >
+                    <div >
                     <LazyLoadImage
                         src={`${base}/${data?.imageUrl}`}
                         alt={data?.caption}
@@ -154,6 +155,7 @@ export const CardPost = ({ data, base, onClick, loading }) => {
                         height={"auto"}
                         defaultValue="img"
                     />
+                    </div>
                     <div className="description">{content}</div>
                 </div>
 

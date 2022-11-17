@@ -1,165 +1,169 @@
 @use "../../scss/" as *;
 
 .carousel {
+  position: relative;
+  z-index: 2;
+
+  &__content {
+    overflow: hidden;
+  }
+  .swiper-slide {
+    width: 13.5%;
+    @include tablet {
+      width: 20%;
+    }
+
+    @include mobile {
+      width: 35%;
+    }
+  }
+
+  &.banner {
+    .swiper-slide {
+      width: 26%;
+      @include tablet {
+        width: 40%;
+      }
+
+      @include mobile {
+        width: 50%;
+      }
+    }
+  }
+
+  .carousel-des {
     position: relative;
-    z-index: 2;
+    display: block;
+    transition: height 0.8s ease, opacity 0.5s ease;
+    transition-delay: 0.2s, 0.9s;
+    margin-top: 2rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: $black-main;
+    opacity: 0;
+    height: 0 !important;
+    overflow: hidden;
+    width: 100%;
+
+    @include tablet {
+      background-size: 100vw auto;
+    }
+    @media only screen and (max-width: calc($tablet-width)) {
+      background-size: cover !important;
+      background-image: "";
+    }
+
+    &.active {
+      height: 35vw !important;
+
+      @include tablet {
+        height: 50vw !important;
+      }
+
+      @media only screen and (max-width: calc($mobile-width + 100px)) {
+        height: 80vw !important;
+      }
+      @include mobile {
+        height: 55vh !important;
+      }
+      opacity: 1;
+
+      .carousel-des__content {
+        opacity: 1;
+      }
+    }
 
     &__content {
-        overflow: hidden;
-    }
-    .swiper-slide {
-        width: 13.5%;
-        @include tablet {
-            width: 20%;
-        }
+      position: relative;
+      opacity: 0;
+      transition: opacity 0.1s ease;
 
-        @include mobile {
-            width: 35%;
+      width: 100%;
+      height: 100%;
+      @include flex(flex-start, center);
+      flex-direction: column;
+
+      @media only screen and (max-width: calc($mobile-width + 100px)) {
+        @include flex(center, center);
+      }
+
+      & > * ~ * {
+        margin-top: 1rem;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+
+      .story {
+        max-width: 47%;
+
+        @media only screen and (max-width: calc($mobile-width + 100px)) {
+          max-width: 100% !important;
         }
+      }
+
+      .btns {
+        @include flex(center, flex-start);
+        gap: 1rem;
+      }
+    }
+  }
+
+  &.kids {
+    .swiper-slide {
+      width: 20.5%;
+      @include tablet {
+        width: 28%;
+      }
+
+      @include mobile {
+        width: 36%;
+      }
     }
 
     &.banner {
-        .swiper-slide {
-            width: 26%;
-            @include tablet {
-                width: 40%;
-            }
-
-            @include mobile {
-                width: 50%;
-            }
+      .swiper-slide {
+        width: 20%;
+        @include tablet {
+          width: 40%;
         }
+
+        @include mobile {
+          width: 50%;
+        }
+      }
     }
 
     .carousel-des {
-        position: relative;
-        display: block;
-        transition: height 0.8s ease, opacity 0.5s ease;
-        transition-delay: 0.2s, 0.9s;
-        margin-top: 2rem;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-color: $black-main;
-        opacity: 0;
-        height: 0 !important;
-        overflow: hidden;
-        width: 100%;
+      background-color: white;
+      color: $black-main;
+    }
+  }
 
+  .loading {
+    .swiper-slide {
+      width: 13.5%;
+      @include tablet {
+        width: 20%;
+      }
+
+      @include mobile {
+        width: 35%;
+      }
+    }
+
+    &.banner {
+      .swiper-slide {
+        width: 26%;
         @include tablet {
-            background-size: 100vw auto;
-        }
-        @media only screen and (max-width: calc($tablet-width)) {
-            background-size: cover !important;
-            background-image: "";
+          width: 40%;
         }
 
-        &.active {
-            height: 55vh !important;
-            @include mobile {
-                height: 45vh !important;
-            }
-            @include tablet {
-                height: 50vh !important;
-            }
-
-            opacity: 1;
-
-            .carousel-des__content {
-                opacity: 1;
-            }
+        @include mobile {
+          width: 50%;
         }
-
-        &__content {
-            position: relative;
-            opacity: 0;
-            transition: opacity 0.1s ease;
-
-            width: 100%;
-            height: 100%;
-            @include flex(flex-start, center);
-            flex-direction: column;
-
-            @media only screen and (max-width: calc($mobile-width + 100px)) {
-                @include flex(center, center);
-            }
-
-            & > * ~ * {
-                margin-top: 1rem;
-            }
-
-            h2 {
-                font-size: 16px;
-            }
-
-            .story {
-                max-width: 40%;
-
-                @media only screen and (max-width: calc($mobile-width + 100px)) {
-                    max-width: 100% !important;
-                }
-            }
-
-            .btns {
-                @include flex(center, flex-start);
-                gap: 1rem;
-            }
-        }
+      }
     }
-
-    &.kids {
-        .swiper-slide {
-            width: 20.5%;
-            @include tablet {
-                width: 28%;
-            }
-
-            @include mobile {
-                width: 36%;
-            }
-        }
-
-        &.banner {
-            .swiper-slide {
-                width: 20%;
-                @include tablet {
-                    width: 40%;
-                }
-
-                @include mobile {
-                    width: 50%;
-                }
-            }
-        }
-
-        .carousel-des {
-            background-color: white;
-            color: $black-main;
-        }
-    }
-
-    .loading {
-        .swiper-slide {
-            width: 13.5%;
-            @include tablet {
-                width: 20%;
-            }
-
-            @include mobile {
-                width: 35%;
-            }
-        }
-
-        &.banner {
-            .swiper-slide {
-                width: 26%;
-                @include tablet {
-                    width: 40%;
-                }
-
-                @include mobile {
-                    width: 50%;
-                }
-            }
-        }
-    }
+  }
 }
